@@ -3,8 +3,13 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
 export default async function Footer() {
-  // Fetch website settings / logo from Sanity
-  const settings = await client.fetch(`*[_type == "siteSettings"][0]`);
+  // Safely fetch website settings / logo from Sanity with error handling for builds
+  let settings = null;
+  try {
+    settings = await client.fetch(`*[_type == "siteSettings"][0]`);
+  } catch (error) {
+    console.warn("Sanity fetch skipped during build or failed:", error);
+  }
 
   return (
     <footer className="w-full bg-[#06140b] text-white pt-20 pb-12 px-6 border-t border-[#138808]/30">
@@ -29,7 +34,7 @@ export default async function Footer() {
           </h4>
           <p className="text-gray-300 font-sans text-base font-light leading-relaxed mb-8">
             India&apos;s oldest and most trusted institution for Armed Forces preparation. Forging leaders of character with the ethos:
-            <span className="block text-[#FF9933] font-serif italic mt-2 text-lg">"Nation First, Then Best Grades."</span>
+            <span className="block text-[#FF9933] font-serif italic mt-2 text-lg">&quot;Nation First, Then Best Grades.&quot;</span>
           </p>
 
           <span className="text-sm uppercase tracking-widest text-gray-400 font-semibold mb-4">Connect With Us</span>
@@ -71,10 +76,10 @@ export default async function Footer() {
           </ul>
         </div>
 
-        {/* Column 3:Armed Forces Training*/}
+        {/* Column 3: Armed Forces Training */}
         <div>
           <h4 className="text-base font-sans font-bold tracking-[0.2em] uppercase text-white mb-6 border-l-2 border-[#FFFFFF] pl-3">
-           Armed Forces Training
+            Armed Forces Training
           </h4>
           <ul className="space-y-4 font-sans text-base text-gray-400">
             <li><Link href="/courses/ssb-interview-training" className="hover:text-white transition-colors">SSB Interview Training</Link></li>
