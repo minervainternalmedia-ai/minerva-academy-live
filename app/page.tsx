@@ -4,6 +4,24 @@ import { urlFor } from "@/sanity/lib/image";
 
 export const revalidate = 0;
 
+// TypeScript interfaces to remove the "any" red errors in VS Code
+interface Course {
+  _id: string;
+  title: string;
+  category: string;
+  description: string;
+  image: any;
+}
+
+interface Hero {
+  _id: string;
+  name: string;
+  batch: string;
+  description: string;
+  achievement: string;
+  image: any;
+}
+
 export default async function Home() {
   const hero = await client.fetch(`*[_type == "homeHero"][0]`);
   const stats = await client.fetch(`*[_type == "homeStats"][0]`);
@@ -61,7 +79,7 @@ export default async function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center w-full sm:w-auto">
-            <Link href="/why-minerva" className="bg-minerva-primary text-minerva-white px-10 py-4 text-xs md:text-sm font-sans font-semibold tracking-[0.2em] uppercase hover:bg-minerva-white hover:text-minerva-primary transition-all duration-500 border border-minerva-primary">
+            <Link href="/courses" className="bg-minerva-primary text-minerva-white px-10 py-4 text-xs md:text-sm font-sans font-semibold tracking-[0.2em] uppercase hover:bg-minerva-white hover:text-minerva-primary transition-all duration-500 border border-minerva-primary">
               Explore Courses
             </Link>
             <Link href="/about" className="bg-transparent text-minerva-white px-10 py-4 text-xs md:text-sm font-sans font-semibold tracking-[0.2em] uppercase hover:bg-minerva-white hover:text-minerva-blue transition-all duration-500 border border-gray-400">
@@ -117,7 +135,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 3. COURSES SECTION */}
+      {/* 3. COURSES SECTION (FIXED LINKS) */}
       <section className="w-full py-24 bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
@@ -129,15 +147,15 @@ export default async function Home() {
                 Our <span className="italic text-minerva-primary">Courses</span>
               </h2>
             </div>
-            <Link href="/contact" className="mt-6 md:mt-0 border-b border-minerva-primary text-minerva-primary font-sans font-semibold tracking-widest text-xs pb-1 hover:text-minerva-blue hover:border-minerva-blue transition-colors uppercase">
+            <Link href="/courses" className="mt-6 md:mt-0 border-b border-minerva-primary text-minerva-primary font-sans font-semibold tracking-widest text-xs pb-1 hover:text-minerva-blue hover:border-minerva-blue transition-colors uppercase">
               View All Courses
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {courses && courses.length > 0 ? (
-              courses.map((course: any) => (
-                <div key={course._id} className="group relative h-[420px] overflow-hidden bg-minerva-blue cursor-pointer shadow-lg">
+              courses.map((course: Course) => (
+                <Link href="/courses" key={course._id} className="group block relative h-[420px] overflow-hidden bg-minerva-blue cursor-pointer shadow-lg">
                   <div className="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-30 transition-opacity duration-700" style={{ backgroundImage: `url('${course.image ? urlFor(course.image).url() : "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=2070&auto=format&fit=crop"}')` }}></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-minerva-blue via-minerva-blue/60 to-transparent"></div>
                   <div className="absolute inset-0 p-8 flex flex-col justify-end">
@@ -152,7 +170,7 @@ export default async function Home() {
                       Discover More <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))
             ) : (
               <p className="text-gray-500">No courses published yet.</p>
@@ -198,7 +216,7 @@ export default async function Home() {
           <div className="slider-track flex gap-8 px-4">
             {rollOfHonour && rollOfHonour.length > 0 ? (
               // Duplicating exactly once creates the perfect seamless looping window without visual clipping
-              [...rollOfHonour, ...rollOfHonour].map((hero: any, index: number) => (
+              [...rollOfHonour, ...rollOfHonour].map((hero: Hero, index: number) => (
                 <div key={`${hero._id}-${index}`} className="w-[380px] shrink-0 bg-minerva-blue border border-gray-700 overflow-hidden group hover:border-minerva-accent transition-all duration-500 flex flex-col shadow-2xl relative">
                   <div className="grid grid-cols-3 h-1.5 w-full">
                     <div className="bg-[#FF671F]"></div>
