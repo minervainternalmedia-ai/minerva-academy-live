@@ -1,81 +1,167 @@
 import Link from "next/link";
 
 export default function WhyMinervaPage() {
-  const reasons = [
+  const points = [
     {
-      num: "01.",
-      text: "Established in 1955 by Lt. Col. Deol, Minerva Academy is the Premier Academy for SSB Interviews and Written Exam Coaching with over 70 years of experience."
+      num: "01",
+      text: "Established in 1955 by Lt. Col. Deol, Minerva Academy is the Premier Academy for SSB Interviews and Written Exam Coaching with over 60 years of experience."
     },
     {
-      num: "02.",
-      text: "Minerva has an unbeatable track record, with over 35000+ officers trained to success, and over 1000+ top positions in the Indian Armed Forces."
+      num: "02",
+      text: "Minerva has an unbeatable track record, with over 40000+ officers trained to success, and over 1000+ top positions in the Indian Armed forces."
     },
     {
-      num: "03.",
-      text: "Every fourth officer in the Indian Armed Forces has been a student of Minerva Academy."
+      num: "03",
+      text: "Every fourth officer in the Indian Armed forces has been a student of Minerva Academy."
     },
     {
-      num: "04.",
-      text: "Highly qualified and experienced faculty at Minerva adopts a practical, systematic and pin-point approach."
+      num: "04",
+      text: "Highly qualified and experienced faculty at Minerva adopts a practical, systematic and fun filled approach towards training."
     },
     {
-      num: "05.",
-      text: "The Minerva Academy secure campus provides unmatched infrastructure, spread over 10 acres of lush green environment."
+      num: "05",
+      text: "The Minerva Academy secure campus provides unmatched infrastructure, spread over 10 acres in lush green, pollution free, SSB like environment."
     },
     {
-      num: "06.",
-      text: "On campus hostel with security, 24 hour power backup & hot water geysers in all washrooms."
+      num: "06",
+      text: "On campus hostel with security, 24 hour power backup & hot water. Geyser in all washrooms."
+    },
+    {
+      num: "07",
+      text: "On campus Mess serves nutritious and palatable meals. Breakfast, Morning Tea, Lunch, Afternoon Tea, Dinner are served with utmost care towards hygiene."
+    },
+    {
+      num: "08",
+      text: "Minerva guarantees 10 days (100 hrs) of training for SSB Interviews and over 300+ hours of coaching for written exam coaching."
+    },
+    {
+      num: "09",
+      text: "Param Vir Chakra - Captain Vikram Batra (Kargil Hero) & Param Vir Charka - Flying Officer Nirmal Jit Singh Sekhon (IAF's First and Only PVC awardee) are among the famous alumni of Minerva Academy."
+    },
+    {
+      num: "10",
+      text: "Only Minerva Academy offers facilities like Gymnasium, Swimming Pool, Medical and Physiotherapy Clinic, Football grounds, Basketball court, Obstacle course, Cricket nets and much more."
+    },
+    {
+      num: "11",
+      text: "Minerva is a unique and life changing experience that completely transforms a person during the training period."
+    },
+    {
+      num: "12",
+      text: "Minerva guarantees comprehensive preparation covering psychological tests, GTO tasks, and personal interviews by seasoned assessors."
+    },
+    {
+      num: "13",
+      text: "Our location is easily accessible and well connected by Rail, Road and by Air."
+    }
+  ];
+
+  const faculty = [
+    {
+      name: "Veteran Armed Forces Officers",
+      role: "SSB & Interview Experts",
+      desc: "Seasoned veteran assessors and interviewing officers bringing decades of real-world military selection expertise.",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      name: "Psychological Testing Specialists",
+      role: "GTO & Psychology Mentors",
+      desc: "Experts specializing in evaluating psychological parameters, TAT, WAT, and complex GTO ground tasks.",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      name: "Written Exam Academicians",
+      role: "NDA, CDS & AFCAT Faculty",
+      desc: "Dedicated educators focused on building strong conceptual clarity, speed, and precision for written examinations.",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1000&auto=format&fit=crop"
     }
   ];
 
   return (
-    <main className="min-h-screen flex flex-col bg-gray-50 text-minerva-blue">
+    <main className="min-h-screen flex flex-col bg-gray-50">
       
-      {/* Page Header */}
-      <section className="relative w-full py-24 bg-minerva-primary text-minerva-white overflow-hidden border-b-4 border-minerva-accent">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#283047_1.5px,transparent_1.5px)] [background-size:20px_20px] pointer-events-none"></div>
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 border border-minerva-accent/40 px-6 py-2 mb-6 bg-minerva-blue/40">
-            <span className="text-minerva-accent tracking-[0.4em] font-sans text-xs font-bold uppercase">
-              Unmatched Excellence
-            </span>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-serif font-medium leading-tight">
-            Why Minerva <span className="italic text-minerva-accent">Academy</span>
-          </h1>
+      {/* HEADER HERO */}
+      <section className="bg-minerva-blue text-minerva-white py-20 text-center px-6">
+        <span className="text-minerva-accent tracking-[0.4em] font-sans text-xs font-bold uppercase mb-4 block">
+          Unmatched Excellence
+        </span>
+        <h1 className="text-4xl md:text-6xl font-serif font-medium mb-6">
+          Why Minerva <span className="italic text-minerva-accent">Academy</span>
+        </h1>
+        <p className="text-gray-300 font-sans text-base md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
+          Discover what makes Minerva Academy India's undisputed leader in SSB interview and written exam preparation since 1955.
+        </p>
+      </section>
+
+      {/* 13 POINTS GRID SECTION */}
+      <section className="py-24 max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {points.map((item, index) => (
+            <div 
+              key={index} 
+              className="bg-minerva-white border border-gray-200 p-8 shadow-sm hover:shadow-xl hover:border-minerva-primary transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-3xl font-serif font-bold text-minerva-primary mb-4 block">
+                  {item.num}.
+                </span>
+                <p className="text-gray-700 font-sans text-sm md:text-base leading-relaxed font-light">
+                  {item.text}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Grid Content Section */}
-      <section className="w-full py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-minerva-accent font-sans text-xs font-bold tracking-[0.3em] uppercase block mb-3">Unmatched Excellence</span>
-            <h2 className="text-4xl font-serif font-medium text-minerva-blue">
-              Why Minerva Academy
+      {/* OUR EXPERT FACULTY SECTION */}
+      <section className="py-24 bg-minerva-white border-t border-gray-200">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-minerva-accent tracking-[0.3em] font-sans text-xs font-bold uppercase mb-3 block">
+              Mentorship & Leadership
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif font-medium text-minerva-blue">
+              Our Expert <span className="italic text-minerva-primary">Faculty</span>
             </h2>
+            <p className="text-gray-600 font-sans font-light mt-4 text-base">
+              Trained under veterans, leaders, and professional educators dedicated to transforming aspirants into officers.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reasons.map((reason, index) => (
-              <div key={index} className="bg-white p-8 border-l-4 border-minerva-primary shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-minerva-accent font-sans font-bold text-xl mb-4">
-                  {reason.num}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {faculty.map((fac, idx) => (
+              <div key={idx} className="bg-gray-50 border border-gray-200 overflow-hidden shadow-md group">
+                <div 
+                  className="h-72 w-full bg-cover bg-center filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700" 
+                  style={{ backgroundImage: `url('${fac.image}')` }}
+                ></div>
+                <div className="p-8">
+                  <span className="text-minerva-accent font-sans text-[11px] tracking-[0.3em] uppercase font-bold mb-1 block">
+                    {fac.role}
+                  </span>
+                  <h3 className="text-2xl font-serif font-medium text-minerva-blue mb-3">{fac.name}</h3>
+                  <p className="text-gray-600 font-sans text-sm font-light leading-relaxed">{fac.desc}</p>
                 </div>
-                <p className="font-sans font-light text-gray-700 text-sm leading-relaxed">
-                  {reason.text}
-                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="w-full py-16 bg-minerva-primary text-center">
-        <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-2xl font-serif font-medium text-minerva-white mb-6">Join the Legacy of Success</h2>
-          <Link href="/contact" className="inline-block bg-minerva-accent text-minerva-white px-8 py-4 text-xs font-sans font-bold tracking-widest uppercase hover:bg-white hover:text-minerva-blue transition-all duration-300 shadow-md">
+      {/* JOIN THE LEGACY BANNER */}
+      <section className="bg-minerva-primary py-20 text-center px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-serif font-medium text-minerva-white mb-6">
+            Join the Legacy of Success
+          </h2>
+          <p className="text-gray-200 font-sans text-base mb-8 font-light">
+            Take the first step towards your uniform. Enroll today and train with India's most trusted armed forces preparatory institution.
+          </p>
+          <Link 
+            href="/contact" 
+            className="inline-block bg-minerva-accent text-minerva-white px-10 py-4 font-sans text-xs font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-minerva-blue transition-all shadow-xl"
+          >
             Enroll Today
           </Link>
         </div>
