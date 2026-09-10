@@ -19,6 +19,22 @@ export default async function Home() {
   return (
     <main className="min-h-screen flex flex-col">
       
+      {/* PERFECT SMOOTH SLIDER ANIMATION CSS */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes smoothSlide {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .slider-track {
+          display: flex;
+          width: max-content;
+          animation: smoothSlide 40s linear infinite;
+        }
+        .slider-track:hover {
+          animation-play-state: paused;
+        }
+      `}} />
+
       {/* 1. PREMIUM HERO SECTION */}
       <section 
         className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-cover bg-center"
@@ -145,7 +161,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 4. ELITE NATIONAL PRIDE ROLL OF HONOUR - CLEAN PREMIUM GRID */}
+      {/* 4. ELITE NATIONAL PRIDE ROLL OF HONOUR - SMOOTH ANIMATED SLIDER */}
       <section className="relative w-full py-32 bg-minerva-primary overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#283047_1.5px,transparent_1.5px)] [background-size:20px_20px] pointer-events-none"></div>
 
@@ -177,12 +193,13 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Clean Grid Layout (No duplication) */}
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Animated Seamless Slider Track */}
+        <div className="w-full overflow-hidden relative">
+          <div className="slider-track flex gap-8 px-4">
             {rollOfHonour && rollOfHonour.length > 0 ? (
-              rollOfHonour.map((hero: any) => (
-                <div key={hero._id} className="bg-minerva-blue border border-gray-700 overflow-hidden group hover:border-minerva-accent transition-all duration-500 flex flex-col shadow-2xl relative">
+              // Duplicating exactly once creates the perfect seamless looping window without visual clipping
+              [...rollOfHonour, ...rollOfHonour].map((hero: any, index: number) => (
+                <div key={`${hero._id}-${index}`} className="w-[380px] shrink-0 bg-minerva-blue border border-gray-700 overflow-hidden group hover:border-minerva-accent transition-all duration-500 flex flex-col shadow-2xl relative">
                   <div className="grid grid-cols-3 h-1.5 w-full">
                     <div className="bg-[#FF671F]"></div>
                     <div className="bg-white"></div>
