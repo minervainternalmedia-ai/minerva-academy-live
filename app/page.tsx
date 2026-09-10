@@ -8,8 +8,6 @@ export default async function Home() {
   const hero = await client.fetch(`*[_type == "homeHero"][0]`);
   const stats = await client.fetch(`*[_type == "homeStats"][0]`);
   const courses = await client.fetch(`*[_type == "homeCourse"]`);
-  
-  // Ensures only active, non-deleted documents with valid names/images are fetched
   const rollOfHonour = await client.fetch(`*[_type == "famousAlumni" && isRollOfHonour == true && defined(name)]`);
 
   const subheading = hero?.subheading || "Established 1955";
@@ -30,7 +28,7 @@ export default async function Home() {
         .animate-marquee {
           display: flex;
           width: max-content;
-          animation: marquee 35s linear infinite;
+          animation: marquee 40s linear infinite;
         }
         .animate-marquee:hover {
           animation-play-state: paused;
@@ -186,7 +184,6 @@ export default async function Home() {
               </p>
             </div>
             
-            {/* LINK TO FULL FAMOUS ALUMNI PAGE */}
             <Link 
               href="/famous-alumni" 
               className="mt-6 md:mt-0 inline-flex items-center gap-3 bg-minerva-accent text-minerva-white px-8 py-4 text-xs font-sans font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-minerva-blue transition-all shadow-xl"
@@ -196,11 +193,12 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Continuous Infinite Sliding Marquee */}
+        {/* Seamless Continuous Sliding Marquee */}
         <div className="w-full overflow-hidden relative">
           <div className="animate-marquee flex gap-8 px-4">
             {rollOfHonour && rollOfHonour.length > 0 ? (
-              [...rollOfHonour, ...rollOfHonour, ...rollOfHonour].map((hero: any, index: number) => (
+              // Duplicating exactly once ensures a smooth, non-jerky looping track
+              [...rollOfHonour, ...rollOfHonour].map((hero: any, index: number) => (
                 <div key={`${hero._id}-${index}`} className="w-[380px] shrink-0 bg-minerva-blue border border-gray-700 overflow-hidden group hover:border-minerva-accent transition-all duration-500 flex flex-col shadow-2xl relative">
                   <div className="grid grid-cols-3 h-1.5 w-full">
                     <div className="bg-[#FF671F]"></div>
@@ -249,7 +247,6 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Video 1: Milkha Singh */}
             <div className="bg-minerva-primary/40 border border-gray-700/80 p-4 shadow-2xl flex flex-col">
               <div className="relative w-full aspect-video rounded-sm overflow-hidden shadow-inner bg-black">
                 <iframe 
@@ -267,7 +264,6 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Video 2: Vishal Batra */}
             <div className="bg-minerva-primary/40 border border-gray-700/80 p-4 shadow-2xl flex flex-col">
               <div className="relative w-full aspect-video rounded-sm overflow-hidden shadow-inner bg-black">
                 <iframe 
