@@ -5,15 +5,11 @@ import { urlFor } from "@/sanity/lib/image";
 export const revalidate = 0;
 
 export default async function Home() {
-  // Fetch all homepage sections concurrently from Sanity
   const hero = await client.fetch(`*[_type == "homeHero"][0]`);
   const stats = await client.fetch(`*[_type == "homeStats"][0]`);
   const courses = await client.fetch(`*[_type == "homeCourse"]`);
-  
-  // NEW FETCH: Looks for Famous Alumni where the "Roll of Honour" toggle is ON
   const rollOfHonour = await client.fetch(`*[_type == "famousAlumni" && isRollOfHonour == true]`);
 
-  // Fallback defaults for Hero
   const subheading = hero?.subheading || "Established 1955";
   const titleMain = hero?.titleMain || "A Legacy of";
   const titleHighlight = hero?.titleHighlight || "Courage & Excellence";
@@ -23,7 +19,23 @@ export default async function Home() {
   return (
     <main className="min-h-screen flex flex-col">
       
-      {/* 1. PREMIUM HERO SECTION (Dynamic from Sanity) */}
+      {/* CUSTOM CSS ANIMATION FOR CONTINUOUS SLIDER */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          display: flex;
+          width: max-content;
+          animation: marquee 35s linear infinite;
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
+        }
+      `}} />
+
+      {/* 1. PREMIUM HERO SECTION */}
       <section 
         className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url('${bgImageUrl}')` }}
@@ -59,7 +71,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 2. STATISTICS & LEGACY SECTION (Dynamic from Sanity) */}
+      {/* 2. STATISTICS & LEGACY SECTION */}
       <section className="w-full py-24 bg-minerva-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-gray-200 pb-20">
@@ -105,7 +117,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 3. COURSES SECTION (Updated Title) */}
+      {/* 3. COURSES SECTION */}
       <section className="w-full py-24 bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
@@ -149,12 +161,12 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 4. ELITE NATIONAL PRIDE ROLL OF HONOUR (Dynamic from Sanity) */}
+      {/* 4. ELITE NATIONAL PRIDE ROLL OF HONOUR - CONTINUOUS MARQUEE SLIDER */}
       <section className="relative w-full py-32 bg-minerva-primary overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#283047_1.5px,transparent_1.5px)] [background-size:20px_20px] pointer-events-none"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 mb-20">
+          <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 border border-minerva-accent/40 px-6 py-2 mb-6 bg-minerva-blue/40">
               <span className="w-2 h-2 rounded-full bg-[#FF671F]"></span>
               <span className="w-2 h-2 rounded-full bg-white"></span>
@@ -170,11 +182,15 @@ export default async function Home() {
               Honouring the legendary officers, commanders, and national heroes whose extraordinary journeys began at Minerva Academy.
             </p>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Continuous Infinite Sliding Marquee */}
+        <div className="w-full overflow-hidden relative">
+          <div className="animate-marquee flex gap-8 px-4">
             {rollOfHonour && rollOfHonour.length > 0 ? (
-              rollOfHonour.map((hero: any) => (
-                <div key={hero._id} className="bg-minerva-blue border border-gray-700 overflow-hidden group hover:border-minerva-accent transition-all duration-500 flex flex-col shadow-2xl relative">
+              // Duplicate the array to make the sliding loop seamless
+              [...rollOfHonour, ...rollOfHonour, ...rollOfHonour].map((hero: any, index: number) => (
+                <div key={`${hero._id}-${index}`} className="w-[380px] shrink-0 bg-minerva-blue border border-gray-700 overflow-hidden group hover:border-minerva-accent transition-all duration-500 flex flex-col shadow-2xl relative">
                   <div className="grid grid-cols-3 h-1.5 w-full">
                     <div className="bg-[#FF671F]"></div>
                     <div className="bg-white"></div>
@@ -189,7 +205,7 @@ export default async function Home() {
                     <h3 className="text-2xl font-serif font-medium text-minerva-white mb-3">
                       {hero.name}
                     </h3>
-                    <p className="text-gray-300 font-sans font-light text-sm leading-relaxed mb-6">
+                    <p className="text-gray-300 font-sans font-light text-sm leading-relaxed mb-6 line-clamp-3">
                       {hero.description}
                     </p>
                     <div className="mt-auto border-t border-gray-700/80 pt-4 flex justify-between items-center text-xs font-sans tracking-widest text-minerva-accent uppercase font-semibold">
@@ -202,6 +218,61 @@ export default async function Home() {
             ) : (
               <p className="text-gray-300 text-center col-span-3">No legends added yet.</p>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. PREMIUM YOUTUBE VIDEO SHOWCASE SECTION */}
+      <section className="w-full py-28 bg-minerva-blue relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="text-minerva-accent tracking-[0.4em] font-sans text-xs font-bold uppercase mb-4 block">
+              Legacy in Motion
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif font-medium text-minerva-white mb-6">
+              Hear From Our <span className="italic text-minerva-accent">Icons</span>
+            </h2>
+            <p className="text-gray-300 font-sans font-light text-base leading-relaxed">
+              Watch legendary national figures share their profound connection and memories with Minerva Academy.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Video 1: Milkha Singh */}
+            <div className="bg-minerva-primary/40 border border-gray-700/80 p-4 shadow-2xl flex flex-col">
+              <div className="relative w-full aspect-video rounded-sm overflow-hidden shadow-inner bg-black">
+                <iframe 
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/FPQssIqnzc0" 
+                  title="Milkha Singh the Flying Sikh talks about Minerva Academy" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div className="p-6">
+                <span className="text-minerva-accent text-[10px] tracking-[0.3em] font-bold uppercase mb-2 block">Special Feature</span>
+                <h3 className="text-2xl font-serif text-minerva-white mb-2">Milkha Singh on Minerva Academy</h3>
+                <p className="text-gray-300 font-sans font-light text-sm">The legendary Flying Sikh shares his inspiring association with our institution.</p>
+              </div>
+            </div>
+
+            {/* Video 2: Vishal Batra */}
+            <div className="bg-minerva-primary/40 border border-gray-700/80 p-4 shadow-2xl flex flex-col">
+              <div className="relative w-full aspect-video rounded-sm overflow-hidden shadow-inner bg-black">
+                <iframe 
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/_fq9uzOqHag" 
+                  title="PVC Captain Vikram Batra's twin Brother Vishal Batra at Minerva Academy" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div className="p-6">
+                <span className="text-minerva-accent text-[10px] tracking-[0.3em] font-bold uppercase mb-2 block">Anniversary Special</span>
+                <h3 className="text-2xl font-serif text-minerva-white mb-2">Vishal Batra at Minerva Academy</h3>
+                <p className="text-gray-300 font-sans font-light text-sm">Param Vir Chakra Captain Vikram Batra's twin brother reflects on his journey and memories.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
