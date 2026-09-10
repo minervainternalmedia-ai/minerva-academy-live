@@ -8,7 +8,9 @@ export default async function Home() {
   const hero = await client.fetch(`*[_type == "homeHero"][0]`);
   const stats = await client.fetch(`*[_type == "homeStats"][0]`);
   const courses = await client.fetch(`*[_type == "homeCourse"]`);
-  const rollOfHonour = await client.fetch(`*[_type == "famousAlumni" && isRollOfHonour == true]`);
+  
+  // Ensures only active, non-deleted documents with valid names/images are fetched
+  const rollOfHonour = await client.fetch(`*[_type == "famousAlumni" && isRollOfHonour == true && defined(name)]`);
 
   const subheading = hero?.subheading || "Established 1955";
   const titleMain = hero?.titleMain || "A Legacy of";
@@ -165,22 +167,32 @@ export default async function Home() {
       <section className="relative w-full py-32 bg-minerva-primary overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#283047_1.5px,transparent_1.5px)] [background-size:20px_20px] pointer-events-none"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 mb-20">
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 border border-minerva-accent/40 px-6 py-2 mb-6 bg-minerva-blue/40">
-              <span className="w-2 h-2 rounded-full bg-[#FF671F]"></span>
-              <span className="w-2 h-2 rounded-full bg-white"></span>
-              <span className="w-2 h-2 rounded-full bg-[#138808]"></span>
-              <span className="text-minerva-accent tracking-[0.4em] font-sans text-xs font-bold uppercase ml-2">
-                Roll of Honour & National Pride
-              </span>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-end">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 border border-minerva-accent/40 px-6 py-2 mb-6 bg-minerva-blue/40">
+                <span className="w-2 h-2 rounded-full bg-[#FF671F]"></span>
+                <span className="w-2 h-2 rounded-full bg-white"></span>
+                <span className="w-2 h-2 rounded-full bg-[#138808]"></span>
+                <span className="text-minerva-accent tracking-[0.4em] font-sans text-xs font-bold uppercase ml-2">
+                  Roll of Honour & National Pride
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-serif font-medium text-minerva-white mb-4 leading-tight">
+                Guardians of the <span className="italic text-minerva-accent">Nation</span>
+              </h2>
+              <p className="text-gray-200 font-sans font-light text-base md:text-lg leading-relaxed">
+                Honouring legendary officers whose extraordinary journeys began at Minerva Academy.
+              </p>
             </div>
-            <h2 className="text-4xl md:text-6xl font-serif font-medium text-minerva-white mb-6 leading-tight">
-              Guardians of the <span className="italic text-minerva-accent">Nation</span>
-            </h2>
-            <p className="text-gray-200 font-sans font-light text-base md:text-lg leading-relaxed">
-              Honouring the legendary officers, commanders, and national heroes whose extraordinary journeys began at Minerva Academy.
-            </p>
+            
+            {/* LINK TO FULL FAMOUS ALUMNI PAGE */}
+            <Link 
+              href="/famous-alumni" 
+              className="mt-6 md:mt-0 inline-flex items-center gap-3 bg-minerva-accent text-minerva-white px-8 py-4 text-xs font-sans font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-minerva-blue transition-all shadow-xl"
+            >
+              See All Legends <span>→</span>
+            </Link>
           </div>
         </div>
 
@@ -188,7 +200,6 @@ export default async function Home() {
         <div className="w-full overflow-hidden relative">
           <div className="animate-marquee flex gap-8 px-4">
             {rollOfHonour && rollOfHonour.length > 0 ? (
-              // Duplicate the array to make the sliding loop seamless
               [...rollOfHonour, ...rollOfHonour, ...rollOfHonour].map((hero: any, index: number) => (
                 <div key={`${hero._id}-${index}`} className="w-[380px] shrink-0 bg-minerva-blue border border-gray-700 overflow-hidden group hover:border-minerva-accent transition-all duration-500 flex flex-col shadow-2xl relative">
                   <div className="grid grid-cols-3 h-1.5 w-full">
