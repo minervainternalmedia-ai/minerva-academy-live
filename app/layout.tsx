@@ -22,8 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} font-sans bg-minerva-white text-minerva-blue antialiased`}>
-        <Navbar />
         <NoticeTicker />
+        <Navbar />
         
         {children}
         
