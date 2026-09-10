@@ -1,6 +1,14 @@
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
-export default function WhyMinervaPage() {
+export const revalidate = 0; // Ensures the page updates immediately when you change Sanity backend
+
+export default async function WhyMinervaPage() {
+  // Fetch Expert Faculty from Sanity Backend
+  const faculty = await client.fetch(`*[_type == "expertFaculty"] | order(order asc)`);
+
+  // Static 13 Points from Brochure
   const points = [
     {
       num: "01",
@@ -56,27 +64,6 @@ export default function WhyMinervaPage() {
     }
   ];
 
-  const faculty = [
-    {
-      name: "Veteran Armed Forces Officers",
-      role: "SSB & Interview Experts",
-      desc: "Seasoned veteran assessors and interviewing officers bringing decades of real-world military selection expertise.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
-    },
-    {
-      name: "Psychological Testing Specialists",
-      role: "GTO & Psychology Mentors",
-      desc: "Experts specializing in evaluating psychological parameters, TAT, WAT, and complex GTO ground tasks.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop"
-    },
-    {
-      name: "Written Exam Academicians",
-      role: "NDA, CDS & AFCAT Faculty",
-      desc: "Dedicated educators focused on building strong conceptual clarity, speed, and precision for written examinations.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1000&auto=format&fit=crop"
-    }
-  ];
-
   return (
     <main className="min-h-screen flex flex-col bg-gray-50">
       
@@ -114,7 +101,7 @@ export default function WhyMinervaPage() {
         </div>
       </section>
 
-      {/* OUR EXPERT FACULTY SECTION */}
+      {/* OUR EXPERT FACULTY SECTION (Dynamic from Sanity) */}
       <section className="py-24 bg-minerva-white border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -130,21 +117,25 @@ export default function WhyMinervaPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {faculty.map((fac, idx) => (
-              <div key={idx} className="bg-gray-50 border border-gray-200 overflow-hidden shadow-md group">
-                <div 
-                  className="h-72 w-full bg-cover bg-center filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700" 
-                  style={{ backgroundImage: `url('${fac.image}')` }}
-                ></div>
-                <div className="p-8">
-                  <span className="text-minerva-accent font-sans text-[11px] tracking-[0.3em] uppercase font-bold mb-1 block">
-                    {fac.role}
-                  </span>
-                  <h3 className="text-2xl font-serif font-medium text-minerva-blue mb-3">{fac.name}</h3>
-                  <p className="text-gray-600 font-sans text-sm font-light leading-relaxed">{fac.desc}</p>
+            {faculty && faculty.length > 0 ? (
+              faculty.map((fac: any) => (
+                <div key={fac._id} className="bg-gray-50 border border-gray-200 overflow-hidden shadow-md group">
+                  <div 
+                    className="h-72 w-full bg-cover bg-center filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700" 
+                    style={{ backgroundImage: `url('${fac.image ? urlFor(fac.image).url() : "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"}')` }}
+                  ></div>
+                  <div className="p-8">
+                    <span className="text-minerva-accent font-sans text-[11px] tracking-[0.3em] uppercase font-bold mb-1 block">
+                      {fac.role}
+                    </span>
+                    <h3 className="text-2xl font-serif font-medium text-minerva-blue mb-3">{fac.name}</h3>
+                    <p className="text-gray-600 font-sans text-sm font-light leading-relaxed">{fac.description}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p className="text-gray-500 text-center col-span-3 py-10">Faculty profiles are currently being updated.</p>
+            )}
           </div>
         </div>
       </section>

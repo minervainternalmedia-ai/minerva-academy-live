@@ -20,7 +20,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
       fields: [
         { name: 'isActive', title: 'Show Banner?', type: 'boolean', initialValue: true },
         { name: 'dispatchText', title: 'Dispatch Text (e.g., NEW SSB INTERVIEW BATCH STARTS...)', type: 'string' },
-        { name: 'helpline', title: 'Helpline Number (e.g., +91 93569 02334)', type: 'string' }
+        { name: 'helpline', title: 'Helpline Number (e.g., +91 8054197300)', type: 'string' }
       ]
     },
     {
@@ -83,6 +83,18 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         { name: 'number', title: 'Point Number (e.g., 01, 04)', type: 'string' },
         { name: 'title', title: 'Short Title (Optional)', type: 'string' },
         { name: 'description', title: 'Feature Description', type: 'text' }
+      ]
+    },
+    {
+      name: 'expertFaculty',
+      title: 'Why Minerva - Expert Faculty',
+      type: 'document',
+      fields: [
+        { name: 'name', title: 'Faculty / Department Name', type: 'string' },
+        { name: 'role', title: 'Role / Designation (e.g., SSB & Interview Expert)', type: 'string' },
+        { name: 'image', title: 'Faculty Photo', type: 'image', options: { hotspot: true } },
+        { name: 'description', title: 'Description', type: 'text' },
+        { name: 'order', title: 'Display Order (1, 2, 3...)', type: 'number' }
       ]
     },
     {
@@ -200,7 +212,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     },
 
     // ----------------------------------------------------
-    // 6. CONTACT & ADMISSIONS SCHEMAS (NEW)
+    // 6. CONTACT & ADMISSIONS SCHEMAS
     // ----------------------------------------------------
     {
       name: 'contactPage',
