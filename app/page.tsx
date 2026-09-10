@@ -105,7 +105,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 3. FLAGSHIP COURSES SECTION (Dynamic from Sanity) */}
+      {/* 3. COURSES SECTION (Updated Title) */}
       <section className="w-full py-24 bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
@@ -114,7 +114,7 @@ export default async function Home() {
                 Training Programs
               </span>
               <h2 className="text-4xl md:text-5xl font-serif font-medium text-minerva-blue">
-                Our Flagship <span className="italic text-minerva-primary">Courses</span>
+                Our <span className="italic text-minerva-primary">Courses</span>
               </h2>
             </div>
             <Link href="/contact" className="mt-6 md:mt-0 border-b border-minerva-primary text-minerva-primary font-sans font-semibold tracking-widest text-xs pb-1 hover:text-minerva-blue hover:border-minerva-blue transition-colors uppercase">
