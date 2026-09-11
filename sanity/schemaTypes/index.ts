@@ -297,7 +297,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         }
       ]
     },
-    // BRAND NEW SCHEMA: ACC WRITTEN EXAM
     {
       name: 'accWrittenExam',
       title: 'Course Pages - ACC Written',
@@ -342,6 +341,35 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         { name: 'title', title: 'Image Title / Caption', type: 'string' },
         { name: 'category', title: 'Category Tag (e.g., Campus, Training, Events)', type: 'string' },
         { name: 'image', title: 'Gallery Image', type: 'image', options: { hotspot: true } }
+      ]
+    },
+    // BRAND NEW SCHEMA: OUR CAMPUS PAGE
+    {
+      name: 'ourCampusPage',
+      title: 'Life at Minerva - Our Campus',
+      type: 'document',
+      fields: [
+        { name: 'heroTitle', title: 'Hero Title', type: 'string', initialValue: 'Our Historic Campus' },
+        { name: 'heroDescription', title: 'Hero Description', type: 'text' },
+        { name: 'overviewP1', title: 'Overview Paragraph 1', type: 'text' },
+        { name: 'overviewP2', title: 'Overview Paragraph 2', type: 'text' },
+        { name: 'overviewP3', title: 'Overview Paragraph 3', type: 'text' },
+        { 
+          name: 'sidePhotoGrid', 
+          title: 'Side Photo Grid (Upload Exactly 4 Images)', 
+          type: 'array', 
+          of: [{ type: 'image', options: { hotspot: true } }] 
+        },
+        { 
+          name: 'facilitiesList', 
+          title: 'Facilities List (16 Items)', 
+          type: 'array', 
+          of: [{ type: 'string' }] 
+        },
+        { name: 'boardingTitle', title: 'Boarding & Lodging Title', type: 'string', initialValue: 'Boarding & Lodging' },
+        { name: 'boardingText', title: 'Boarding & Lodging Text', type: 'text' },
+        { name: 'hostelTitle', title: 'Girls Hostel Title', type: 'string', initialValue: "Girls' Hostel Facility" },
+        { name: 'hostelText', title: 'Girls Hostel Text', type: 'text' }
       ]
     },
 
