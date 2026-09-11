@@ -107,7 +107,14 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         { name: 'achievement', title: 'Major Achievement / Medal', type: 'string' },
         { name: 'description', title: 'Short Biography', type: 'text' },
         { name: 'image', title: 'Alumni Portrait', type: 'image', options: { hotspot: true } },
-        { name: 'isRollOfHonour', title: 'Show on Homepage Roll of Honour?', type: 'boolean', initialValue: false }
+        { name: 'isRollOfHonour', title: 'Show on Homepage Roll of Honour?', type: 'boolean', initialValue: false },
+        // NEW ORDER FIELD HERE:
+        { 
+          name: 'order', 
+          title: 'Display Order (1, 2, 3...)', 
+          type: 'number', 
+          description: 'Type 1 to show first, 2 to show second, etc.' 
+        }
       ]
     },
     {
@@ -176,7 +183,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         { name: 'feeSideImage', title: 'Fee Section Side Image', type: 'image', options: { hotspot: true } }
       ]
     },
-    // BRAND NEW SCHEMA: SSB INTERVIEW PAGE
     {
       name: 'ssbInterviewPage',
       title: 'Course Pages - SSB Interview',

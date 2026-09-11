@@ -3,16 +3,27 @@ import { urlFor } from "@/sanity/lib/image";
 
 export const revalidate = 0;
 
+// TypeScript interface to prevent any red line errors in VS Code
+interface Alumni {
+  _id: string;
+  name: string;
+  batch?: string;
+  achievement?: string;
+  description?: string;
+  image?: any;
+  order?: number;
+}
+
 export default async function FamousAlumni() {
-  // Fetch all alumni from Sanity
-  const alumni = await client.fetch(`*[_type == "famousAlumni"]`);
+  // Fetch all alumni from Sanity and ORDER them by the number you type in the backend!
+  const alumni: Alumni[] = await client.fetch(`*[_type == "famousAlumni"] | order(order asc)`);
 
   return (
     <main className="min-h-screen bg-[#F4F5F7] flex flex-col pb-32 font-sans">
       
       {/* 1. ELITE HERITAGE HEADER (Clean Deep Green) */}
       <section className="w-full bg-[#092B16] pt-28 pb-20 px-6 relative overflow-hidden shadow-md">
-        {/* Very subtle dot pattern, NOT a massive wheel */}
+        {/* Very subtle dot pattern */}
         <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"></div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -33,10 +44,10 @@ export default async function FamousAlumni() {
       {/* 2. CLASSIC MOTTO SECTION */}
       <section className="w-full max-w-4xl mx-auto py-16 px-6 text-center">
         <h2 className="text-2xl md:text-4xl font-serif text-[#092B16] leading-relaxed mb-6 font-medium">
-          "The safety, honour and welfare of your country come first, always and every time."
+          &quot;The safety, honour and welfare of your country come first, always and every time.&quot;
         </h2>
         <h3 className="text-lg md:text-xl font-serif italic text-[#D4AF37] mb-8">
-          "Nation First, Then Best Grades."
+          &quot;Nation First, Then Best Grades.&quot;
         </h3>
         <div className="w-24 h-[1px] bg-gray-300 mx-auto"></div>
       </section>
@@ -45,7 +56,7 @@ export default async function FamousAlumni() {
       <section className="w-full max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {alumni && alumni.length > 0 ? (
-            alumni.map((person: any) => (
+            alumni.map((person) => (
               <div 
                 key={person._id} 
                 className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 flex flex-col group"
