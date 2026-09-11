@@ -343,7 +343,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         { name: 'image', title: 'Gallery Image', type: 'image', options: { hotspot: true } }
       ]
     },
-    // BRAND NEW SCHEMA: OUR CAMPUS PAGE
     {
       name: 'ourCampusPage',
       title: 'Life at Minerva - Our Campus',
@@ -370,6 +369,37 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         { name: 'boardingText', title: 'Boarding & Lodging Text', type: 'text' },
         { name: 'hostelTitle', title: 'Girls Hostel Title', type: 'string', initialValue: "Girls' Hostel Facility" },
         { name: 'hostelText', title: 'Girls Hostel Text', type: 'text' }
+      ]
+    },
+    // BRAND NEW SCHEMA: HOSTEL & MESS PAGE
+    {
+      name: 'hostelMessPage',
+      title: 'Life at Minerva - Hostel & Mess',
+      type: 'document',
+      fields: [
+        { name: 'heroTitle', title: 'Hero Title', type: 'string', initialValue: 'Hostel & Mess' },
+        { name: 'heroDescription', title: 'Hero Description', type: 'text', initialValue: 'Clean, comfortable accommodation and highly palatable, nutritious meals providing a true home away from home.' },
+        
+        { name: 'hostelHeading', title: 'Hostel Section Heading', type: 'string', initialValue: 'Hostel' },
+        { name: 'hostelText1', title: 'Hostel Text Paragraph 1', type: 'text' },
+        { name: 'hostelText2', title: 'Hostel Text Paragraph 2', type: 'text' },
+        { name: 'hostelNote', title: 'Hostel Highlight Note', type: 'string', initialValue: 'GIRLS HAVE A SEPARATE ON CAMPUS HOSTEL. A lady warden is present on campus 24 hrs a day for any assistance.' },
+        { 
+          name: 'hostelGallery', 
+          title: 'Hostel Facility Image Gallery', 
+          type: 'array', 
+          of: [{ type: 'image', options: { hotspot: true } }] 
+        },
+
+        { name: 'messHeading', title: 'Mess Section Heading', type: 'string', initialValue: 'MESS' },
+        { name: 'messText1', title: 'Mess Text Paragraph 1', type: 'text' },
+        { name: 'messText2', title: 'Mess Text Paragraph 2', type: 'text' },
+        { 
+          name: 'messGallery', 
+          title: 'Mess & Dining Image Gallery', 
+          type: 'array', 
+          of: [{ type: 'image', options: { hotspot: true } }] 
+        }
       ]
     },
 
