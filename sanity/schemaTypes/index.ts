@@ -401,7 +401,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         }
       ]
     },
-    // BRAND NEW SCHEMA: SPORTS FACILITIES PAGE
     {
       name: 'sportsFacilitiesPage',
       title: 'Life at Minerva - Sports Facilities',
@@ -429,9 +428,16 @@ export const schema: { types: SchemaTypeDefinition[] } = {
       type: 'document',
       fields: [
         { name: 'studentName', title: 'Student Name', type: 'string' },
-        { name: 'courseTaken', title: 'Course Taken (e.g., NDA Batch 2023)', type: 'string' },
+        { name: 'courseTaken', title: 'Course Taken / Exam Cleared', type: 'string' },
         { name: 'quote', title: 'Testimonial Quote', type: 'text' },
-        { name: 'studentImage', title: 'Student Image', type: 'image', options: { hotspot: true } }
+        { 
+          name: 'videoUrl', 
+          title: 'Video Testimonial Link (YouTube / Vimeo URL)', 
+          type: 'url', 
+          description: 'Paste the video URL here to display it as a cinematic video card on the testimonials page.' 
+        },
+        { name: 'studentImage', title: 'Student Portrait', type: 'image', options: { hotspot: true } },
+        { name: 'order', title: 'Display Order (1, 2, 3...)', type: 'number' }
       ]
     },
     {
