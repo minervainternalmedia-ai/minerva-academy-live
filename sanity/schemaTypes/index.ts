@@ -368,7 +368,14 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         { name: 'boardingTitle', title: 'Boarding & Lodging Title', type: 'string', initialValue: 'Boarding & Lodging' },
         { name: 'boardingText', title: 'Boarding & Lodging Text', type: 'text' },
         { name: 'hostelTitle', title: 'Girls Hostel Title', type: 'string', initialValue: "Girls' Hostel Facility" },
-        { name: 'hostelText', title: 'Girls Hostel Text', type: 'text' }
+        { name: 'hostelText', title: 'Girls Hostel Text', type: 'text' },
+        // BRAND NEW FIELD: CAMPUS GALLERY
+        { 
+          name: 'campusGallery', 
+          title: 'Bottom Campus Gallery Grid (Upload Multiple Images)', 
+          type: 'array', 
+          of: [{ type: 'image', options: { hotspot: true } }] 
+        }
       ]
     },
     {
