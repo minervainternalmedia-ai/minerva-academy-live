@@ -1,11 +1,43 @@
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
-export default function SportsFacilitiesPage() {
-  // Premium landscape fallback images for the side grid
-  const photo1 = "https://images.unsplash.com/photo-1517649763962-0c623266cf10?q=80&w=800&auto=format&fit=crop";
-  const photo2 = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop";
-  const photo3 = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800&auto=format&fit=crop";
-  const photo4 = "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=800&auto=format&fit=crop";
+export const revalidate = 0;
+
+interface SportsData {
+  heroTitle?: string;
+  heroDescription?: string;
+  quoteText?: string;
+  overviewText?: string;
+  sidePhotoGrid?: any[];
+}
+
+// BULLETPROOF IMAGE FETCHER
+function getSafeImageUrl(imageRef: any, fallbackUrl: string) {
+  if (!imageRef || !imageRef.asset) return fallbackUrl;
+  try {
+    return urlFor(imageRef).url();
+  } catch (error) {
+    return fallbackUrl;
+  }
+}
+
+export default async function SportsFacilitiesPage() {
+  // Fetch dynamic data from Sanity
+  const data: SportsData | null = await client.fetch(`*[_type == "sportsFacilitiesPage"][0]`);
+
+  // Fallbacks
+  const heroTitle = data?.heroTitle || "Sports Facilities";
+  const heroDescription = data?.heroDescription || "World-class physical training infrastructure designed to forge the endurance, stamina, and agility required for the Indian Armed Forces.";
+  const quoteText = data?.quoteText || "Physical fitness is a pre-requisite for SSB and a cornerstone of military leadership.";
+  const overviewText = data?.overviewText || "Only Minerva Academy offers a fully equipped ecosystem of sports grounds, courts, and dedicated obstacle courses across our vast 10-acre campus. We actively encourage physical fitness among candidates, ensuring they possess the endurance and stamina required to excel in their SSB interviews and subsequent military training.";
+
+  // Safe Landscape Photo Grid Fallbacks
+  const photos = data?.sidePhotoGrid || [];
+  const photo1 = getSafeImageUrl(photos[0], "https://images.unsplash.com/photo-1517649763962-0c623266cf10?q=80&w=800&auto=format&fit=crop");
+  const photo2 = getSafeImageUrl(photos[1], "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop");
+  const photo3 = getSafeImageUrl(photos[2], "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800&auto=format&fit=crop");
+  const photo4 = getSafeImageUrl(photos[3], "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=800&auto=format&fit=crop");
 
   return (
     <main className="min-h-screen flex flex-col bg-gray-50 text-minerva-blue">
@@ -29,7 +61,7 @@ export default function SportsFacilitiesPage() {
           </h1>
           
           <p className="text-gray-200 font-sans font-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            World-class physical training infrastructure designed to forge the endurance, stamina, and agility required for the Indian Armed Forces.
+            {heroDescription}
           </p>
         </div>
       </section>
@@ -44,10 +76,10 @@ export default function SportsFacilitiesPage() {
             {/* Overview Box */}
             <div className="bg-white p-8 border-l-4 border-minerva-accent shadow-sm">
               <p className="text-minerva-blue font-serif italic text-base md:text-lg mb-4 font-medium">
-                &ldquo;Physical fitness is a pre-requisite for SSB and a cornerstone of military leadership.&rdquo;
+                &ldquo;{quoteText}&rdquo;
               </p>
               <p className="text-gray-700 font-sans font-light text-sm md:text-base leading-relaxed">
-                Only Minerva Academy offers a fully equipped ecosystem of sports grounds, courts, and dedicated obstacle courses across our vast 10-acre campus. We actively encourage physical fitness among candidates, ensuring they possess the endurance and stamina required to excel in their SSB interviews and subsequent military training.
+                {overviewText}
               </p>
             </div>
 
