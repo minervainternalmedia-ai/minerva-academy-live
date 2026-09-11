@@ -282,7 +282,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         }
       ]
     },
-    // BRAND NEW SCHEMA: AFCAT WRITTEN EXAM
     {
       name: 'afcatWrittenExam',
       title: 'Course Pages - AFCAT Written',
@@ -290,6 +289,22 @@ export const schema: { types: SchemaTypeDefinition[] } = {
       fields: [
         { name: 'heroTitle', title: 'Hero Title', type: 'string', initialValue: 'AFCAT Written Exam Coaching' },
         { name: 'heroDescription', title: 'Hero Description', type: 'text', initialValue: 'Specialized 6-week intensive preparation for recruitment into the esteemed branches of the Indian Air Force.' },
+        { 
+          name: 'sidePhotoGrid', 
+          title: 'Side Photo Grid (Upload Exactly 4 Images)', 
+          type: 'array', 
+          of: [{ type: 'image', options: { hotspot: true } }] 
+        }
+      ]
+    },
+    // BRAND NEW SCHEMA: ACC WRITTEN EXAM
+    {
+      name: 'accWrittenExam',
+      title: 'Course Pages - ACC Written',
+      type: 'document',
+      fields: [
+        { name: 'heroTitle', title: 'Hero Title', type: 'string', initialValue: 'ACC Written Examination Coaching' },
+        { name: 'heroDescription', title: 'Hero Description', type: 'text', initialValue: 'Army Cadet College Written Examination Coaching.' },
         { 
           name: 'sidePhotoGrid', 
           title: 'Side Photo Grid (Upload Exactly 4 Images)', 
