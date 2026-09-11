@@ -424,31 +424,31 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // ----------------------------------------------------
     {
       name: 'testimonial',
-      title: 'Success Stories - Testimonials',
+      title: 'Success Stories - Testimonials (Video Journeys)',
       type: 'document',
       fields: [
-        { name: 'studentName', title: 'Student Name', type: 'string' },
-        { name: 'courseTaken', title: 'Course Taken / Exam Cleared', type: 'string' },
-        { name: 'quote', title: 'Testimonial Quote', type: 'text' },
+        { name: 'studentName', title: 'Cadet / Officer Name', type: 'string' },
+        { name: 'courseTaken', title: 'Course / Entry Type (e.g., NDA, CDS, SSB Interview)', type: 'string' },
+        { name: 'quote', title: 'Short Quote / Summary', type: 'text' },
         { 
           name: 'videoUrl', 
-          title: 'Video Testimonial Link (YouTube / Vimeo URL)', 
+          title: 'Portrait Video Link (YouTube / Shorts / Vimeo URL)', 
           type: 'url', 
-          description: 'Paste the video URL here to display it as a cinematic video card on the testimonials page.' 
+          description: 'Paste the video URL here to display it as a portrait video card on the testimonials page.' 
         },
-        { name: 'studentImage', title: 'Student Portrait', type: 'image', options: { hotspot: true } },
+        { name: 'studentImage', title: 'Student Portrait (Optional)', type: 'image', options: { hotspot: true } },
         { name: 'order', title: 'Display Order (1, 2, 3...)', type: 'number' }
       ]
     },
     {
       name: 'studentSelection',
-      title: 'Success Stories - Selections',
+      title: 'Success Stories - Selections & Posters',
       type: 'document',
       fields: [
-        { name: 'name', title: 'Student Name', type: 'string' },
-        { name: 'examCleared', title: 'Exam Cleared (e.g., CDS, AFCAT)', type: 'string' },
+        { name: 'name', title: 'Candidate Name', type: 'string' },
+        { name: 'examCleared', title: 'Exam / Entry Cleared (e.g., NDA 149, OTA Chennai, AFCAT)', type: 'string' },
         { name: 'year', title: 'Year of Selection', type: 'string' },
-        { name: 'image', title: 'Student Portrait', type: 'image', options: { hotspot: true } }
+        { name: 'image', title: 'Candidate Recommendation Poster / Graphic', type: 'image', options: { hotspot: true } }
       ]
     },
 
