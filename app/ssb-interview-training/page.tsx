@@ -1,6 +1,50 @@
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import ReservationForm from "@/app/components/ReservationForm"; // <--- WE IMPORT THE WHATSAPP FORM HERE
 
-export default function SSBTrainingPage() {
+export const revalidate = 0;
+
+interface SSBData {
+  heroTitle?: string;
+  heroDescription?: string;
+  durationBadge?: string;
+  feeStructure?: {
+    tuition?: string;
+    mess?: string;
+    security?: string;
+    total?: string;
+  };
+  sidePhotoGrid?: any[];
+}
+
+export default async function SSBTrainingPage() {
+  // Fetch dynamic data from Sanity
+  const data: SSBData | null = await client.fetch(`*[_type == "ssbInterviewPage"][0]`);
+
+  // Fallbacks: If Sanity is empty, use default values
+  const heroTitle = data?.heroTitle || "SSB Interview";
+  const heroDescription =
+    data?.heroDescription ||
+    "Minerva Academy offers a comprehensive 15-day SSB interview training course, designed to transform candidates into confident officers.";
+  const durationBadge = data?.durationBadge || "Flagship 15-Day Program";
+
+  // Fees Fallbacks
+  const tuition = data?.feeStructure?.tuition || "18,000";
+  const mess = data?.feeStructure?.mess || "9,000";
+  const security = data?.feeStructure?.security || "500";
+  const total = data?.feeStructure?.total || "27,500";
+
+  // Photo Grid Fallbacks
+  const photos = data?.sidePhotoGrid && data.sidePhotoGrid.length >= 4 
+    ? data.sidePhotoGrid 
+    : null;
+
+  const photo1 = photos ? urlFor(photos[0]).url() : "https://images.unsplash.com/photo-1517649763962-0c623266cf10?q=80&w=600&auto=format&fit=crop";
+  const photo2 = photos ? urlFor(photos[1]).url() : "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=600&auto=format&fit=crop";
+  const photo3 = photos ? urlFor(photos[2]).url() : "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop";
+  const photo4 = photos ? urlFor(photos[3]).url() : "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop";
+
   return (
     <main className="min-h-screen flex flex-col bg-minerva-white text-minerva-blue">
       
@@ -14,16 +58,16 @@ export default function SSBTrainingPage() {
             <span className="w-2 h-2 rounded-full bg-white"></span>
             <span className="w-2 h-2 rounded-full bg-[#138808]"></span>
             <span className="text-minerva-accent tracking-[0.4em] font-sans text-xs font-bold uppercase ml-2">
-              Flagship 15-Day Program
+              {durationBadge}
             </span>
           </div>
           
           <h1 className="text-4xl md:text-6xl font-serif font-medium mb-6 leading-tight">
-            SSB Interview <span className="italic text-minerva-accent">Training</span>
+            {heroTitle} <span className="italic text-minerva-accent">Training</span>
           </h1>
           
           <p className="text-gray-200 font-sans font-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Minerva Academy offers a comprehensive 15-day SSB interview training course, designed to transform candidates into confident officers.
+            {heroDescription}
           </p>
         </div>
       </section>
@@ -119,22 +163,22 @@ export default function SSBTrainingPage() {
                 <div className="divide-y divide-gray-200 text-sm">
                   <div className="grid grid-cols-3 p-4 hover:bg-gray-50 transition-colors">
                     <div className="font-semibold text-gray-800">Tuition Fees <br/><span className="text-xs text-gray-500 font-normal">(Inclusive of Service Tax)</span></div>
-                    <div className="font-medium text-minerva-primary">₹18,000</div>
+                    <div className="font-medium text-minerva-primary">₹{tuition}</div>
                     <div className="text-xs text-gray-600">Candidates joining for lesser days will be charged full amount. Mess &amp; hostel charges apply on actual day basis.</div>
                   </div>
                   <div className="grid grid-cols-3 p-4 hover:bg-gray-50 transition-colors">
                     <div className="font-semibold text-gray-800">Mess Charges</div>
-                    <div className="font-medium text-minerva-primary">₹9,000</div>
+                    <div className="font-medium text-minerva-primary">₹{mess}</div>
                     <div className="text-xs text-gray-600">Full term mess charges</div>
                   </div>
                   <div className="grid grid-cols-3 p-4 hover:bg-gray-50 transition-colors">
                     <div className="font-semibold text-gray-800">Refundable Security</div>
-                    <div className="font-medium text-minerva-primary">₹500</div>
+                    <div className="font-medium text-minerva-primary">₹{security}</div>
                     <div className="text-xs text-gray-600">Fully refundable upon completion</div>
                   </div>
                   <div className="grid grid-cols-3 bg-gray-100 p-4 font-bold">
                     <div>Total Charges</div>
-                    <div className="text-minerva-primary text-lg">₹27,500</div>
+                    <div className="text-minerva-primary text-lg">₹{total}</div>
                     <div className="text-xs text-gray-600 font-normal mt-1">Inclusive of all applicable taxes</div>
                   </div>
                 </div>
@@ -151,7 +195,7 @@ export default function SSBTrainingPage() {
 
           </div>
 
-          {/* RIGHT COLUMN: Premium Side Photo Grid */}
+          {/* RIGHT COLUMN: Premium Side Photo Grid (Dynamic) */}
           <div className="lg:w-2/5">
             <div className="sticky top-24 space-y-4">
               <div className="mb-6">
@@ -160,29 +204,12 @@ export default function SSBTrainingPage() {
               </div>
               
               <div className="grid grid-cols-2 gap-4">
-                {/* Photo 1 */}
-                <div 
-                  className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300"
-                  style={{ backgroundImage: "url('https://images.unsplash.com/photo-1517649763962-0c623266cf10?q=80&w=600&auto=format&fit=crop')" }}
-                ></div>
-                {/* Photo 2 */}
-                <div 
-                  className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300"
-                  style={{ backgroundImage: "url('https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=600&auto=format&fit=crop')" }}
-                ></div>
-                {/* Photo 3 */}
-                <div 
-                  className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300"
-                  style={{ backgroundImage: "url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop')" }}
-                ></div>
-                {/* Photo 4 */}
-                <div 
-                  className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300"
-                  style={{ backgroundImage: "url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop')" }}
-                ></div>
+                <div className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${photo1}')` }}></div>
+                <div className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${photo2}')` }}></div>
+                <div className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${photo3}')` }}></div>
+                <div className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${photo4}')` }}></div>
               </div>
               
-              {/* Removed "Book Your Seat Now" from here as requested */}
             </div>
           </div>
 
@@ -233,7 +260,7 @@ export default function SSBTrainingPage() {
         </div>
       </section>
 
-      {/* 5. RESERVATION FORM SECTION (EXACTLY LIKE YOUR SCREENSHOT) */}
+      {/* 5. DYNAMIC WHATSAPP RESERVATION FORM SECTION */}
       <section className="w-full py-24 bg-[#0a4122] text-minerva-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -243,57 +270,7 @@ export default function SSBTrainingPage() {
           </div>
 
           <div className="bg-[#2c3144] border border-[#ff671f] p-8 md:p-12 shadow-2xl">
-            <form className="space-y-6 font-sans">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Full Name */}
-                <div className="space-y-2">
-                  <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">Full Name *</label>
-                  <input type="text" placeholder="Cadet full name" className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] placeholder-gray-400" />
-                </div>
-                {/* Email Address */}
-                <div className="space-y-2">
-                  <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">Email Address *</label>
-                  <input type="email" placeholder="email@domain.com" className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] placeholder-gray-400" />
-                </div>
-                {/* Phone Number */}
-                <div className="space-y-2">
-                  <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">Phone Number *</label>
-                  <input type="tel" placeholder="+91 98765 43210" className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] placeholder-gray-400" />
-                </div>
-                {/* WhatsApp Number */}
-                <div className="space-y-2">
-                  <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">WhatsApp Number *</label>
-                  <input type="tel" placeholder="+91 98765 43210" className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] placeholder-gray-400" />
-                </div>
-                {/* Date of Birth */}
-                <div className="space-y-2">
-                  <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">Date of Birth (DOB) *</label>
-                  <input type="date" className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] text-gray-400" />
-                </div>
-                {/* Home State */}
-                <div className="space-y-2">
-                  <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">Home State *</label>
-                  <input type="text" placeholder="e.g., Punjab, Haryana..." className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] placeholder-gray-400" />
-                </div>
-              </div>
-
-              {/* Select Course */}
-              <div className="space-y-2 pt-2">
-                <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">Select Course *</label>
-                <select className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] appearance-none cursor-pointer">
-                  <option>SSB Interview Training (15 Days)</option>
-                  <option>CPSS / PABT Training (1 Day)</option>
-                  <option>NDA Written Exam Coaching</option>
-                  <option>CDS / OTA Written Exam Coaching</option>
-                  <option>AFCAT Written Exam Coaching</option>
-                </select>
-              </div>
-
-              {/* Submit Button */}
-              <button type="button" className="w-full bg-[#ff671f] text-white font-bold text-xs tracking-[0.2em] uppercase py-4 mt-6 hover:bg-orange-600 transition-colors shadow-lg">
-                Submit Application
-              </button>
-            </form>
+            <ReservationForm />
           </div>
         </div>
       </section>

@@ -153,7 +153,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         { name: 'keyFeatures', title: 'Key Features / Highlights', type: 'array', of: [{ type: 'string' }] }
       ]
     },
-    // NEW DEDICATED SCHEMA FOR NDA WRITTEN EXAM PAGE
     {
       name: 'ndaWrittenExam',
       title: 'Course Pages - NDA Written',
@@ -175,6 +174,34 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           ]
         },
         { name: 'feeSideImage', title: 'Fee Section Side Image', type: 'image', options: { hotspot: true } }
+      ]
+    },
+    // BRAND NEW SCHEMA: SSB INTERVIEW PAGE
+    {
+      name: 'ssbInterviewPage',
+      title: 'Course Pages - SSB Interview',
+      type: 'document',
+      fields: [
+        { name: 'heroTitle', title: 'Hero Title', type: 'string', initialValue: 'SSB Interview Training' },
+        { name: 'heroDescription', title: 'Hero Description', type: 'text' },
+        { name: 'durationBadge', title: 'Duration Badge Text', type: 'string', initialValue: 'Flagship 15-Day Program' },
+        {
+          name: 'feeStructure',
+          title: 'Fee Structure',
+          type: 'object',
+          fields: [
+            { name: 'tuition', title: 'Tuition Fees (Rs)', type: 'string' },
+            { name: 'mess', title: 'Mess Charges (Rs)', type: 'string' },
+            { name: 'security', title: 'Refundable Security (Rs)', type: 'string' },
+            { name: 'total', title: 'Total Charges (Rs)', type: 'string' }
+          ]
+        },
+        { 
+          name: 'sidePhotoGrid', 
+          title: 'Side Photo Grid (Upload Exactly 4 Images)', 
+          type: 'array', 
+          of: [{ type: 'image', options: { hotspot: true } }] 
+        }
       ]
     },
 
