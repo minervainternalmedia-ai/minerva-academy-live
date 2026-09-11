@@ -1,11 +1,11 @@
 import Link from "next/link";
 
 export default function SportsFacilitiesPage() {
-  // Premium fallback images for the sticky right photo grid
-  const photo1 = "https://images.unsplash.com/photo-1517649763962-0c623266cf10?q=80&w=600&auto=format&fit=crop";
-  const photo2 = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop";
-  const photo3 = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop";
-  const photo4 = "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=600&auto=format&fit=crop";
+  // Premium landscape fallback images for the side grid
+  const photo1 = "https://images.unsplash.com/photo-1517649763962-0c623266cf10?q=80&w=800&auto=format&fit=crop";
+  const photo2 = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop";
+  const photo3 = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800&auto=format&fit=crop";
+  const photo4 = "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=800&auto=format&fit=crop";
 
   return (
     <main className="min-h-screen flex flex-col bg-gray-50 text-minerva-blue">
@@ -34,7 +34,7 @@ export default function SportsFacilitiesPage() {
         </div>
       </section>
 
-      {/* 2. Main Content & Sticky Photo Grid Section */}
+      {/* 2. Main Content & Sticky Landscape Photo Grid Section */}
       <section className="w-full py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-16 items-start">
           
@@ -95,7 +95,7 @@ export default function SportsFacilitiesPage() {
 
           </div>
 
-          {/* RIGHT COLUMN: Premium Sticky Photo Grid */}
+          {/* RIGHT COLUMN: Premium Sticky Landscape Photo Grid */}
           <div className="lg:w-2/5">
             <div className="sticky top-24 space-y-4">
               <div className="mb-6 text-center md:text-left">
@@ -103,51 +103,13 @@ export default function SportsFacilitiesPage() {
                 <h3 className="text-2xl font-serif text-minerva-blue">Sports &amp; Action Glimpses</h3>
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
-                <div className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${photo1}')` }}></div>
-                <div className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${photo2}')` }}></div>
-                <div className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${photo3}')` }}></div>
-                <div className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${photo4}')` }}></div>
+              <div className="grid grid-cols-1 gap-4">
+                <div className="w-full aspect-video bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.01] transition-transform duration-300" style={{ backgroundImage: `url('${photo1}')` }}></div>
+                <div className="w-full aspect-video bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.01] transition-transform duration-300" style={{ backgroundImage: `url('${photo2}')` }}></div>
+                <div className="w-full aspect-video bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.01] transition-transform duration-300" style={{ backgroundImage: `url('${photo3}')` }}></div>
+                <div className="w-full aspect-video bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.01] transition-transform duration-300" style={{ backgroundImage: `url('${photo4}')` }}></div>
               </div>
             </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 3. Sports & Action Gallery Section */}
-      <section className="w-full py-24 bg-white border-t border-gray-200">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-minerva-accent font-sans text-xs font-bold tracking-[0.3em] uppercase block mb-3">Visual Tour</span>
-            <h2 className="text-3xl font-serif font-medium text-minerva-blue">
-              Sports &amp; Action Gallery
-            </h2>
-            <p className="text-sm font-sans text-gray-500 mt-4 max-w-2xl mx-auto">
-              Witness our cadets in action across various sports grounds, swimming pool, and obstacle training sessions.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              "SSB Obstacle Course Training",
-              "Football Match in Progress",
-              "Basketball Court Activities",
-              "Volleyball & Team Sports",
-              "Swimming Pool Facility",
-              "Indoor Gymnasium"
-            ].map((label, index) => (
-              <div key={index} className="relative h-64 bg-gray-100 border border-gray-200 overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300">
-                <div className="absolute inset-0 bg-minerva-blue/5 group-hover:bg-minerva-blue/10 transition-colors duration-300"></div>
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                  <span className="text-minerva-accent mb-2">
-                    <svg className="w-8 h-8 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                  </span>
-                  <span className="font-serif font-medium text-minerva-blue">{label}</span>
-                  <span className="font-sans text-xs text-gray-400 mt-2">[ Image Space ]</span>
-                </div>
-              </div>
-            ))}
           </div>
 
         </div>
