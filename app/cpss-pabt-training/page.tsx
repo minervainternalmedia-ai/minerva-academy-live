@@ -1,14 +1,69 @@
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 import ReservationForm from "@/app/components/ReservationForm";
 
 export const revalidate = 0;
 
-export default function CPSSPage() {
-  // Premium fallback images for the grid
-  const photo1 = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop";
-  const photo2 = "https://images.unsplash.com/photo-1517649763962-0c623266cf10?q=80&w=600&auto=format&fit=crop";
-  const photo3 = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop";
-  const photo4 = "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=600&auto=format&fit=crop";
+interface CPSSData {
+  heroTitle?: string;
+  heroDescription?: string;
+  overviewParagraph1?: string;
+  overviewParagraph2?: string;
+  infoCards?: {
+    card1Title?: string;
+    card1Text?: string;
+    card2Title?: string;
+    card2Text?: string;
+    card3Title?: string;
+    card3Text?: string;
+  };
+  feeStructure?: {
+    trainingFee?: string;
+    combinedFee?: string;
+  };
+  sidePhotoGrid?: any[];
+}
+
+// BULLETPROOF IMAGE FETCHER: Prevents the website from crashing if Sanity images are empty
+function getSafeImageUrl(imageRef: any, fallbackUrl: string) {
+  if (!imageRef || !imageRef.asset) return fallbackUrl;
+  try {
+    return urlFor(imageRef).url();
+  } catch (error) {
+    return fallbackUrl;
+  }
+}
+
+export default async function CPSSPage() {
+  // Fetch dynamic data from Sanity
+  const data: CPSSData | null = await client.fetch(`*[_type == "cpssPabtPage"][0]`);
+
+  // Fallbacks: If Sanity is empty, use default values
+  const heroTitle = data?.heroTitle || "CPSS & PABT Training";
+  const heroDescription = data?.heroDescription || "Essential testing for all flying duties in the Indian Air Force, Army, Navy, and Coast Guard. Candidates get only one chance in a lifetime.";
+  
+  const p1 = data?.overviewParagraph1 || "All candidates for flying duties are put through the PABT and CPSS test. All NDA, CDSE candidates who have given I.A.F. as their first or second preference are called for this test. This test is used to screen pilots for all flying branches of IAF, Army, Navy and the Coast Guard.";
+  const p2 = data?.overviewParagraph2 || "Our candidates have maintained 100% success rate in these tests. This test can only be given once. Computerized Pilot Selection System Test, also known as CPSS test, is now in full effect along with the well known PABT test to select the best candidates for Indian Air Force flying branch that was in use for decades.";
+
+  const card1Title = data?.infoCards?.card1Title || "CPSS + PABT Training at Minerva";
+  const card1Text = data?.infoCards?.card1Text || "Training for CPSS at Minerva Academy will prepare the candidate for the CPSS experience at AFSB with absolute confidence, focus, and correct approach.";
+  
+  const card2Title = data?.infoCards?.card2Title || "What is CPSS?";
+  const card2Text = data?.infoCards?.card2Text || "It is an intelligent tool kit and aptitude testing to replace PABT, developed by DRDO and the Defense Institute of Psychological Research.";
+  
+  const card3Title = data?.infoCards?.card3Title || "Only One Chance";
+  const card3Text = data?.infoCards?.card3Text || "The candidate will get only one chance in CPSS test. If failed, the test cannot be taken again and the candidate can never be eligible for flying.";
+
+  const trainingFee = data?.feeStructure?.trainingFee || "4,000";
+  const combinedFee = data?.feeStructure?.combinedFee || "5,000";
+
+  // 100% Safe Photo Grid Fallbacks (Will NEVER crash the server)
+  const photos = data?.sidePhotoGrid || [];
+  const photo1 = getSafeImageUrl(photos[0], "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop");
+  const photo2 = getSafeImageUrl(photos[1], "https://images.unsplash.com/photo-1517649763962-0c623266cf10?q=80&w=600&auto=format&fit=crop");
+  const photo3 = getSafeImageUrl(photos[2], "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop");
+  const photo4 = getSafeImageUrl(photos[3], "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=600&auto=format&fit=crop");
 
   return (
     <main className="min-h-screen flex flex-col bg-gray-50 text-minerva-blue">
@@ -19,11 +74,11 @@ export default function CPSSPage() {
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <h1 className="text-4xl md:text-6xl font-serif font-medium mb-6 leading-tight">
-            CPSS &amp; PABT <span className="italic text-minerva-accent">Training</span>
+            {heroTitle.replace("Training", "")} <span className="italic text-minerva-accent">Training</span>
           </h1>
           
           <p className="text-gray-200 font-sans font-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Essential testing for all flying duties in the Indian Air Force, Army, Navy, and Coast Guard. Candidates get only one chance in a lifetime.
+            {heroDescription}
           </p>
         </div>
       </section>
@@ -41,34 +96,24 @@ export default function CPSSPage() {
                 Crucial Screening for Flying Branches
               </span>
               <div className="text-gray-700 font-sans font-light text-sm md:text-base leading-relaxed space-y-4">
-                <p>
-                  All candidates for flying duties are put through the PABT and CPSS test. All NDA, CDSE candidates who have given I.A.F. as their first or second preference are called for this test. This test is used to screen pilots for all flying branches of IAF, Army, Navy and the Coast Guard.
-                </p>
-                <p>
-                  Our candidates have maintained 100% success rate in these tests. This test can only be given once. Computerized Pilot Selection System Test, also known as CPSS test, is now in full effect along with the well known PABT test to select the best candidates for Indian Air Force flying branch that was in use for decades.
-                </p>
+                <p>{p1}</p>
+                <p>{p2}</p>
               </div>
             </div>
 
             {/* 3 Info Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white p-6 border-l-4 border-minerva-primary shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="font-serif text-lg text-minerva-blue mb-3 font-medium">CPSS + PABT Training at Minerva</h3>
-                <p className="text-xs text-gray-600 font-light leading-relaxed">
-                  Training for CPSS at Minerva Academy will prepare the candidate for the CPSS experience at AFSB with absolute confidence, focus, and correct approach.
-                </p>
+                <h3 className="font-serif text-lg text-minerva-blue mb-3 font-medium">{card1Title}</h3>
+                <p className="text-xs text-gray-600 font-light leading-relaxed">{card1Text}</p>
               </div>
               <div className="bg-white p-6 border-l-4 border-minerva-primary shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="font-serif text-lg text-minerva-blue mb-3 font-medium">What is CPSS?</h3>
-                <p className="text-xs text-gray-600 font-light leading-relaxed">
-                  It is an intelligent tool kit and aptitude testing to replace PABT, developed by DRDO and the Defense Institute of Psychological Research.
-                </p>
+                <h3 className="font-serif text-lg text-minerva-blue mb-3 font-medium">{card2Title}</h3>
+                <p className="text-xs text-gray-600 font-light leading-relaxed">{card2Text}</p>
               </div>
               <div className="bg-white p-6 border-l-4 border-minerva-primary shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="font-serif text-lg text-minerva-blue mb-3 font-medium">Only One Chance</h3>
-                <p className="text-xs text-gray-600 font-light leading-relaxed">
-                  The candidate will get only one chance in CPSS test. If failed, the test cannot be taken again and the candidate can never be eligible for flying.
-                </p>
+                <h3 className="font-serif text-lg text-minerva-blue mb-3 font-medium">{card3Title}</h3>
+                <p className="text-xs text-gray-600 font-light leading-relaxed">{card3Text}</p>
               </div>
             </div>
 
@@ -92,12 +137,12 @@ export default function CPSSPage() {
                   <tbody className="text-gray-700 divide-y divide-gray-200">
                     <tr className="hover:bg-gray-50 transition-colors">
                       <td className="px-6 py-5 font-semibold text-minerva-blue">CPSS / PABT Training (1 Day)</td>
-                      <td className="px-6 py-5 font-bold text-minerva-primary">₹4,000</td>
+                      <td className="px-6 py-5 font-bold text-minerva-primary">₹{trainingFee}</td>
                       <td className="px-6 py-5 font-light text-xs">Inclusive of simulator session</td>
                     </tr>
                     <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
                       <td className="px-6 py-5 font-semibold text-minerva-blue">Combined Package (With Mess &amp; Stay)</td>
-                      <td className="px-6 py-5 font-bold text-minerva-primary">₹5,000</td>
+                      <td className="px-6 py-5 font-bold text-minerva-primary">₹{combinedFee}</td>
                       <td className="px-6 py-5 font-light text-xs">Includes 1 day training + lodging</td>
                     </tr>
                   </tbody>

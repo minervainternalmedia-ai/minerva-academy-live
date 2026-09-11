@@ -108,13 +108,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         { name: 'description', title: 'Short Biography', type: 'text' },
         { name: 'image', title: 'Alumni Portrait', type: 'image', options: { hotspot: true } },
         { name: 'isRollOfHonour', title: 'Show on Homepage Roll of Honour?', type: 'boolean', initialValue: false },
-        // NEW ORDER FIELD HERE:
-        { 
-          name: 'order', 
-          title: 'Display Order (1, 2, 3...)', 
-          type: 'number', 
-          description: 'Type 1 to show first, 2 to show second, etc.' 
-        }
+        { name: 'order', title: 'Display Order (1, 2, 3...)', type: 'number', description: 'Type 1 to show first, 2 to show second, etc.' }
       ]
     },
     {
@@ -130,7 +124,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     },
 
     // ----------------------------------------------------
-    // 3. COURSES & TRAINING SCHEMAS (SSB & Written Exams)
+    // 3. COURSES & TRAINING SCHEMAS
     // ----------------------------------------------------
     {
       name: 'coursePage',
@@ -200,6 +194,46 @@ export const schema: { types: SchemaTypeDefinition[] } = {
             { name: 'mess', title: 'Mess Charges (Rs)', type: 'string' },
             { name: 'security', title: 'Refundable Security (Rs)', type: 'string' },
             { name: 'total', title: 'Total Charges (Rs)', type: 'string' }
+          ]
+        },
+        { 
+          name: 'sidePhotoGrid', 
+          title: 'Side Photo Grid (Upload Exactly 4 Images)', 
+          type: 'array', 
+          of: [{ type: 'image', options: { hotspot: true } }] 
+        }
+      ]
+    },
+    // BRAND NEW SCHEMA: CPSS / PABT PAGE
+    {
+      name: 'cpssPabtPage',
+      title: 'Course Pages - CPSS / PABT',
+      type: 'document',
+      fields: [
+        { name: 'heroTitle', title: 'Hero Title', type: 'string', initialValue: 'CPSS & PABT Training' },
+        { name: 'heroDescription', title: 'Hero Description', type: 'text' },
+        { name: 'overviewParagraph1', title: 'Overview Paragraph 1', type: 'text' },
+        { name: 'overviewParagraph2', title: 'Overview Paragraph 2', type: 'text' },
+        {
+          name: 'infoCards',
+          title: '3 Info Cards',
+          type: 'object',
+          fields: [
+            { name: 'card1Title', title: 'Card 1 Title', type: 'string' },
+            { name: 'card1Text', title: 'Card 1 Text', type: 'text' },
+            { name: 'card2Title', title: 'Card 2 Title', type: 'string' },
+            { name: 'card2Text', title: 'Card 2 Text', type: 'text' },
+            { name: 'card3Title', title: 'Card 3 Title', type: 'string' },
+            { name: 'card3Text', title: 'Card 3 Text', type: 'text' }
+          ]
+        },
+        {
+          name: 'feeStructure',
+          title: 'Fee Structure',
+          type: 'object',
+          fields: [
+            { name: 'trainingFee', title: 'CPSS/PABT Training (1 Day) Fee', type: 'string' },
+            { name: 'combinedFee', title: 'Combined Package Fee', type: 'string' }
           ]
         },
         { 
