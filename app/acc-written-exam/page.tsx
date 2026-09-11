@@ -1,6 +1,13 @@
 import Link from "next/link";
+import ReservationForm from "@/app/components/ReservationForm";
 
 export default function ACCWrittenPage() {
+  // Premium fallback images for the grid
+  const photo1 = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop";
+  const photo2 = "https://images.unsplash.com/photo-1517649763962-0c623266cf10?q=80&w=600&auto=format&fit=crop";
+  const photo3 = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop";
+  const photo4 = "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=600&auto=format&fit=crop";
+
   return (
     <main className="min-h-screen flex flex-col bg-minerva-white text-minerva-blue">
       
@@ -24,148 +31,165 @@ export default function ACCWrittenPage() {
         </div>
       </section>
 
-      {/* Main Course Overview Section */}
-      <section className="w-full py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6 font-sans text-gray-700 leading-relaxed font-light space-y-6">
-          <p className="text-base font-semibold text-minerva-blue uppercase tracking-wider text-sm">
-            Please call us on +91- 8054197300 for inquiries.
-          </p>
-          <p className="text-base">
-            The Minerva Academy offers coaching for the ACC written examinations. The faculty at Minerva is highly qualified and vastly experienced in successfully coaching students for ACC examinations. The standards of excellence followed by Minerva ensure that each student who opts for coaching with us feels confident and well prepared for the exam. 
-          </p>
-          <p className="text-base">
-            Not only do we cover the entire syllabus subject by subject as per notification, we also prepare our students with mock tests, previous year question papers and doubt clearing sessions which are conducted each week to monitor each student's progress. Mock test/ weekly test results are also discussed to pin point where the student may be lacking. This ensures that the students know what to expect in the examination, how to approach the examination, manage time efficiently and get the best possible results.
-          </p>
-          <p className="text-base">
-            Experienced and updated faculty teaches students how to handle the ACC examination specifically; they focus on the format and type of questions likely to be asked in the exam. Students can learn many formulae and shortcuts to get quick and accurate answers while attempting the examination. Apart from this, we provide extensively researched study material which helps students to easily access, organise and systematically approach the vast syllabus.
-          </p>
-        </div>
-      </section>
-
-      {/* Why Choose Minerva Academy */}
-      <section className="w-full py-20 bg-gray-50 border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-12">
-            <h2 className="text-3xl font-serif font-medium text-minerva-blue uppercase tracking-widest text-lg">Why Choose Minerva Academy For ACC Written Exam Coaching:</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-sans text-sm text-gray-700">
-            <div className="space-y-6">
-              <div className="flex"><span className="font-bold text-minerva-accent mr-3">1</span> <p><strong className="text-minerva-blue">Minerva Academy is India Oldest and Largest Armed forces Preparatory Institute.</strong> Established in 1955 by Lt. Col Deol, Minerva Academy has over 60 years of experience in successfully coaching candidates to be commissioned into the armed forces.</p></div>
-              <div className="flex"><span className="font-bold text-minerva-accent mr-3">2</span> <p>Every fourth officer in the Indian Armed forces has been a student of Minerva Academy.</p></div>
-              <div className="flex"><span className="font-bold text-minerva-accent mr-3">3</span> <p><strong className="text-minerva-blue">Infrastructure:</strong> The Minerva Academy campus provides unmatched infrastructure, spread over 10 acres in lush green, pollution free, SSB like environment with on campus hostel and mess. Our classrooms for written coaching are air conditioned and well supported by modern Audio Visual technological aids and 24 hrs power back.</p></div>
-              <div className="flex"><span className="font-bold text-minerva-accent mr-3">4</span> <p><strong className="text-minerva-blue">Faculty:</strong> The highly qualified, experienced and updated faculty for ACC written coaching provides students with the right guidance to get best results in the exam. Students are coached by permanent faculty members not part-time teachers (working on per class basis) as in many other institutes.</p></div>
-              <div className="flex"><span className="font-bold text-minerva-accent mr-3">5</span> <p><strong className="text-minerva-blue">Fully equipped library:</strong> Only Minerva academy offers the facility of a fully equipped library offering 1000+ relevant and important books pertaining to the syllabus of the examination and competitive exam preparation. Students can issue these books for self study, revision, practice etc.</p></div>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="flex"><span className="font-bold text-minerva-accent mr-3">6</span> <p><strong className="text-minerva-blue">Study Room/ Reading Room:</strong> On campus study/ reading rooms are available to provide students with quiet and peaceful environment, perfect for self study and preparations. These rooms are open daily till late hours.</p></div>
-              <div className="flex"><span className="font-bold text-minerva-accent mr-3">7</span> <p><strong className="text-minerva-blue">Motivational lectures and movies:</strong> Minerva Academy specializes in motivating the youth towards serving our great nation. Students interact with candidates from all over the country working towards a common goal. Motivational lectures and movies shown, leave the students inspired to do something for the country and become better human beings.</p></div>
-              <div className="flex"><span className="font-bold text-minerva-accent mr-3">8</span> <p><strong className="text-minerva-blue">Discipline & Time Management:</strong> Minerva Academy is a Defence preparatory institute with strict rules that all students must abide by. All students are expected to follow the Honour Code and Discipline Code of Conduct of Minerva Academy, failing which they may be expelled without refunds. These guidelines enforced by the academy inculcate good values and discipline in the students. Students also learn the importance and benefits of proper time management. Sundays and other holidays are not observed to maintain continuity and to ensure students can focus on upcoming exam without distractions.</p></div>
-              <div className="flex"><span className="font-bold text-minerva-accent mr-3">9</span> <p><strong className="text-minerva-blue">Physical Fitness:</strong> Only Minerva Academy offers a fully equipped Football ground, Basketball court, Volley ball court, Cricket field and badminton court along with dedicated Obstacle course and vast open grounds to encourage physical fitness among candidates as endurance and stamina are a pre-requisite for SSB which is the next step after the exam.</p></div>
-              <div className="flex"><span className="font-bold text-minerva-accent mr-3">10</span> <p><strong className="text-minerva-blue">Exam specific coaching:</strong> Since exam pattern vary for each examination, Minerva Academy offers exam specific coaching.</p></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Comprehensive Course & Timings & Why Coaching */}
-      <section className="w-full py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6 font-sans text-gray-700 font-light space-y-12">
+      {/* Main Content & Side Photo Grid */}
+      <section className="w-full py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-16">
           
-          <div>
-            <h3 className="text-lg font-serif font-medium text-minerva-blue mb-4 uppercase tracking-widest">COMPREHENSIVE 6 WEEKS COURSE:</h3>
-            <p className="text-sm leading-relaxed mb-6">
-              The comprehensive 6 weeks course covers all aspects and entire syllabus of the examination. The course is divided into 6 independent modules and a new module begins every Monday. Therefore, students must report for admission on Sunday for term starting on Monday morning. Prior registration is a must for admission. Six weeks course includes:
-            </p>
-            <div className="space-y-4 text-sm">
-              <p><strong className="text-minerva-blue">1. Exhaustive Classroom preparation:</strong> With 150+ classroom sessions and 300+ study hours covering all aspects and entire syllabus of the examination as prescribed by the UPSC.</p>
-              <p><strong className="text-minerva-blue">2. Comprehensive Study Material:</strong> With 11+ books covering the various subjects, Question banks and practice sets of each subject, ready reference notes for important topics, all extensively researched and prepared after analysis of previous years' exam patterns.</p>
-              <p><strong className="text-minerva-blue">3. Revision and Doubt clearing:</strong> 100+ worksheets and practice sets help students' assess their own progress. Previous years question papers are also covered. Doubt clearing sessions are held to answer all queries of students.</p>
-              <p><strong className="text-minerva-blue">4. Testing:</strong> Weekly practice tests of each subject to prepare students for upcoming competition and provide them with vital self assessment tools. Mock tests are also held to prepare the student for ACC exam.</p>
-              <p><strong className="text-minerva-blue">5. Extensive coverage of current affairs:</strong> Special weekly updates on defence related news, and latest developments, events and people in news. General Knowledge is taken up thoroughly.</p>
-              <p><strong className="text-minerva-blue">6. Subjects covered:</strong> in the ACC written exam coaching include English, General Knowledge & Current Affairs, Mathematics, Physics, Chemistry, Biology, History, Geography, Polity, Economics, Biodiversity etc.</p>
+          {/* LEFT COLUMN: All Text and Tables */}
+          <div className="lg:w-3/5 space-y-16">
+            
+            {/* Main Course Overview */}
+            <div className="font-sans text-gray-700 leading-relaxed font-light space-y-6">
+              <p className="text-base font-semibold text-minerva-blue uppercase tracking-wider text-sm">
+                Please call us on +91- 8054197300 for inquiries.
+              </p>
+              <p className="text-base">
+                The Minerva Academy offers coaching for the ACC written examinations. The faculty at Minerva is highly qualified and vastly experienced in successfully coaching students for ACC examinations. The standards of excellence followed by Minerva ensure that each student who opts for coaching with us feels confident and well prepared for the exam. 
+              </p>
+              <p className="text-base">
+                Not only do we cover the entire syllabus subject by subject as per notification, we also prepare our students with mock tests, previous year question papers and doubt clearing sessions which are conducted each week to monitor each student&apos;s progress. Mock test/ weekly test results are also discussed to pin point where the student may be lacking. This ensures that the students know what to expect in the examination, how to approach the examination, manage time efficiently and get the best possible results.
+              </p>
+              <p className="text-base">
+                Experienced and updated faculty teaches students how to handle the ACC examination specifically; they focus on the format and type of questions likely to be asked in the exam. Students can learn many formulae and shortcuts to get quick and accurate answers while attempting the examination. Apart from this, we provide extensively researched study material which helps students to easily access, organise and systematically approach the vast syllabus.
+              </p>
             </div>
+
+            {/* Why Choose Minerva Academy */}
+            <div>
+              <div className="mb-8">
+                <h2 className="text-xl font-serif font-medium text-minerva-blue uppercase tracking-widest">Why Choose Minerva Academy For ACC Written Exam Coaching:</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-sans text-sm text-gray-700">
+                <div className="space-y-6">
+                  <div className="flex"><span className="font-bold text-minerva-accent mr-3">1</span> <p><strong className="text-minerva-blue">Minerva Academy is India Oldest and Largest Armed forces Preparatory Institute.</strong> Established in 1955 by Lt. Col Deol, Minerva Academy has over 60 years of experience in successfully coaching candidates to be commissioned into the armed forces.</p></div>
+                  <div className="flex"><span className="font-bold text-minerva-accent mr-3">2</span> <p>Every fourth officer in the Indian Armed forces has been a student of Minerva Academy.</p></div>
+                  <div className="flex"><span className="font-bold text-minerva-accent mr-3">3</span> <p><strong className="text-minerva-blue">Infrastructure:</strong> The Minerva Academy campus provides unmatched infrastructure, spread over 10 acres in lush green, pollution free, SSB like environment with on campus hostel and mess. Our classrooms for written coaching are air conditioned and well supported by modern Audio Visual technological aids and 24 hrs power back.</p></div>
+                  <div className="flex"><span className="font-bold text-minerva-accent mr-3">4</span> <p><strong className="text-minerva-blue">Faculty:</strong> The highly qualified, experienced and updated faculty for ACC written coaching provides students with the right guidance to get best results in the exam. Students are coached by permanent faculty members not part-time teachers (working on per class basis) as in many other institutes.</p></div>
+                  <div className="flex"><span className="font-bold text-minerva-accent mr-3">5</span> <p><strong className="text-minerva-blue">Fully equipped library:</strong> Only Minerva academy offers the facility of a fully equipped library offering 1000+ relevant and important books pertaining to the syllabus of the examination and competitive exam preparation. Students can issue these books for self study, revision, practice etc.</p></div>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex"><span className="font-bold text-minerva-accent mr-3">6</span> <p><strong className="text-minerva-blue">Study Room/ Reading Room:</strong> On campus study/ reading rooms are available to provide students with quiet and peaceful environment, perfect for self study and preparations. These rooms are open daily till late hours.</p></div>
+                  <div className="flex"><span className="font-bold text-minerva-accent mr-3">7</span> <p><strong className="text-minerva-blue">Motivational lectures and movies:</strong> Minerva Academy specializes in motivating the youth towards serving our great nation. Students interact with candidates from all over the country working towards a common goal. Motivational lectures and movies shown, leave the students inspired to do something for the country and become better human beings.</p></div>
+                  <div className="flex"><span className="font-bold text-minerva-accent mr-3">8</span> <p><strong className="text-minerva-blue">Discipline &amp; Time Management:</strong> Minerva Academy is a Defence preparatory institute with strict rules that all students must abide by. All students are expected to follow the Honour Code and Discipline Code of Conduct of Minerva Academy, failing which they may be expelled without refunds. These guidelines enforced by the academy inculcate good values and discipline in the students. Students also learn the importance and benefits of proper time management. Sundays and other holidays are not observed to maintain continuity and to ensure students can focus on upcoming exam without distractions.</p></div>
+                  <div className="flex"><span className="font-bold text-minerva-accent mr-3">9</span> <p><strong className="text-minerva-blue">Physical Fitness:</strong> Only Minerva Academy offers a fully equipped Football ground, Basketball court, Volley ball court, Cricket field and badminton court along with dedicated Obstacle course and vast open grounds to encourage physical fitness among candidates as endurance and stamina are a pre-requisite for SSB which is the next step after the exam.</p></div>
+                  <div className="flex"><span className="font-bold text-minerva-accent mr-3">10</span> <p><strong className="text-minerva-blue">Exam specific coaching:</strong> Since exam pattern vary for each examination, Minerva Academy offers exam specific coaching.</p></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Comprehensive Course & Timings & Why Coaching */}
+            <div className="font-sans text-gray-700 font-light space-y-12">
+              <div>
+                <h3 className="text-lg font-serif font-medium text-minerva-blue mb-4 uppercase tracking-widest">COMPREHENSIVE 6 WEEKS COURSE:</h3>
+                <p className="text-sm leading-relaxed mb-6">
+                  The comprehensive 6 weeks course covers all aspects and entire syllabus of the examination. The course is divided into 6 independent modules and a new module begins every Monday. Therefore, students must report for admission on Sunday for term starting on Monday morning. Prior registration is a must for admission. Six weeks course includes:
+                </p>
+                <div className="space-y-4 text-sm">
+                  <p><strong className="text-minerva-blue">1. Exhaustive Classroom preparation:</strong> With 150+ classroom sessions and 300+ study hours covering all aspects and entire syllabus of the examination as prescribed by the UPSC.</p>
+                  <p><strong className="text-minerva-blue">2. Comprehensive Study Material:</strong> With 11+ books covering the various subjects, Question banks and practice sets of each subject, ready reference notes for important topics, all extensively researched and prepared after analysis of previous years&apos; exam patterns.</p>
+                  <p><strong className="text-minerva-blue">3. Revision and Doubt clearing:</strong> 100+ worksheets and practice sets help students&apos; assess their own progress. Previous years question papers are also covered. Doubt clearing sessions are held to answer all queries of students.</p>
+                  <p><strong className="text-minerva-blue">4. Testing:</strong> Weekly practice tests of each subject to prepare students for upcoming competition and provide them with vital self assessment tools. Mock tests are also held to prepare the student for ACC exam.</p>
+                  <p><strong className="text-minerva-blue">5. Extensive coverage of current affairs:</strong> Special weekly updates on defence related news, and latest developments, events and people in news. General Knowledge is taken up thoroughly.</p>
+                  <p><strong className="text-minerva-blue">6. Subjects covered:</strong> in the ACC written exam coaching include English, General Knowledge &amp; Current Affairs, Mathematics, Physics, Chemistry, Biology, History, Geography, Polity, Economics, Biodiversity etc.</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-serif font-medium text-minerva-blue mb-4 uppercase tracking-widest">Daily Timings:</h3>
+                <p className="text-sm leading-relaxed">
+                  Classes are held from Monday to Saturday from 8 AM to 5 PM (with breaks for morning and afternoon tea and lunch) Sunday is reserved for mock tests and weekly tests, extra classes and doubt clearing sessions.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-serif font-medium text-minerva-blue mb-4 uppercase tracking-widest">WHY COACHING IS A MUST FOR ACC WRITTEN EXAMINATION:</h3>
+                <p className="text-sm leading-relaxed mb-4">In order to prepare oneself for a competitive exam like ACC, coaching is a must to get the edge above others. In today&apos;s competitive exams like ACC, COACHING IS A MUST BECAUSE:</p>
+                <ol className="text-sm space-y-4 list-decimal pl-5">
+                  <li>More than 3,00,000 students sit for this exam and the number is increasing drastically year by year. Hence making the exam more and more competitive and <strong className="text-minerva-blue">one mark difference could mean selection or rejection of the candidate</strong>. There are anywhere between 300- 400 seats, so students who are serious, must get the edge above others for which coaching is a must.</li>
+                  <li>Students can take advantage of the vast experience of <strong className="text-minerva-blue">subject and examination expert faculty</strong>.</li>
+                  <li><strong className="text-minerva-blue">Examination specific and comprehensive study material</strong> of notes, practice sets, assignments and worksheets provides the right material for preparation.</li>
+                  <li>Any concept <strong className="text-minerva-blue">doubts can be cleared</strong> right away, thus students can <strong className="text-minerva-blue">build strong fundamentals</strong>.</li>
+                  <li>Meeting other candidates who are sitting for the same exam can be a great motivator. Students can exchange knowledge and also have an <strong className="text-minerva-blue">idea of their competition</strong>.</li>
+                  <li>Regular mock tests ensure students are <strong className="text-minerva-blue">mentally prepared for exam day</strong> and know exactly how to approach the exam and what to expect.</li>
+                  <li>Students are able to <strong className="text-minerva-blue">discipline themselves, develop good concentration</strong> and form a study habit, which is not easy to do with self study.</li>
+                </ol>
+              </div>
+            </div>
+
+            {/* FEES & CHARGES SECTION */}
+            <div>
+              <div className="mb-8">
+                <h2 className="text-2xl font-serif font-medium text-minerva-blue">ACC Coaching Fees &amp; Charges <span className="text-sm font-sans text-gray-500 tracking-normal lowercase">w.e.f. 1st January, 2022</span></h2>
+              </div>
+
+              <div className="bg-white shadow-xl border border-gray-200 overflow-hidden font-sans mb-8">
+                <div className="grid grid-cols-3 bg-minerva-primary text-minerva-white p-4 text-xs font-bold tracking-widest uppercase">
+                  <div>One Term (6 Weeks)</div>
+                  <div>Charges (INR)</div>
+                  <div>Note</div>
+                </div>
+                <div className="divide-y divide-gray-200 text-sm">
+                  <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
+                    <div className="font-semibold text-gray-800">Tuition Fees</div>
+                    <div className="font-medium text-minerva-primary">15000</div>
+                    <div></div>
+                  </div>
+                  <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
+                    <div className="font-semibold text-gray-800">Mess Charges</div>
+                    <div className="font-medium text-minerva-primary">14000</div>
+                    <div></div>
+                  </div>
+                  <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
+                    <div className="font-semibold text-gray-800">Hostel Charges</div>
+                    <div className="font-medium text-minerva-primary">6000</div>
+                    <div></div>
+                  </div>
+                  <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
+                    <div className="font-semibold text-gray-800">Total Charges</div>
+                    <div className="font-medium text-minerva-primary font-bold">35500</div>
+                    <div></div>
+                  </div>
+                  <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
+                    <div className="font-semibold text-gray-800">Refundable Security</div>
+                    <div className="font-medium text-minerva-primary">500</div>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="font-sans text-sm text-gray-700 bg-white p-6 border-l-4 border-minerva-accent">
+                <h4 className="font-bold text-minerva-blue mb-2 uppercase tracking-widest text-xs">Notes</h4>
+                <ul className="list-disc pl-5 space-y-2 font-light text-xs">
+                  <li>Mess Charges includes breakfast, lunch, dinner, mid- morning and afternoon tea (On No Profit No Loss Basis).</li>
+                  <li>Candidate can pay Fees at the time of joining the coaching, either in cash or through Online NEFT Transfer. Card Payment is also accepted.</li>
+                  <li>In view of the recent COVID-19, prior registration will be required to make sure that the number of the students in the classrooms does not exceed fifty percent of the benchmark, as has been suggested in the guidelines and SOP issued by GoI and Govt. of Punjab. Kindly register first to enrol in any of the batches.</li>
+                </ul>
+              </div>
+            </div>
+
           </div>
 
-          <div>
-            <h3 className="text-lg font-serif font-medium text-minerva-blue mb-4 uppercase tracking-widest">Daily Timings:</h3>
-            <p className="text-sm leading-relaxed">
-              Classes are held from Monday to Saturday from 8 AM to 5 PM (with breaks for morning and afternoon tea and lunch) Sunday is reserved for mock tests and weekly tests, extra classes and doubt clearing sessions.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-serif font-medium text-minerva-blue mb-4 uppercase tracking-widest">WHY COACHING IS A MUST FOR ACC WRITTEN EXAMINATION:</h3>
-            <p className="text-sm leading-relaxed mb-4">In order to prepare oneself for a competitive exam like ACC, coaching is a must to get the edge above others. In today's competitive exams like ACC, COACHING IS A MUST BECAUSE:</p>
-            <ol className="text-sm space-y-4 list-decimal pl-5">
-              <li>More than 3,00,000 students sit for this exam and the number is increasing drastically year by year. Hence making the exam more and more competitive and <strong className="text-minerva-blue">one mark difference could mean selection or rejection of the candidate</strong>. There are anywhere between 300- 400 seats, so students who are serious, must get the edge above others for which coaching is a must.</li>
-              <li>Students can take advantage of the vast experience of <strong className="text-minerva-blue">subject and examination expert faculty</strong>.</li>
-              <li><strong className="text-minerva-blue">Examination specific and comprehensive study material</strong> of notes, practice sets, assignments and worksheets provides the right material for preparation.</li>
-              <li>Any concept <strong className="text-minerva-blue">doubts can be cleared</strong> right away, thus students can <strong className="text-minerva-blue">build strong fundamentals</strong>.</li>
-              <li>Meeting other candidates who are sitting for the same exam can be a great motivator. Students can exchange knowledge and also have an <strong className="text-minerva-blue">idea of their competition</strong>.</li>
-              <li>Regular mock tests ensure students are <strong className="text-minerva-blue">mentally prepared for exam day</strong> and know exactly how to approach the exam and what to expect.</li>
-              <li>Students are able to <strong className="text-minerva-blue">discipline themselves, develop good concentration</strong> and form a study habit, which is not easy to do with self study.</li>
-            </ol>
+          {/* RIGHT COLUMN: Premium Side Photo Grid */}
+          <div className="lg:w-2/5">
+            <div className="sticky top-24 space-y-4">
+              <div className="mb-6 text-center md:text-left">
+                <span className="text-minerva-accent tracking-[0.3em] font-sans text-xs font-bold uppercase block mb-1">Glimpses of Training</span>
+                <h3 className="text-2xl font-serif text-minerva-blue">Campus Life &amp; Activities</h3>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${photo1}')` }}></div>
+                <div className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${photo2}')` }}></div>
+                <div className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${photo3}')` }}></div>
+                <div className="h-48 md:h-56 bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${photo4}')` }}></div>
+              </div>
+            </div>
           </div>
 
         </div>
       </section>
 
-      {/* FEES & CHARGES SECTION */}
-      <section className="w-full py-20 bg-gray-50 border-t border-gray-200">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="mb-12">
-            <h2 className="text-3xl font-serif font-medium text-minerva-blue">ACC Coaching Fees & Charges <span className="text-lg font-sans text-gray-500 tracking-normal lowercase">w.e.f. 1st January, 2022</span></h2>
-          </div>
-
-          <div className="bg-white shadow-xl border border-gray-200 overflow-hidden font-sans mb-8">
-            <div className="grid grid-cols-3 bg-minerva-primary text-minerva-white p-4 text-xs font-bold tracking-widest uppercase">
-              <div>One Term (6 Weeks)</div>
-              <div>Charges (INR)</div>
-              <div>Note</div>
-            </div>
-            <div className="divide-y divide-gray-200 text-sm">
-              <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
-                <div className="font-semibold text-gray-800">Tuition Fees</div>
-                <div className="font-medium text-minerva-primary">15000</div>
-                <div></div>
-              </div>
-              <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
-                <div className="font-semibold text-gray-800">Mess Charges</div>
-                <div className="font-medium text-minerva-primary">14000</div>
-                <div></div>
-              </div>
-              <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
-                <div className="font-semibold text-gray-800">Hostel Charges</div>
-                <div className="font-medium text-minerva-primary">6000</div>
-                <div></div>
-              </div>
-              <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
-                <div className="font-semibold text-gray-800">Total Charges</div>
-                <div className="font-medium text-minerva-primary">35500</div>
-                <div></div>
-              </div>
-              <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
-                <div className="font-semibold text-gray-800">Refundable Security</div>
-                <div className="font-medium text-minerva-primary">500</div>
-                <div></div>
-              </div>
-            </div>
-          </div>
-
-          <div className="font-sans text-sm text-gray-700">
-            <h4 className="font-bold text-minerva-blue mb-2 uppercase tracking-widest">Notes</h4>
-            <ul className="list-disc pl-5 space-y-2">
-              <li>Mess Charges includes breakfast, lunch, dinner, mid- morning and afternoon tea (On No Profit No Loss Basis).</li>
-              <li>Candidate can pay Fees at the time of joining the coaching, either in cash or through Online NEFT Transfer. Card Payment is also accepted.</li>
-              <li>In view of the recent COVID-19, prior registration will be required to make sure that the number of the students in the classrooms does not exceed fifty percent of the benchmark, as has been suggested in the guidelines and SOP issued by GoI and Govt. of Punjab. Kindly register first to enrol in any of the batches.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* GREEN JOINING INSTRUCTIONS SECTION */}
+      {/* GREEN JOINING INSTRUCTIONS SECTION (Full Width below the grid area) */}
       <section className="w-full py-20 bg-minerva-primary text-minerva-white">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 font-sans font-light text-sm leading-relaxed">
           
@@ -176,7 +200,7 @@ export default function ACCWrittenPage() {
             </div>
             <div>
               <h3 className="text-xl font-bold uppercase tracking-wider mb-4">FOR ACC GIRLS SEEKING HOSTEL FACILITY:</h3>
-              <p>Women can apply for ACC, and an on-campus hostel with 24 hrs lady warden is available for lady candidates. Prior reservation is required for a campus girls hostel. Kindly send us an email with the proposed dates seeking admission to the girls' hostel or call us to confirm availability and reservation for the girls hostel.</p>
+              <p>Women can apply for ACC, and an on-campus hostel with 24 hrs lady warden is available for lady candidates. Prior reservation is required for a campus girls hostel. Kindly send us an email with the proposed dates seeking admission to the girls&apos; hostel or call us to confirm availability and reservation for the girls hostel.</p>
             </div>
           </div>
 
@@ -190,7 +214,7 @@ export default function ACCWrittenPage() {
         </div>
       </section>
 
-      {/* ADDITIONAL ACC EXAM DETAILS */}
+      {/* ADDITIONAL ACC EXAM DETAILS (Full Width) */}
       <section className="w-full py-20 bg-gray-50 border-t border-gray-200">
         <div className="max-w-6xl mx-auto px-6 font-sans text-sm text-gray-700 font-light space-y-8">
           
@@ -216,12 +240,12 @@ export default function ACCWrittenPage() {
 
           <div>
             <h4 className="font-bold text-minerva-blue uppercase tracking-widest mb-2">EXAM PATTERN OF ACC WRITTEN EXAMINATION</h4>
-            <p>The ACC examination consists of four tests: Paper 1 – General Mental ability test (GMAT) Paper 2 – Current & General awareness test (CGAT) Paper 3 – Interactive Communicative English (ICE) Paper 4 – Academic Content Test (ACT)</p>
+            <p>The ACC examination consists of four tests: Paper 1 – General Mental ability test (GMAT) Paper 2 – Current &amp; General awareness test (CGAT) Paper 3 – Interactive Communicative English (ICE) Paper 4 – Academic Content Test (ACT)</p>
           </div>
 
           <div>
             <h4 className="font-bold text-minerva-blue uppercase tracking-widest mb-2">SYLLABUS FOR ACC WRITTEN EXAMINATION</h4>
-            <p>General Mental ability test (GMAT); Current & General awareness test (CGAT); Interactive Communicative English (ICE); Academic Content Test (ACT): For knowing the detailed syllabus, please check the notification of the examination available from your unit.</p>
+            <p>General Mental ability test (GMAT); Current &amp; General awareness test (CGAT); Interactive Communicative English (ICE); Academic Content Test (ACT): For knowing the detailed syllabus, please check the notification of the examination available from your unit.</p>
           </div>
 
           <div>
@@ -232,62 +256,16 @@ export default function ACCWrittenPage() {
         </div>
       </section>
 
-      {/* APPLICATION FORM SECTION */}
-      <section className="w-full py-24 bg-minerva-primary text-minerva-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#283047_1.5px,transparent_1.5px)] [background-size:20px_20px] pointer-events-none"></div>
-
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
+      {/* DYNAMIC WHATSAPP RESERVATION FORM SECTION */}
+      <section className="w-full py-24 bg-[#0a4122] text-minerva-white border-t border-[#092B16]">
+        <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
             <span className="text-minerva-accent font-sans text-xs font-bold tracking-[0.3em] uppercase block mb-2">Register For Admission</span>
-            <h2 className="text-3xl md:text-4xl font-serif font-medium">ACC Written Exam Coaching Application</h2>
+            <h2 className="text-3xl md:text-5xl font-serif font-medium">ACC Written Exam Coaching Application</h2>
           </div>
 
-          <div className="bg-minerva-blue p-8 md:p-12 border-2 border-minerva-accent shadow-2xl">
-            <form className="space-y-6 font-sans">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-gray-300 mb-2 font-semibold">Full Name *</label>
-                  <input type="text" placeholder="Cadet full name" className="w-full bg-minerva-primary border border-gray-700 px-4 py-3 text-white placeholder-gray-400 text-sm focus:outline-none focus:border-minerva-accent" />
-                </div>
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-gray-300 mb-2 font-semibold">Email Address *</label>
-                  <input type="email" placeholder="email@domain.com" className="w-full bg-minerva-primary border border-gray-700 px-4 py-3 text-white placeholder-gray-400 text-sm focus:outline-none focus:border-minerva-accent" />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-gray-300 mb-2 font-semibold">Phone Number *</label>
-                  <input type="tel" placeholder="+91 98765 43210" className="w-full bg-minerva-primary border border-gray-700 px-4 py-3 text-white placeholder-gray-400 text-sm focus:outline-none focus:border-minerva-accent" />
-                </div>
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-gray-300 mb-2 font-semibold">WhatsApp Number *</label>
-                  <input type="tel" placeholder="+91 98765 43210" className="w-full bg-minerva-primary border border-gray-700 px-4 py-3 text-white placeholder-gray-400 text-sm focus:outline-none focus:border-minerva-accent" />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-gray-300 mb-2 font-semibold">Date of Birth (DOB) *</label>
-                  <input type="date" className="w-full bg-minerva-primary border border-gray-700 px-4 py-3 text-white text-sm focus:outline-none focus:border-minerva-accent" />
-                </div>
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-gray-300 mb-2 font-semibold">Home State *</label>
-                  <input type="text" placeholder="e.g., Punjab, Haryana..." className="w-full bg-minerva-primary border border-gray-700 px-4 py-3 text-white placeholder-gray-400 text-sm focus:outline-none focus:border-minerva-accent" />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-gray-300 mb-2 font-semibold">Select Course *</label>
-                <select className="w-full bg-minerva-primary border border-gray-700 px-4 py-3 text-white text-sm focus:outline-none focus:border-minerva-accent">
-                  <option>ACC Written Exam Coaching (6 Weeks)</option>
-                </select>
-              </div>
-
-              <button type="button" className="w-full bg-minerva-accent text-minerva-white font-bold tracking-[0.2em] text-xs uppercase py-4 hover:bg-white hover:text-minerva-blue transition-all duration-300 shadow-md">
-                Submit Application
-              </button>
-            </form>
+          <div className="bg-[#2c3144] border border-[#ff671f] p-8 md:p-12 shadow-2xl">
+            <ReservationForm />
           </div>
         </div>
       </section>
