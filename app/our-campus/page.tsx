@@ -7,15 +7,7 @@ export const revalidate = 0;
 interface OurCampusData {
   heroTitle?: string;
   heroDescription?: string;
-  overviewP1?: string;
-  overviewP2?: string;
-  overviewP3?: string;
   sidePhotoGrid?: any[];
-  facilitiesList?: string[];
-  boardingTitle?: string;
-  boardingText?: string;
-  hostelTitle?: string;
-  hostelText?: string;
   campusGallery?: any[];
 }
 
@@ -33,22 +25,8 @@ export default async function OurCampusPage() {
   // Fetch dynamic content from Sanity
   const data: OurCampusData | null = await client.fetch(`*[_type == "ourCampusPage"][0]`);
 
-  // EXACT TEXT FALLBACKS AS REQUESTED
-  const heroTitle = data?.heroTitle || "Our Campus";
+  const heroTitle = data?.heroTitle || "Our Historic Campus";
   const heroDescription = data?.heroDescription || "A lush green, pollution-free, 10-acre SSB-like environment offering unmatched infrastructure for comprehensive defense training.";
-  
-  const overviewP1 = data?.overviewP1 || "The Minerva Academy has its own vast 10 Acre campus with unrivalled infrastructure in terms of state-of-the-art auditorium, electronic apparatus for PABT, Specifically designed obstacle course (that cannot be matched by any other academy) and separate designated grounds for command task, group task, snake race etc.";
-  const overviewP2 = data?.overviewP2 || "Judicious candidates always prefer to be coached by specialists. Exhaustive coaching cannot be conducted without proper equipment and necessary facilities of vast grounds and trees for outdoor exercises. Minerva is the only Academy possessing these facilities. For indoor classes, our Lecture Hall has seating capacity of over 100 candidates. Indoor academic sessions are well supported by Modern Audio Visual Technological aids like LCD Projector, High Powered P.A. Equipments, and captive power source like Generator in case of electricity failure.";
-  const overviewP3 = data?.overviewP3 || "";
-
-  const facilitiesList = data?.facilitiesList?.length ? data.facilitiesList : [
-    "Auditorium", "Classrooms", "Vast Grounds for Outdoor Training", "Obstacle courses",
-    "Hostel", "Mess", "Library", "Gymnasium", "Swimming Pool", "Physiotherapy & Medical Clinic",
-    "Football Grounds", "Cricket Nets", "Table Tennis", "Volley Ball", "Basket Ball Court", "Canteen"
-  ];
-
-  const boardingText = data?.boardingText || "Minerva offers excellent on-campus hostel facilities and a large mess with a modern clean kitchen serving palatable meals, to make the boarding and lodging of trainees a very comfortable experience.";
-  const hostelText = data?.hostelText || "We have separate on campus hostel accommodation for girls. Prior registration is a must for girls as hostel space is limited.";
 
   // Safe Grid Photos
   const sidePhotos = data?.sidePhotoGrid || [];
@@ -87,32 +65,82 @@ export default async function OurCampusPage() {
         </div>
       </section>
 
-      {/* 2. Main Content & Photo Grid (Properly Spaced) */}
+      {/* 2. Main Content & Photo Grid */}
       <section className="w-full py-20 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-16 items-start">
           
-          {/* LEFT COLUMN: Main Text */}
-          <div className="lg:w-7/12 font-sans text-gray-700 leading-relaxed font-light space-y-8">
-            <h2 className="text-3xl md:text-4xl font-serif font-medium text-minerva-blue">
-              Unrivalled Infrastructure
-            </h2>
-            <p className="text-base md:text-lg">{overviewP1}</p>
-            <p className="text-base md:text-lg">{overviewP2}</p>
-            {overviewP3 && <p className="text-base md:text-lg">{overviewP3}</p>}
+          {/* LEFT COLUMN: Premium Editorial Text */}
+          <div className="lg:w-7/12 font-sans">
             
-            {/* Boarding and Lodging Block */}
-            <div className="mt-8 space-y-6">
-              <div className="bg-gray-50 p-8 border-l-4 border-minerva-primary shadow-sm">
-                <p className="text-base md:text-lg text-gray-800 leading-relaxed">{boardingText}</p>
+            {/* Heading 1: Campus Overview */}
+            <div className="mb-12">
+              <span className="text-minerva-accent tracking-[0.2em] font-sans text-[10px] font-bold uppercase mb-2 block">
+                The Academy Grounds
+              </span>
+              <h2 className="text-3xl md:text-4xl font-serif font-medium text-minerva-blue mb-4">
+                Life at Minerva Academy – Campus, Boarding &amp; Sports Infrastructure
+              </h2>
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed font-light">
+                Occupying 10 lush green acres in Daon, Mohali (10 km from Chandigarh Sector 17), Minerva Academy provides a disciplined, distraction-free environment that builds the physical stamina, mental toughness, and camaraderie demanded of military officers.
+              </p>
+            </div>
+
+            {/* Heading 2: Hostels */}
+            <div className="mb-12 space-y-6">
+              <h2 className="text-2xl md:text-3xl font-serif font-medium text-minerva-blue mb-4">
+                Secure On-Campus Accommodation &amp; Hostels
+              </h2>
+              
+              <div className="bg-gray-50 p-8 border-l-4 border-minerva-primary shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="font-serif text-xl text-minerva-blue mb-2 font-medium">Vikram Batra Boys Hostel</h3>
+                <p className="text-sm md:text-base text-gray-700 font-light leading-relaxed">
+                  Clean, ventilated boarding facilities equipped with 24-hour power backup, hot water geysers, and complete security. Inaugurated by Vishal Batra, twin brother of PVC Capt. Vikram Batra.
+                </p>
               </div>
 
-              <div className="bg-minerva-blue text-white p-8 border-l-4 border-minerva-accent shadow-sm">
-                <p className="text-base md:text-lg text-gray-100 leading-relaxed">{hostelText}</p>
+              <div className="bg-minerva-blue text-white p-8 border-l-4 border-minerva-accent shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="font-serif text-xl mb-2 font-medium flex items-center gap-3">
+                  <span className="bg-minerva-accent w-2 h-2 rounded-full"></span>
+                  Dedicated Girls Hostel
+                </h3>
+                <p className="text-sm md:text-base text-gray-200 font-light leading-relaxed">
+                  A completely separate, secure on-campus residential facility supervised 24/7 by a resident lady warden.
+                </p>
               </div>
             </div>
+
+            {/* Heading 3: Sports Infrastructure */}
+            <div>
+              <h2 className="text-2xl md:text-3xl font-serif font-medium text-minerva-blue mb-4">
+                Physical Fitness &amp; Sports Ground Infrastructure
+              </h2>
+              <p className="text-base text-gray-700 leading-relaxed font-light mb-6">
+                Because Services Selection Boards place heavy emphasis on physical stamina and endurance, daily sports are integrated into our routine:
+              </p>
+              
+              <ul className="space-y-4">
+                {[
+                  "Full-sized football field and cricket practice nets",
+                  "Regulation basketball and volleyball courts",
+                  "Swimming pool and modern gymnasium",
+                  "On-campus medical and physiotherapy clinic",
+                  "Specialized obstacle course grounds matching actual SSB testing dimensions"
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-minerva-primary/10 flex items-center justify-center text-minerva-primary mt-0.5 mr-4">
+                      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </span>
+                    <span className="text-base text-gray-800 font-light leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
           </div>
 
-          {/* RIGHT COLUMN: 2x2 Photo Grid */}
+          {/* RIGHT COLUMN: Premium Sticky 2x2 Photo Grid */}
           <div className="lg:w-5/12">
             <div className="sticky top-24">
               <div className="mb-6">
@@ -121,10 +149,10 @@ export default async function OurCampusPage() {
               </div>
               
               <div className="grid grid-cols-2 gap-4">
-                <div className="w-full aspect-square bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${side1}')` }}></div>
-                <div className="w-full aspect-square bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${side2}')` }}></div>
-                <div className="w-full aspect-square bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${side3}')` }}></div>
-                <div className="w-full aspect-square bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300" style={{ backgroundImage: `url('${side4}')` }}></div>
+                <div className="w-full aspect-square bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300 border border-gray-100" style={{ backgroundImage: `url('${side1}')` }}></div>
+                <div className="w-full aspect-square bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300 border border-gray-100" style={{ backgroundImage: `url('${side2}')` }}></div>
+                <div className="w-full aspect-square bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300 border border-gray-100" style={{ backgroundImage: `url('${side3}')` }}></div>
+                <div className="w-full aspect-square bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300 border border-gray-100" style={{ backgroundImage: `url('${side4}')` }}></div>
               </div>
             </div>
           </div>
@@ -132,45 +160,15 @@ export default async function OurCampusPage() {
         </div>
       </section>
 
-      {/* 3. Facilities Grid (Full Width to Prevent Squishing) */}
-      <section className="w-full py-24 bg-gray-50 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-minerva-accent tracking-[0.3em] font-sans text-xs font-bold uppercase block mb-3">
-              Elite Amenities
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-medium text-minerva-blue">
-              Facilities at Minerva Academy
-            </h2>
-            <p className="text-gray-500 font-sans mt-4 text-sm max-w-xl mx-auto">
-              The self-sustained CCTV secure campus of Minerva Academy houses:
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {facilitiesList.map((facility, idx) => (
-              <div key={idx} className="flex items-center gap-4 bg-white p-5 border border-gray-200 shadow-sm hover:border-minerva-primary hover:shadow-md transition-all">
-                <span className="text-minerva-primary font-serif font-bold text-2xl w-8 text-center opacity-80">
-                  {idx + 1}
-                </span>
-                <span className="text-sm font-sans font-medium text-gray-800 tracking-wide">
-                  {facility}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. DYNAMIC CAMPUS GALLERY GRID */}
+      {/* 3. DYNAMIC CAMPUS GALLERY GRID */}
       {campusGallery.length > 0 && (
-        <section className="w-full py-24 bg-white">
+        <section className="w-full py-24 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <span className="text-minerva-accent font-sans text-xs font-bold tracking-[0.3em] uppercase block mb-3">
                 Full Gallery
               </span>
-              <h2 className="text-3xl font-serif font-medium text-minerva-blue">
+              <h2 className="text-3xl md:text-4xl font-serif font-medium text-minerva-blue">
                 Explore The Grounds
               </h2>
             </div>
