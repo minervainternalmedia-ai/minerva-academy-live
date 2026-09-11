@@ -97,7 +97,10 @@ export default function Navbar() {
               <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/our-campus">Our Campus</Link>
               <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/hostel-and-mess">Hostel & Mess</Link>
               <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/sports-facilities">Sports Facilities</Link>
+              
+              {/* HIDDEN FOR NOW - UNCOMMENT LATER
               <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/photo-gallery">Photo Gallery</Link>
+              */}
             </div>
           </div>
 
