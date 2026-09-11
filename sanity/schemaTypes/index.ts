@@ -204,7 +204,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         }
       ]
     },
-    // BRAND NEW SCHEMA: CPSS / PABT PAGE
     {
       name: 'cpssPabtPage',
       title: 'Course Pages - CPSS / PABT',
@@ -234,6 +233,46 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           fields: [
             { name: 'trainingFee', title: 'CPSS/PABT Training (1 Day) Fee', type: 'string' },
             { name: 'combinedFee', title: 'Combined Package Fee', type: 'string' }
+          ]
+        },
+        { 
+          name: 'sidePhotoGrid', 
+          title: 'Side Photo Grid (Upload Exactly 4 Images)', 
+          type: 'array', 
+          of: [{ type: 'image', options: { hotspot: true } }] 
+        }
+      ]
+    },
+    // BRAND NEW SCHEMA: CDS / OTA PAGE
+    {
+      name: 'cdsOtaPage',
+      title: 'Course Pages - CDS / OTA Written',
+      type: 'document',
+      fields: [
+        { name: 'heroTitle', title: 'Hero Title', type: 'string', initialValue: 'CDS, OTA Written Exam Coaching' },
+        { name: 'heroDescription', title: 'Hero Description', type: 'text' },
+        { name: 'overviewParagraph1', title: 'Overview Paragraph 1', type: 'text' },
+        { name: 'overviewParagraph2', title: 'Overview Paragraph 2', type: 'text' },
+        { name: 'overviewParagraph3', title: 'Overview Paragraph 3', type: 'text' },
+        {
+          name: 'operationalDetails',
+          title: 'Operational Details',
+          type: 'object',
+          fields: [
+            { name: 'dailyTimingsText', title: 'Daily Timings Text', type: 'text' },
+            { name: 'whyCoachingText', title: 'Why Coaching Is A Must Text', type: 'text' }
+          ]
+        },
+        {
+          name: 'feeStructure',
+          title: 'Fee Structure',
+          type: 'object',
+          fields: [
+            { name: 'tuition', title: 'Tuition Fees (Rs)', type: 'string' },
+            { name: 'mess', title: 'Mess Charges (Rs)', type: 'string' },
+            { name: 'hostel', title: 'Hostel Charges (Rs)', type: 'string' },
+            { name: 'security', title: 'Refundable Security (Rs)', type: 'string' },
+            { name: 'total', title: 'Total Charges (Rs)', type: 'string' }
           ]
         },
         { 
