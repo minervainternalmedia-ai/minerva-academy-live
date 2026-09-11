@@ -33,26 +33,22 @@ export default async function OurCampusPage() {
   // Fetch dynamic content from Sanity
   const data: OurCampusData | null = await client.fetch(`*[_type == "ourCampusPage"][0]`);
 
-  // Text Fallbacks
-  const heroTitle = data?.heroTitle || "Our Historic Campus";
+  // EXACT TEXT FALLBACKS AS REQUESTED
+  const heroTitle = data?.heroTitle || "Our Campus";
   const heroDescription = data?.heroDescription || "A lush green, pollution-free, 10-acre SSB-like environment offering unmatched infrastructure for comprehensive defense training.";
   
-  const overviewP1 = data?.overviewP1 || "Minerva Academy campus provides unmatched infrastructure, spread over 10 acres in lush green, pollution free, SSB like environment. The academy boasts of a state-of-the-art campus, fully equipped with all modern amenities to provide a comfortable and conducive environment for learning.";
-  const overviewP2 = data?.overviewP2 || "Our facilities are designed to cater to both the academic and physical training requirements of defense aspirants, replicating the actual testing environments they will face.";
+  const overviewP1 = data?.overviewP1 || "The Minerva Academy has its own vast 10 Acre campus with unrivalled infrastructure in terms of state-of-the-art auditorium, electronic apparatus for PABT, Specifically designed obstacle course (that cannot be matched by any other academy) and separate designated grounds for command task, group task, snake race etc.";
+  const overviewP2 = data?.overviewP2 || "Judicious candidates always prefer to be coached by specialists. Exhaustive coaching cannot be conducted without proper equipment and necessary facilities of vast grounds and trees for outdoor exercises. Minerva is the only Academy possessing these facilities. For indoor classes, our Lecture Hall has seating capacity of over 100 candidates. Indoor academic sessions are well supported by Modern Audio Visual Technological aids like LCD Projector, High Powered P.A. Equipments, and captive power source like Generator in case of electricity failure.";
   const overviewP3 = data?.overviewP3 || "";
 
-  const facilitiesList = data?.facilitiesList || [
-    "Fully Equipped Library", "Modern IT Lab", "Spacious Air-Conditioned Classrooms",
-    "Dedicated SSB Obstacle Course", "Full-size Football Ground", "Basketball Courts",
-    "Volleyball & Badminton Courts", "Hygienic Dining Mess", "On-campus Medical Facility",
-    "24/7 Power Backup", "Dedicated Study Rooms", "Swimming Pool"
+  const facilitiesList = data?.facilitiesList?.length ? data.facilitiesList : [
+    "Auditorium", "Classrooms", "Vast Grounds for Outdoor Training", "Obstacle courses",
+    "Hostel", "Mess", "Library", "Gymnasium", "Swimming Pool", "Physiotherapy & Medical Clinic",
+    "Football Grounds", "Cricket Nets", "Table Tennis", "Volley Ball", "Basket Ball Court", "Canteen"
   ];
 
-  const boardingTitle = data?.boardingTitle || "Boarding & Lodging";
-  const boardingText = data?.boardingText || "We offer clean, highly palatable and hygienic boarding and lodging facilities on the campus. Beds and mattresses are provided at the hostel. Candidates are required to bring their own bedding.";
-  
-  const hostelTitle = data?.hostelTitle || "Girls' Hostel Facility";
-  const hostelText = data?.hostelText || "A separate secure on-campus hostel facility is available for female candidates with a dedicated lady warden present 24/7 for assistance and security.";
+  const boardingText = data?.boardingText || "Minerva offers excellent on-campus hostel facilities and a large mess with a modern clean kitchen serving palatable meals, to make the boarding and lodging of trainees a very comfortable experience.";
+  const hostelText = data?.hostelText || "We have separate on campus hostel accommodation for girls. Prior registration is a must for girls as hostel space is limited.";
 
   // Safe Grid Photos
   const sidePhotos = data?.sidePhotoGrid || [];
@@ -91,58 +87,35 @@ export default async function OurCampusPage() {
         </div>
       </section>
 
-      {/* 2. Main Content & Sticky Photo Grid Section */}
-      <section className="w-full py-20 bg-white">
+      {/* 2. Main Content & Photo Grid (Properly Spaced) */}
+      <section className="w-full py-20 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-16 items-start">
           
-          {/* LEFT COLUMN: Overview & Facilities */}
-          <div className="lg:w-3/5 space-y-16">
+          {/* LEFT COLUMN: Main Text */}
+          <div className="lg:w-7/12 font-sans text-gray-700 leading-relaxed font-light space-y-8">
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-minerva-blue">
+              Unrivalled Infrastructure
+            </h2>
+            <p className="text-base md:text-lg">{overviewP1}</p>
+            <p className="text-base md:text-lg">{overviewP2}</p>
+            {overviewP3 && <p className="text-base md:text-lg">{overviewP3}</p>}
             
-            {/* Overview Text */}
-            <div className="font-sans text-gray-700 leading-relaxed font-light space-y-6">
-              <h2 className="text-3xl font-serif font-medium text-minerva-blue mb-4">Academy Infrastructure</h2>
-              <p className="text-base">{overviewP1}</p>
-              {overviewP2 && <p className="text-base">{overviewP2}</p>}
-              {overviewP3 && <p className="text-base">{overviewP3}</p>}
-            </div>
-
-            {/* Facilities List Grid */}
-            <div>
-              <h3 className="text-2xl font-serif font-medium text-minerva-blue mb-6">World-Class Amenities</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {facilitiesList.map((facility, idx) => (
-                  <div key={idx} className="flex items-center p-4 bg-gray-50 border border-gray-100 shadow-sm hover:border-minerva-accent transition-colors">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-minerva-primary/10 flex items-center justify-center text-minerva-primary mr-3">
-                      ✓
-                    </span>
-                    <span className="text-sm font-sans text-gray-700">{facility}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Boarding & Lodging */}
-            <div className="space-y-8">
+            {/* Boarding and Lodging Block */}
+            <div className="mt-8 space-y-6">
               <div className="bg-gray-50 p-8 border-l-4 border-minerva-primary shadow-sm">
-                <h3 className="font-serif text-xl text-minerva-blue mb-3 font-medium">{boardingTitle}</h3>
-                <p className="text-sm text-gray-700 font-light leading-relaxed">{boardingText}</p>
+                <p className="text-base md:text-lg text-gray-800 leading-relaxed">{boardingText}</p>
               </div>
 
               <div className="bg-minerva-blue text-white p-8 border-l-4 border-minerva-accent shadow-sm">
-                <h3 className="font-serif text-xl mb-3 font-medium flex items-center gap-3">
-                  <span className="bg-minerva-accent w-2 h-2 rounded-full"></span>
-                  {hostelTitle}
-                </h3>
-                <p className="text-sm text-gray-200 font-light leading-relaxed">{hostelText}</p>
+                <p className="text-base md:text-lg text-gray-100 leading-relaxed">{hostelText}</p>
               </div>
             </div>
-
           </div>
 
-          {/* RIGHT COLUMN: Premium Sticky Photo Grid */}
-          <div className="lg:w-2/5">
-            <div className="sticky top-24 space-y-4">
-              <div className="mb-6 text-center md:text-left">
+          {/* RIGHT COLUMN: 2x2 Photo Grid */}
+          <div className="lg:w-5/12">
+            <div className="sticky top-24">
+              <div className="mb-6">
                 <span className="text-minerva-accent tracking-[0.3em] font-sans text-xs font-bold uppercase block mb-1">Visual Tour</span>
                 <h3 className="text-2xl font-serif text-minerva-blue">Campus Glimpses</h3>
               </div>
@@ -159,9 +132,39 @@ export default async function OurCampusPage() {
         </div>
       </section>
 
-      {/* 3. DYNAMIC CAMPUS GALLERY GRID */}
+      {/* 3. Facilities Grid (Full Width to Prevent Squishing) */}
+      <section className="w-full py-24 bg-gray-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-minerva-accent tracking-[0.3em] font-sans text-xs font-bold uppercase block mb-3">
+              Elite Amenities
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-minerva-blue">
+              Facilities at Minerva Academy
+            </h2>
+            <p className="text-gray-500 font-sans mt-4 text-sm max-w-xl mx-auto">
+              The self-sustained CCTV secure campus of Minerva Academy houses:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {facilitiesList.map((facility, idx) => (
+              <div key={idx} className="flex items-center gap-4 bg-white p-5 border border-gray-200 shadow-sm hover:border-minerva-primary hover:shadow-md transition-all">
+                <span className="text-minerva-primary font-serif font-bold text-2xl w-8 text-center opacity-80">
+                  {idx + 1}
+                </span>
+                <span className="text-sm font-sans font-medium text-gray-800 tracking-wide">
+                  {facility}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. DYNAMIC CAMPUS GALLERY GRID */}
       {campusGallery.length > 0 && (
-        <section className="w-full py-24 bg-gray-50 border-t border-gray-200">
+        <section className="w-full py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <span className="text-minerva-accent font-sans text-xs font-bold tracking-[0.3em] uppercase block mb-3">
