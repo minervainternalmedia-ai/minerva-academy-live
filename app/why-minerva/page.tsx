@@ -8,7 +8,7 @@ export default async function WhyMinervaPage() {
   // Fetch Expert Faculty from Sanity Backend
   const faculty = await client.fetch(`*[_type == "expertFaculty"] | order(order asc)`);
 
-  // Static 13 Points from Brochure
+  // Static 12 Points from Brochure
   const points = [
     {
       num: "01",
@@ -57,10 +57,6 @@ export default async function WhyMinervaPage() {
     {
       num: "12",
       text: "Minerva guarantees comprehensive preparation covering psychological tests, GTO tasks, and personal interviews by seasoned assessors."
-    },
-    {
-      num: "13",
-      text: "Our location is easily accessible and well connected by Rail, Road and by Air."
     }
   ];
 
@@ -80,7 +76,7 @@ export default async function WhyMinervaPage() {
         </p>
       </section>
 
-      {/* 13 POINTS GRID SECTION */}
+      {/* 12 POINTS GRID SECTION */}
       <section className="py-24 max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {points.map((item, index) => (
