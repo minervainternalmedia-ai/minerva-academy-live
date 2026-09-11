@@ -182,11 +182,7 @@ export default function SSBTrainingPage() {
                 ></div>
               </div>
               
-              <div className="pt-4 flex justify-end">
-                <Link href="/admissions" className="text-minerva-accent text-xs font-bold tracking-widest uppercase hover:text-minerva-blue transition-colors group flex items-center">
-                  Book Your Seat Now <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                </Link>
-              </div>
+              {/* Removed "Book Your Seat Now" from here as requested */}
             </div>
           </div>
 
@@ -233,6 +229,71 @@ export default function SSBTrainingPage() {
                 Local or nearby candidates who want to join as day scholars are advised to report at Campus Admissions Office by 8 AM on the first day of the term.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. RESERVATION FORM SECTION (EXACTLY LIKE YOUR SCREENSHOT) */}
+      <section className="w-full py-24 bg-[#0a4122] text-minerva-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-6xl font-serif font-medium text-white mb-2">
+              Reservation Form
+            </h2>
+          </div>
+
+          <div className="bg-[#2c3144] border border-[#ff671f] p-8 md:p-12 shadow-2xl">
+            <form className="space-y-6 font-sans">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Full Name */}
+                <div className="space-y-2">
+                  <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">Full Name *</label>
+                  <input type="text" placeholder="Cadet full name" className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] placeholder-gray-400" />
+                </div>
+                {/* Email Address */}
+                <div className="space-y-2">
+                  <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">Email Address *</label>
+                  <input type="email" placeholder="email@domain.com" className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] placeholder-gray-400" />
+                </div>
+                {/* Phone Number */}
+                <div className="space-y-2">
+                  <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">Phone Number *</label>
+                  <input type="tel" placeholder="+91 98765 43210" className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] placeholder-gray-400" />
+                </div>
+                {/* WhatsApp Number */}
+                <div className="space-y-2">
+                  <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">WhatsApp Number *</label>
+                  <input type="tel" placeholder="+91 98765 43210" className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] placeholder-gray-400" />
+                </div>
+                {/* Date of Birth */}
+                <div className="space-y-2">
+                  <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">Date of Birth (DOB) *</label>
+                  <input type="date" className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] text-gray-400" />
+                </div>
+                {/* Home State */}
+                <div className="space-y-2">
+                  <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">Home State *</label>
+                  <input type="text" placeholder="e.g., Punjab, Haryana..." className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] placeholder-gray-400" />
+                </div>
+              </div>
+
+              {/* Select Course */}
+              <div className="space-y-2 pt-2">
+                <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white">Select Course *</label>
+                <select className="w-full bg-[#0a4122] text-white px-4 py-3 outline-none focus:ring-1 focus:ring-[#ff671f] appearance-none cursor-pointer">
+                  <option>SSB Interview Training (15 Days)</option>
+                  <option>CPSS / PABT Training (1 Day)</option>
+                  <option>NDA Written Exam Coaching</option>
+                  <option>CDS / OTA Written Exam Coaching</option>
+                  <option>AFCAT Written Exam Coaching</option>
+                </select>
+              </div>
+
+              {/* Submit Button */}
+              <button type="button" className="w-full bg-[#ff671f] text-white font-bold text-xs tracking-[0.2em] uppercase py-4 mt-6 hover:bg-orange-600 transition-colors shadow-lg">
+                Submit Application
+              </button>
+            </form>
           </div>
         </div>
       </section>
