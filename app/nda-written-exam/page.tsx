@@ -14,10 +14,10 @@ export default async function NDAWrittenPage() {
   const durationBadge = data?.durationBadge || "7-Weeks Comprehensive Program";
   
   // Fees Fallbacks
-  const tuition = data?.feeStructure?.tuition || "17,000";
-  const hostel = data?.feeStructure?.hostel || "7,000";
-  const mess = data?.feeStructure?.mess || "16,000";
-  const total = data?.feeStructure?.total || "40,000";
+  const tuition = data?.feeStructure?.tuition || "15,000";
+  const hostel = data?.feeStructure?.hostel || "6,000";
+  const mess = data?.feeStructure?.mess || "14,000";
+  const total = data?.feeStructure?.total || "35,500";
   const security = data?.feeStructure?.security || "500";
   
   // Image Fallback
@@ -84,14 +84,14 @@ export default async function NDAWrittenPage() {
               Curriculum Excellence
             </span>
             <h2 className="text-3xl md:text-5xl font-serif font-medium text-minerva-blue">
-              Course Structure & <span className="italic text-minerva-primary">Academic Features</span>
+              Course Structure &amp; <span className="italic text-minerva-primary">Academic Features</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white border border-gray-200 p-8 shadow-sm hover:shadow-xl hover:border-minerva-primary transition-all duration-300">
               <span className="text-minerva-accent font-serif text-4xl mb-4 block">01.</span>
-              <h3 className="text-xl font-serif font-medium text-minerva-blue mb-3">Duration & Batches</h3>
+              <h3 className="text-xl font-serif font-medium text-minerva-blue mb-3">Duration &amp; Batches</h3>
               <p className="text-gray-600 font-sans text-sm font-light leading-relaxed">
                 7-Week intensive course; fresh batches commence every Monday.
               </p>
@@ -132,58 +132,80 @@ export default async function NDAWrittenPage() {
         </div>
       </section>
 
-      {/* 4. Premium Fee Structure Grid & Side Image Section */}
-      <section className="w-full py-24 bg-minerva-blue text-white">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-16 items-center">
+      {/* 4. Premium Fee Structure Table & Side Image Section */}
+      <section className="w-full py-24 bg-white text-gray-800 border-t border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-16 items-start">
           
-          {/* Left Side: Fee Grid Details */}
-          <div className="w-full md:w-1/2 space-y-6">
-            <span className="text-minerva-accent font-sans text-xs font-bold tracking-[0.3em] uppercase block">
-              Investment in Your Future
-            </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-medium mb-8">
-              Fee Structure & Payment Mode
-            </h2>
+          {/* Left Side: Fee Table Details */}
+          <div className="w-full md:w-1/2 space-y-8">
+            <div>
+              <span className="text-gray-400 font-sans text-xs font-bold tracking-[0.2em] uppercase block mb-2">
+                W.E.F. 1ST JANUARY, 2026
+              </span>
+              <h2 className="text-3xl md:text-5xl font-serif font-medium text-minerva-blue mb-2">
+                Fee Structure
+              </h2>
+            </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans">
-              <div className="bg-white/5 p-6 border border-white/10 hover:border-minerva-accent/50 transition-colors">
-                <span className="text-gray-400 text-xs uppercase tracking-widest mb-2 block">Tuition Fees</span>
-                <span className="text-2xl md:text-3xl font-light">Rs {tuition}</span>
+            <div className="bg-white shadow-lg border border-gray-200 overflow-hidden font-sans rounded-sm">
+              {/* Table Header */}
+              <div className="grid grid-cols-3 bg-minerva-primary text-white p-4 text-xs font-bold tracking-widest uppercase">
+                <div>Term (6 Weeks)</div>
+                <div>Charges (INR)</div>
+                <div className="hidden sm:block">Notes</div>
               </div>
               
-              <div className="bg-white/5 p-6 border border-white/10 hover:border-minerva-accent/50 transition-colors">
-                <span className="text-gray-400 text-xs uppercase tracking-widest mb-2 block">Hostel Charge</span>
-                <span className="text-2xl md:text-3xl font-light">Rs {hostel}</span>
-              </div>
-              
-              <div className="bg-white/5 p-6 border border-white/10 hover:border-minerva-accent/50 transition-colors">
-                <span className="text-gray-400 text-xs uppercase tracking-widest mb-2 block">Mess Charge</span>
-                <span className="text-2xl md:text-3xl font-light">Rs {mess}</span>
-              </div>
-              
-              <div className="bg-white/5 p-6 border border-white/10 hover:border-minerva-accent/50 transition-colors">
-                <span className="text-gray-400 text-xs uppercase tracking-widest mb-2 block">Security (Refundable)</span>
-                <span className="text-2xl md:text-3xl font-light">Rs {security}</span>
-              </div>
+              {/* Table Body */}
+              <div className="divide-y divide-gray-100 text-sm">
+                
+                {/* Tuition */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 p-4 hover:bg-gray-50 transition-colors items-center">
+                  <div className="font-semibold text-gray-800">Tuition Fees</div>
+                  <div className="font-bold text-gray-900 text-base">₹{tuition}</div>
+                  <div className="hidden sm:block text-gray-500 text-xs">Comprehensive syllabus coverage</div>
+                </div>
+                
+                {/* Mess */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 p-4 hover:bg-gray-50 transition-colors items-center">
+                  <div className="font-semibold text-gray-800">Mess Charges</div>
+                  <div className="font-bold text-gray-900 text-base">₹{mess}</div>
+                  <div className="hidden sm:block text-gray-500 text-xs">Hygienic meals included</div>
+                </div>
+                
+                {/* Hostel */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 p-4 hover:bg-gray-50 transition-colors items-center">
+                  <div className="font-semibold text-gray-800">Hostel Charges</div>
+                  <div className="font-bold text-gray-900 text-base">₹{hostel}</div>
+                  <div className="hidden sm:block text-gray-500 text-xs">Secure campus accommodation</div>
+                </div>
+                
+                {/* Security */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 p-4 hover:bg-gray-50 transition-colors items-center">
+                  <div className="font-semibold text-gray-800">Refundable Security</div>
+                  <div className="font-bold text-gray-900 text-base">₹{security}</div>
+                  <div className="hidden sm:block text-gray-500 text-xs">Refundable upon completion</div>
+                </div>
+                
+                {/* Total */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 p-5 bg-[#FFF5EE] items-center border-t border-[#FFB28B]">
+                  <div className="font-bold text-gray-900">Total Charges</div>
+                  <div className="font-bold text-minerva-primary text-xl">₹{total}</div>
+                  <div className="hidden sm:block text-gray-600 text-xs">Complete package</div>
+                </div>
 
-              {/* Total Row */}
-              <div className="col-span-1 sm:col-span-2 bg-minerva-accent/10 p-6 border border-minerva-accent flex flex-col sm:flex-row justify-between items-start sm:items-center mt-2">
-                <span className="text-minerva-accent font-bold uppercase tracking-[0.2em] mb-2 sm:mb-0">Total Fees</span>
-                <span className="text-4xl font-serif font-medium text-white">Rs {total}</span>
               </div>
             </div>
-
           </div>
 
           {/* Right Side: Image Placeholder (Dynamic from Sanity) */}
-          <div className="w-full md:w-1/2 relative">
-            <div className="relative h-[500px] w-full bg-gray-200 overflow-hidden shadow-2xl border-[8px] border-white/10">
+          <div className="w-full md:w-1/2 relative mt-4 md:mt-0">
+            <div className="relative h-[450px] md:h-[500px] w-full bg-gray-200 overflow-hidden shadow-2xl border-8 border-white">
               <div 
                 className="absolute inset-0 bg-cover bg-center hover:scale-105 transition-transform duration-1000" 
                 style={{ backgroundImage: `url('${sideImage}')` }}
               ></div>
               <div className="absolute bottom-6 left-6 bg-minerva-primary text-white px-4 py-2 font-sans text-[10px] uppercase tracking-widest font-bold shadow-lg">
-                Academy Campus & Training
+                Academy Campus &amp; Training
               </div>
             </div>
           </div>
