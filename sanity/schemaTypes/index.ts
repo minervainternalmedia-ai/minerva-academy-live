@@ -371,7 +371,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         { name: 'hostelText', title: 'Girls Hostel Text', type: 'text' }
       ]
     },
-    // BRAND NEW SCHEMA: HOSTEL & MESS PAGE
     {
       name: 'hostelMessPage',
       title: 'Life at Minerva - Hostel & Mess',
@@ -397,6 +396,24 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         { 
           name: 'messGallery', 
           title: 'Mess & Dining Image Gallery', 
+          type: 'array', 
+          of: [{ type: 'image', options: { hotspot: true } }] 
+        }
+      ]
+    },
+    // BRAND NEW SCHEMA: SPORTS FACILITIES PAGE
+    {
+      name: 'sportsFacilitiesPage',
+      title: 'Life at Minerva - Sports Facilities',
+      type: 'document',
+      fields: [
+        { name: 'heroTitle', title: 'Hero Title', type: 'string', initialValue: 'Sports Facilities' },
+        { name: 'heroDescription', title: 'Hero Description', type: 'text', initialValue: 'World-class physical training infrastructure designed to forge the endurance, stamina, and agility required for the Indian Armed Forces.' },
+        { name: 'quoteText', title: 'Highlight Quote', type: 'text', initialValue: '"Physical fitness is a pre-requisite for SSB and a cornerstone of military leadership."' },
+        { name: 'overviewText', title: 'Overview Paragraph', type: 'text' },
+        { 
+          name: 'sidePhotoGrid', 
+          title: 'Side Photo Grid (Upload Exactly 4 Images)', 
           type: 'array', 
           of: [{ type: 'image', options: { hotspot: true } }] 
         }
