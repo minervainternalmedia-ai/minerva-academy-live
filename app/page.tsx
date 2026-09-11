@@ -235,9 +235,9 @@ export default async function Home() {
                     <p className="text-gray-300 font-sans font-light text-sm leading-relaxed mb-6 line-clamp-3">
                       {hero.description}
                     </p>
-                    <div className="mt-auto border-t border-gray-700/80 pt-4 flex justify-between items-center text-xs font-sans tracking-widest text-minerva-accent uppercase font-semibold">
-                      <span>Verified Legend</span>
-                      <span>{hero.achievement}</span>
+                    {/* UPDATED FOOTER: Removed "Verified Legend" */}
+                    <div className="mt-auto border-t border-gray-700/80 pt-4 flex justify-end items-center text-xs font-sans tracking-widest text-minerva-accent uppercase font-semibold">
+                      <span className="text-right">{hero.achievement}</span>
                     </div>
                   </div>
                 </div>
