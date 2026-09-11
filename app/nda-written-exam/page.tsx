@@ -139,9 +139,6 @@ export default async function NDAWrittenPage() {
           {/* Left Side: Fee Table Details */}
           <div className="w-full md:w-1/2 space-y-8">
             <div>
-              <span className="text-gray-400 font-sans text-xs font-bold tracking-[0.2em] uppercase block mb-2">
-                W.E.F. 1ST JANUARY, 2026
-              </span>
               <h2 className="text-3xl md:text-5xl font-serif font-medium text-minerva-blue mb-2">
                 Fee Structure
               </h2>
