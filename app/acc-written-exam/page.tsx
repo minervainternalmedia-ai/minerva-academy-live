@@ -1,12 +1,36 @@
 import Link from "next/link";
 import ReservationForm from "@/app/components/ReservationForm";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
-export default function ACCWrittenPage() {
-  // Premium fallback images for the grid
-  const photo1 = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop";
-  const photo2 = "https://images.unsplash.com/photo-1517649763962-0c623266cf10?q=80&w=600&auto=format&fit=crop";
-  const photo3 = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop";
-  const photo4 = "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=600&auto=format&fit=crop";
+export const revalidate = 0;
+
+interface ACCData {
+  heroTitle?: string;
+  heroDescription?: string;
+  sidePhotoGrid?: any[];
+}
+
+// BULLETPROOF IMAGE FETCHER
+function getSafeImageUrl(imageRef: any, fallbackUrl: string) {
+  if (!imageRef || !imageRef.asset) return fallbackUrl;
+  try {
+    return urlFor(imageRef).url();
+  } catch (error) {
+    return fallbackUrl;
+  }
+}
+
+export default async function ACCWrittenPage() {
+  // Fetch dynamic data from Sanity
+  const data: ACCData | null = await client.fetch(`*[_type == "accWrittenExam"][0]`);
+
+  // Safe Photo Grid Fallbacks from Sanity
+  const photos = data?.sidePhotoGrid || [];
+  const photo1 = getSafeImageUrl(photos[0], "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop");
+  const photo2 = getSafeImageUrl(photos[1], "https://images.unsplash.com/photo-1517649763962-0c623266cf10?q=80&w=600&auto=format&fit=crop");
+  const photo3 = getSafeImageUrl(photos[2], "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop");
+  const photo4 = getSafeImageUrl(photos[3], "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=600&auto=format&fit=crop");
 
   return (
     <main className="min-h-screen flex flex-col bg-minerva-white text-minerva-blue">
@@ -189,7 +213,7 @@ export default function ACCWrittenPage() {
         </div>
       </section>
 
-      {/* GREEN JOINING INSTRUCTIONS SECTION (Full Width below the grid area) */}
+      {/* GREEN JOINING INSTRUCTIONS SECTION */}
       <section className="w-full py-20 bg-minerva-primary text-minerva-white">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 font-sans font-light text-sm leading-relaxed">
           
@@ -214,7 +238,7 @@ export default function ACCWrittenPage() {
         </div>
       </section>
 
-      {/* ADDITIONAL ACC EXAM DETAILS (Full Width) */}
+      {/* ADDITIONAL ACC EXAM DETAILS */}
       <section className="w-full py-20 bg-gray-50 border-t border-gray-200">
         <div className="max-w-6xl mx-auto px-6 font-sans text-sm text-gray-700 font-light space-y-8">
           
