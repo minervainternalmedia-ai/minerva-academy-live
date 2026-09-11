@@ -4,7 +4,7 @@ export default function NDAWrittenPage() {
   return (
     <main className="min-h-screen flex flex-col bg-minerva-white text-minerva-blue">
       
-      {/* Sub-page Header Banner */}
+      {/* 1. Sub-page Header Banner */}
       <section className="relative w-full py-24 bg-minerva-primary text-minerva-white overflow-hidden border-b-4 border-minerva-accent">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#283047_1.5px,transparent_1.5px)] [background-size:20px_20px] pointer-events-none"></div>
         
@@ -18,9 +18,8 @@ export default function NDAWrittenPage() {
             </span>
           </div>
           
-          {/* Updated Hero Title */}
           <h1 className="text-4xl md:text-6xl font-serif font-medium mb-6 leading-tight">
-            NDA Written Examination <span className="italic text-minerva-accent">Coaching</span>
+            NDA Written Exam <span className="italic text-minerva-accent">Coaching</span>
           </h1>
           
           <p className="text-gray-200 font-sans font-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
@@ -29,22 +28,31 @@ export default function NDAWrittenPage() {
         </div>
       </section>
 
-      {/* Heading 1: Overview Section */}
+      {/* 2. Overview Section (Chandigarh Campus & Main Description) */}
       <section className="w-full py-24 bg-white border-b border-gray-100">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-5xl mx-auto px-6 text-center">
           <span className="text-minerva-accent tracking-[0.3em] font-sans text-xs font-bold uppercase mb-4 block">
             Chandigarh Campus
           </span>
           <h2 className="text-3xl md:text-5xl font-serif font-medium text-minerva-blue mb-8 leading-tight">
-            UPSC NDA Written Examination Coaching in Chandigarh
+            UPSC NDA Written Examination Coaching
           </h2>
-          <p className="text-gray-600 font-sans text-base md:text-lg leading-relaxed font-light">
-            The National Defence Academy (NDA) entrance examination conducted by UPSC demands deep conceptual clarity, rigorous speed, and tactical time management. Minerva Academy delivers a targeted 7-week classroom coaching course designed by permanent, full-time subject matter experts.
-          </p>
+          
+          <div className="font-sans text-gray-600 leading-relaxed font-light space-y-6 text-left md:text-center text-base md:text-lg">
+            <p>
+              Minerva Academy offers coaching for the UPSC NDA/NA written examinations. The faculty at Minerva is highly qualified and vastly experienced in successfully coaching students for NDA examinations. The standards of excellence followed by Minerva ensure that each student who opts for coaching with us feels confident and well prepared for the exam.
+            </p>
+            <p>
+              Not only do we cover the entire syllabus subject by subject as per UPSC, we also prepare our students with mock tests, previous year question papers, and doubt clearing sessions, which are conducted each week to monitor each student&apos;s progress. Mock test/weekly test results are also discussed to pin point where the student may be lacking. This ensures that the students know what to expect in the examination, how to approach the examination, manage time efficiently and get the best possible results.
+            </p>
+            <p>
+              Experienced and updated faculty teaches students how to handle the NDA examination specifically; they focus on the format and type of questions likely to be asked in the exam. Students can learn many formulae and shortcuts to get quick and accurate answers, while attempting the examination. Apart from this, we provide extensively researched study material which helps students to easily access, organize and systematically approach the vast syllabus.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Heading 2: Course Structure & Academic Features */}
+      {/* 3. Course Structure & Academic Features */}
       <section className="w-full py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -56,9 +64,7 @@ export default function NDAWrittenPage() {
             </h2>
           </div>
 
-          {/* Premium Grid for Academic Features */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
             <div className="bg-white border border-gray-200 p-8 shadow-sm hover:shadow-xl hover:border-minerva-primary transition-all duration-300">
               <span className="text-minerva-accent font-serif text-4xl mb-4 block">01.</span>
               <h3 className="text-xl font-serif font-medium text-minerva-blue mb-3">Duration & Batches</h3>
@@ -98,12 +104,11 @@ export default function NDAWrittenPage() {
                 Air conditioned classrooms with modern audio-visual aids, quiet reading rooms open late, and an on-campus library with over 1,000+ reference books.
               </p>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* Fee Structure & Side Image Section */}
+      {/* 4. Fee Structure & Side Image Section */}
       <section className="w-full py-24 bg-minerva-blue text-white">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-16 items-center">
           
@@ -139,10 +144,17 @@ export default function NDAWrittenPage() {
                   <span>Rs 500</span>
                 </li>
               </ul>
+
+              <Link 
+                href="/admissions" 
+                className="mt-8 block text-center bg-minerva-accent text-minerva-white px-6 py-4 font-sans text-xs font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-minerva-blue transition-colors shadow-md w-full"
+              >
+                Proceed to Payment
+              </Link>
             </div>
           </div>
 
-          {/* Right Side: Image Placeholder */}
+          {/* Right Side: Image Placeholder (You can swap this URL with Sanity upload later) */}
           <div className="w-full md:w-1/2 relative">
             <div className="relative h-[500px] w-full bg-gray-200 overflow-hidden shadow-2xl border-[8px] border-white/10">
               <div 
@@ -158,7 +170,7 @@ export default function NDAWrittenPage() {
         </div>
       </section>
 
-      {/* Why Choose Minerva Academy For NDA Written Exam Coaching */}
+      {/* 5. Why Choose Minerva Academy */}
       <section className="w-full py-24 bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -170,7 +182,7 @@ export default function NDAWrittenPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 font-sans text-sm text-gray-700">
             <div className="bg-white p-8 border-l-4 border-minerva-primary shadow-sm hover:shadow-lg transition-shadow">
-              <span className="text-minerva-accent font-bold mr-2 text-lg">1.</span> Minerva Academy is India's Oldest and Largest Armed Forces Preparatory Institute. Established in 1955 by Lt. Col. Deol, Minerva Academy has approx. 70 years of experience in successfully coaching candidates to be commissioned into the armed forces.
+              <span className="text-minerva-accent font-bold mr-2 text-lg">1.</span> Minerva Academy is India&apos;s Oldest and Largest Armed Forces Preparatory Institute. Established in 1955 by Lt. Col. Deol, Minerva Academy has approx. 70 years of experience in successfully coaching candidates to be commissioned into the armed forces.
             </div>
             <div className="bg-white p-8 border-l-4 border-minerva-primary shadow-sm hover:shadow-lg transition-shadow">
               <span className="text-minerva-accent font-bold mr-2 text-lg">2.</span> Every fourth officer in the Indian Armed Forces has been a student of Minerva Academy.
@@ -188,6 +200,26 @@ export default function NDAWrittenPage() {
               <span className="text-minerva-accent font-bold mr-2 text-lg">6.</span> <strong className="text-minerva-blue">Study Room / Reading Room:</strong> On campus study/ reading rooms are available to provide students with quiet and peaceful environment, perfect for self study and preparations. These rooms are open daily till late hours.
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 6. JOIN NOW BANNER BEFORE FOOTER */}
+      <section className="bg-minerva-primary py-16 text-center px-6 border-t border-gray-700">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="text-left">
+            <h2 className="text-3xl font-serif font-medium text-minerva-white mb-2">
+              Ready to Start Your Journey?
+            </h2>
+            <p className="text-gray-300 font-sans text-sm font-light">
+              Admissions are open for the upcoming NDA Written Exam batch. Secure your seat today.
+            </p>
+          </div>
+          <Link 
+            href="/admissions" 
+            className="inline-block bg-minerva-accent text-minerva-white px-10 py-4 font-sans text-xs font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-minerva-blue transition-all shadow-xl shrink-0"
+          >
+            Enroll Now
+          </Link>
         </div>
       </section>
 
