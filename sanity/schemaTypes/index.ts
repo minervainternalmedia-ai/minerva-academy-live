@@ -150,15 +150,31 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         { name: 'heroImage', title: 'Hero Background Image', type: 'image', options: { hotspot: true } },
         { name: 'duration', title: 'Course Duration (e.g., 7 Weeks)', type: 'string' },
         { name: 'overview', title: 'Course Overview Description', type: 'text' },
-        { name: 'keyFeatures', title: 'Key Features / Highlights', type: 'array', of: [{ type: 'string' }] },
-
-        // --- NEW FEE STRUCTURE & IMAGE UPLOAD FIELDS ---
-        { name: 'feeImage', title: 'Fee Section Image (Upload Photo Here)', type: 'image', options: { hotspot: true } },
-        { name: 'tuitionFee', title: 'Tuition Fee', type: 'string', initialValue: 'Rs 17000' },
-        { name: 'hostelFee', title: 'Hostel Charge', type: 'string', initialValue: 'Rs 7000' },
-        { name: 'messFee', title: 'Mess Charge', type: 'string', initialValue: 'Rs 16000' },
-        { name: 'totalFee', title: 'Total Fees', type: 'string', initialValue: 'Rs 40000' },
-        { name: 'securityFee', title: 'Security Deposit', type: 'string', initialValue: 'Rs 500 (Refundable)' }
+        { name: 'keyFeatures', title: 'Key Features / Highlights', type: 'array', of: [{ type: 'string' }] }
+      ]
+    },
+    // NEW DEDICATED SCHEMA FOR NDA WRITTEN EXAM PAGE
+    {
+      name: 'ndaWrittenExam',
+      title: 'Course Pages - NDA Written',
+      type: 'document',
+      fields: [
+        { name: 'heroTitle', title: 'Hero Title', type: 'string', initialValue: 'NDA Written Exam Coaching' },
+        { name: 'heroDescription', title: 'Hero Description', type: 'text' },
+        { name: 'durationBadge', title: 'Duration Badge Text', type: 'string', initialValue: '7-Weeks Comprehensive Program' },
+        {
+          name: 'feeStructure',
+          title: 'Fee Structure',
+          type: 'object',
+          fields: [
+            { name: 'tuition', title: 'Tuition Fees (Rs)', type: 'string' },
+            { name: 'hostel', title: 'Hostel Charge (Rs)', type: 'string' },
+            { name: 'mess', title: 'Mess Charge (Rs)', type: 'string' },
+            { name: 'total', title: 'Total Fees (Rs)', type: 'string' },
+            { name: 'security', title: 'Security (Refundable)', type: 'string' }
+          ]
+        },
+        { name: 'feeSideImage', title: 'Fee Section Side Image', type: 'image', options: { hotspot: true } }
       ]
     },
 

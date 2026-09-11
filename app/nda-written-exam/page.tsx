@@ -1,6 +1,30 @@
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
-export default function NDAWrittenPage() {
+export const revalidate = 0;
+
+export default async function NDAWrittenPage() {
+  // Fetch dynamic data from Sanity
+  const data = await client.fetch(`*[_type == "ndaWrittenExam"][0]`);
+
+  // Fallbacks: If Sanity is empty, use your exact hardcoded text so nothing breaks!
+  const heroTitle = data?.heroTitle || "NDA Written Exam";
+  const heroDescription = data?.heroDescription || "UPSC NDA/NA (National Defence Academy / Naval Academy) Written Examination Coaching by veteran faculty and academic experts.";
+  const durationBadge = data?.durationBadge || "7-Weeks Comprehensive Program";
+  
+  // Fees Fallbacks
+  const tuition = data?.feeStructure?.tuition || "17,000";
+  const hostel = data?.feeStructure?.hostel || "7,000";
+  const mess = data?.feeStructure?.mess || "16,000";
+  const total = data?.feeStructure?.total || "40,000";
+  const security = data?.feeStructure?.security || "500";
+  
+  // Image Fallback
+  const sideImage = data?.feeSideImage 
+    ? urlFor(data.feeSideImage).url() 
+    : "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1000&auto=format&fit=crop";
+
   return (
     <main className="min-h-screen flex flex-col bg-minerva-white text-minerva-blue">
       
@@ -14,16 +38,16 @@ export default function NDAWrittenPage() {
             <span className="w-2 h-2 rounded-full bg-white"></span>
             <span className="w-2 h-2 rounded-full bg-[#138808]"></span>
             <span className="text-minerva-accent tracking-[0.4em] font-sans text-xs font-bold uppercase ml-2">
-              7-Weeks Comprehensive Program
+              {durationBadge}
             </span>
           </div>
           
           <h1 className="text-4xl md:text-6xl font-serif font-medium mb-6 leading-tight">
-            NDA Written Exam <span className="italic text-minerva-accent">Coaching</span>
+            {heroTitle} <span className="italic text-minerva-accent">Coaching</span>
           </h1>
           
           <p className="text-gray-200 font-sans font-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            UPSC NDA/NA (National Defence Academy / Naval Academy) Written Examination Coaching by veteran faculty and academic experts.
+            {heroDescription}
           </p>
         </div>
       </section>
@@ -108,11 +132,11 @@ export default function NDAWrittenPage() {
         </div>
       </section>
 
-      {/* 4. Fee Structure & Side Image Section */}
+      {/* 4. Premium Fee Structure Grid & Side Image Section */}
       <section className="w-full py-24 bg-minerva-blue text-white">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-16 items-center">
           
-          {/* Left Side: Fee Details */}
+          {/* Left Side: Fee Grid Details */}
           <div className="w-full md:w-1/2 space-y-6">
             <span className="text-minerva-accent font-sans text-xs font-bold tracking-[0.3em] uppercase block">
               Investment in Your Future
@@ -121,45 +145,42 @@ export default function NDAWrittenPage() {
               Fee Structure & Payment Mode
             </h2>
             
-            <div className="bg-white/10 p-8 md:p-10 border border-white/20 shadow-2xl">
-              <ul className="space-y-5 font-sans text-base md:text-lg">
-                <li className="flex justify-between border-b border-white/20 pb-3">
-                  <span className="font-light">Tuition Fees</span> 
-                  <strong className="tracking-wide">Rs 17,000</strong>
-                </li>
-                <li className="flex justify-between border-b border-white/20 pb-3">
-                  <span className="font-light">Hostel Charge</span> 
-                  <strong className="tracking-wide">Rs 7,000</strong>
-                </li>
-                <li className="flex justify-between border-b border-white/20 pb-3">
-                  <span className="font-light">Mess Charge</span> 
-                  <strong className="tracking-wide">Rs 16,000</strong>
-                </li>
-                <li className="flex justify-between text-minerva-accent font-bold pt-4 text-2xl md:text-3xl">
-                  <span>Total Fees</span> 
-                  <span>Rs 40,000</span>
-                </li>
-                <li className="flex justify-between text-sm text-gray-300 italic pt-2">
-                  <span>Security (Refundable)</span> 
-                  <span>Rs 500</span>
-                </li>
-              </ul>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans">
+              <div className="bg-white/5 p-6 border border-white/10 hover:border-minerva-accent/50 transition-colors">
+                <span className="text-gray-400 text-xs uppercase tracking-widest mb-2 block">Tuition Fees</span>
+                <span className="text-2xl md:text-3xl font-light">Rs {tuition}</span>
+              </div>
+              
+              <div className="bg-white/5 p-6 border border-white/10 hover:border-minerva-accent/50 transition-colors">
+                <span className="text-gray-400 text-xs uppercase tracking-widest mb-2 block">Hostel Charge</span>
+                <span className="text-2xl md:text-3xl font-light">Rs {hostel}</span>
+              </div>
+              
+              <div className="bg-white/5 p-6 border border-white/10 hover:border-minerva-accent/50 transition-colors">
+                <span className="text-gray-400 text-xs uppercase tracking-widest mb-2 block">Mess Charge</span>
+                <span className="text-2xl md:text-3xl font-light">Rs {mess}</span>
+              </div>
+              
+              <div className="bg-white/5 p-6 border border-white/10 hover:border-minerva-accent/50 transition-colors">
+                <span className="text-gray-400 text-xs uppercase tracking-widest mb-2 block">Security (Refundable)</span>
+                <span className="text-2xl md:text-3xl font-light">Rs {security}</span>
+              </div>
 
-              <Link 
-                href="/admissions" 
-                className="mt-8 block text-center bg-minerva-accent text-minerva-white px-6 py-4 font-sans text-xs font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-minerva-blue transition-colors shadow-md w-full"
-              >
-                Proceed to Payment
-              </Link>
+              {/* Total Row */}
+              <div className="col-span-1 sm:col-span-2 bg-minerva-accent/10 p-6 border border-minerva-accent flex flex-col sm:flex-row justify-between items-start sm:items-center mt-2">
+                <span className="text-minerva-accent font-bold uppercase tracking-[0.2em] mb-2 sm:mb-0">Total Fees</span>
+                <span className="text-4xl font-serif font-medium text-white">Rs {total}</span>
+              </div>
             </div>
+
           </div>
 
-          {/* Right Side: Image Placeholder (You can swap this URL with Sanity upload later) */}
+          {/* Right Side: Image Placeholder (Dynamic from Sanity) */}
           <div className="w-full md:w-1/2 relative">
             <div className="relative h-[500px] w-full bg-gray-200 overflow-hidden shadow-2xl border-[8px] border-white/10">
               <div 
                 className="absolute inset-0 bg-cover bg-center hover:scale-105 transition-transform duration-1000" 
-                style={{ backgroundImage: `url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1000&auto=format&fit=crop')` }}
+                style={{ backgroundImage: `url('${sideImage}')` }}
               ></div>
               <div className="absolute bottom-6 left-6 bg-minerva-primary text-white px-4 py-2 font-sans text-[10px] uppercase tracking-widest font-bold shadow-lg">
                 Academy Campus & Training
