@@ -56,8 +56,8 @@ export default async function TestimonialsPage() {
             Alumni Success <span className="italic text-minerva-accent">Stories</span>
           </h1>
           
-          <p className="text-gray-300 font-sans font-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Watch inspiring video success stories from our cadets who achieved their dream of becoming officers in the Indian Armed Forces.
+          <p className="text-gray-200 font-sans font-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            Discover firsthand accounts of discipline, mentorship, and triumph from the proud officers who shaped their destinies at Minerva Academy.
           </p>
         </div>
       </section>
@@ -67,19 +67,19 @@ export default async function TestimonialsPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <span className="text-minerva-accent font-sans text-xs font-bold tracking-[0.3em] uppercase block mb-3">
-              Elite Cadet Interviews
+              Cadet Experiences &amp; Journeys
             </span>
             <h2 className="text-3xl md:text-4xl font-serif font-medium text-white">
-              Successful Officers on Camera
+              Life at Minerva Through Their Eyes
             </h2>
             <p className="text-sm font-sans text-gray-400 mt-3 max-w-xl mx-auto font-light">
-              Direct video testimonials managed right from your backend dashboard.
+              Listen to how our officers discovered Minerva Academy, experienced our rigorous training, and conquered the SSB selection process.
             </p>
           </div>
 
           {testimonials.length === 0 ? (
             <div className="text-center py-20 bg-gray-800 border border-gray-700">
-              <p className="text-gray-400 text-sm">No video testimonials found. Add links in your Sanity Studio dashboard!</p>
+              <p className="text-gray-400 text-sm">No video testimonials available at the moment.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -102,7 +102,7 @@ export default async function TestimonialsPage() {
                         ></iframe>
                       ) : (
                         <div className="flex items-center justify-center h-full text-gray-500 text-xs text-center p-4">
-                          No video link provided in backend
+                          Video link pending
                         </div>
                       )}
                     </div>
@@ -139,7 +139,7 @@ export default async function TestimonialsPage() {
             Ready to Write Your Own Success Story?
           </h2>
           <p className="text-gray-300 font-sans font-light text-base max-w-2xl mx-auto leading-relaxed">
-            Join the ranks of over 35,000 successful officers. Begin your journey with the undisputed leaders in defense coaching today.
+            Join the legacy of over 35,000 successful officers. Begin your journey with the undisputed leaders in defense coaching today.
           </p>
           <div className="pt-4">
             <Link 
