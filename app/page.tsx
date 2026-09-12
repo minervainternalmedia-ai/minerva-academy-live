@@ -4,13 +4,14 @@ import { urlFor } from "@/sanity/lib/image";
 
 export const revalidate = 0;
 
-// TypeScript interfaces to remove the "any" red errors in VS Code
+// TypeScript interfaces
 interface Course {
   _id: string;
   title: string;
   category: string;
   description: string;
   image: any;
+  link?: string;
 }
 
 interface Hero {
@@ -20,6 +21,21 @@ interface Hero {
   description: string;
   achievement: string;
   image: any;
+}
+
+// SMART ROUTER: Automatically detects the course title and sends them to the right page!
+function getCourseLink(course: Course) {
+  if (course.link) return course.link; // If you ever add a link field in Sanity, it uses that first
+  
+  const t = course.title.toLowerCase();
+  if (t.includes("ssb")) return "/ssb-interview-training";
+  if (t.includes("nda")) return "/nda-written-exam";
+  if (t.includes("cds") || t.includes("ota")) return "/cds-ota-exam";
+  if (t.includes("afcat")) return "/afcat-written-exam";
+  if (t.includes("acc")) return "/acc-written-exam";
+  if (t.includes("cpss") || t.includes("pabt")) return "/cpss-pabt-training";
+  
+  return "/#"; // Default fallback
 }
 
 export default async function Home() {
@@ -53,7 +69,7 @@ export default async function Home() {
         }
       `}} />
 
-      {/* 1. PREMIUM HERO SECTION (FIXED FOR MOBILE) */}
+      {/* 1. PREMIUM HERO SECTION */}
       <section 
         className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url('${bgImageUrl}')` }}
@@ -70,7 +86,6 @@ export default async function Home() {
             <div className="h-[1px] w-8 md:w-12 bg-minerva-accent opacity-70"></div>
           </div>
           
-          {/* MOBILE SCALING FIXED HERE */}
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-minerva-white mb-6 md:mb-8 leading-tight md:leading-[1.1] tracking-tight px-2 break-words">
             {titleMain} <br className="hidden md:block"/> <span className="italic font-light text-minerva-accent">{titleHighlight}</span>
           </h1>
@@ -80,7 +95,7 @@ export default async function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center w-full sm:w-auto px-6">
-            <Link href="/courses" className="bg-minerva-primary text-minerva-white px-8 py-3.5 md:px-10 md:py-4 text-[10px] md:text-sm font-sans font-semibold tracking-[0.2em] uppercase hover:bg-minerva-white hover:text-minerva-primary transition-all duration-500 border border-minerva-primary text-center">
+            <Link href="#training-programs" className="bg-minerva-primary text-minerva-white px-8 py-3.5 md:px-10 md:py-4 text-[10px] md:text-sm font-sans font-semibold tracking-[0.2em] uppercase hover:bg-minerva-white hover:text-minerva-primary transition-all duration-500 border border-minerva-primary text-center">
               Explore Courses
             </Link>
             <Link href="/about" className="bg-transparent text-minerva-white px-8 py-3.5 md:px-10 md:py-4 text-[10px] md:text-sm font-sans font-semibold tracking-[0.2em] uppercase hover:bg-minerva-white hover:text-minerva-blue transition-all duration-500 border border-gray-400 text-center">
@@ -136,48 +151,45 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 3. COURSES SECTION (FIXED FOR MOBILE HOVER) */}
-      <section className="w-full py-24 bg-gray-50 border-t border-gray-200">
+      {/* 3. COURSES SECTION (SMART LINKS FIXED) */}
+      <section id="training-programs" className="w-full py-24 bg-gray-50 border-t border-gray-200 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
-            <div>
-              <span className="text-minerva-accent tracking-[0.3em] font-sans text-xs font-bold uppercase mb-4 block">
-                Training Programs
-              </span>
-              <h2 className="text-4xl md:text-5xl font-serif font-medium text-minerva-blue">
-                Our <span className="italic text-minerva-primary">Courses</span>
-              </h2>
-            </div>
-            <Link href="/courses" className="mt-6 md:mt-0 border-b border-minerva-primary text-minerva-primary font-sans font-semibold tracking-widest text-xs pb-1 hover:text-minerva-blue hover:border-minerva-blue transition-colors uppercase">
-              View All Courses
-            </Link>
+          <div className="mb-12 md:mb-16">
+            <span className="text-minerva-accent tracking-[0.3em] font-sans text-xs font-bold uppercase mb-4 block">
+              Training Programs
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif font-medium text-minerva-blue">
+              Our <span className="italic text-minerva-primary">Courses</span>
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {courses && courses.length > 0 ? (
-              courses.map((course: Course) => (
-                <Link href="/courses" key={course._id} className="group block relative h-[auto] min-h-[420px] overflow-hidden bg-minerva-blue cursor-pointer shadow-lg">
-                  <div className="absolute inset-0 bg-cover bg-center opacity-60 md:group-hover:opacity-30 transition-opacity duration-700" style={{ backgroundImage: `url('${course.image ? urlFor(course.image).url() : "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=2070&auto=format&fit=crop"}')` }}></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-minerva-blue via-minerva-blue/80 to-transparent"></div>
-                  
-                  {/* FIXED: Elements now naturally occupy space on mobile */}
-                  <div className="relative z-10 p-8 flex flex-col justify-end h-full">
-                    <span className="bg-minerva-accent text-minerva-white text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 self-start mb-4">{course.category}</span>
-                    <h3 className="text-3xl font-serif font-medium text-minerva-white mb-2">{course.title}</h3>
+              courses.map((course: Course) => {
+                const targetUrl = getCourseLink(course); // Gets the correct URL dynamically!
+                
+                return (
+                  <Link href={targetUrl} key={course._id} className="group block relative h-[auto] min-h-[420px] overflow-hidden bg-minerva-blue cursor-pointer shadow-lg">
+                    <div className="absolute inset-0 bg-cover bg-center opacity-60 md:group-hover:opacity-30 transition-opacity duration-700" style={{ backgroundImage: `url('${course.image ? urlFor(course.image).url() : "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=2070&auto=format&fit=crop"}')` }}></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-minerva-blue via-minerva-blue/80 to-transparent"></div>
                     
-                    {/* FIXED: Height is auto on mobile so it always shows, height 0 on desktop until hover */}
-                    <div className="h-auto md:h-0 overflow-hidden md:group-hover:h-24 transition-all duration-500 ease-in-out mt-2 md:mt-0">
-                      <p className="text-gray-200 md:text-gray-300 font-sans text-sm font-light leading-relaxed md:pt-2 line-clamp-3 md:line-clamp-none">
-                        {course.description}
-                      </p>
+                    <div className="relative z-10 p-8 flex flex-col justify-end h-full">
+                      <span className="bg-minerva-accent text-minerva-white text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 self-start mb-4">{course.category}</span>
+                      <h3 className="text-3xl font-serif font-medium text-minerva-white mb-2">{course.title}</h3>
+                      
+                      <div className="h-auto md:h-0 overflow-hidden md:group-hover:h-24 transition-all duration-500 ease-in-out mt-2 md:mt-0">
+                        <p className="text-gray-200 md:text-gray-300 font-sans text-sm font-light leading-relaxed md:pt-2 line-clamp-3 md:line-clamp-none">
+                          {course.description}
+                        </p>
+                      </div>
+                      
+                      <div className="mt-6 text-minerva-white font-sans text-xs tracking-widest uppercase font-semibold flex items-center md:group-hover:text-minerva-accent transition-colors">
+                        Discover More <span className="ml-2 md:group-hover:translate-x-1 transition-transform">→</span>
+                      </div>
                     </div>
-                    
-                    <div className="mt-6 text-minerva-white font-sans text-xs tracking-widest uppercase font-semibold flex items-center md:group-hover:text-minerva-accent transition-colors">
-                      Discover More <span className="ml-2 md:group-hover:translate-x-1 transition-transform">→</span>
-                    </div>
-                  </div>
-                </Link>
-              ))
+                  </Link>
+                );
+              })
             ) : (
               <p className="text-gray-500">No courses published yet.</p>
             )}
@@ -185,7 +197,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 4. ELITE NATIONAL PRIDE ROLL OF HONOUR - SMOOTH ANIMATED SLIDER */}
+      {/* 4. ELITE NATIONAL PRIDE ROLL OF HONOUR */}
       <section className="relative w-full py-32 bg-minerva-primary overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#283047_1.5px,transparent_1.5px)] [background-size:20px_20px] pointer-events-none"></div>
 
@@ -221,7 +233,6 @@ export default async function Home() {
         <div className="w-full overflow-hidden relative">
           <div className="slider-track flex gap-8 px-4">
             {rollOfHonour && rollOfHonour.length > 0 ? (
-              // Duplicating exactly once creates the perfect seamless looping window without visual clipping
               [...rollOfHonour, ...rollOfHonour].map((hero: Hero, index: number) => (
                 <div key={`${hero._id}-${index}`} className="w-[380px] shrink-0 bg-minerva-blue border border-gray-700 overflow-hidden group hover:border-minerva-accent transition-all duration-500 flex flex-col shadow-2xl relative">
                   <div className="grid grid-cols-3 h-1.5 w-full">
@@ -241,7 +252,6 @@ export default async function Home() {
                     <p className="text-gray-300 font-sans font-light text-sm leading-relaxed mb-6 line-clamp-3">
                       {hero.description}
                     </p>
-                    {/* FIXED: Removed "Verified Legend" and aligned achievement nicely */}
                     <div className="mt-auto border-t border-gray-700/80 pt-4 flex justify-end items-center text-xs font-sans tracking-widest text-minerva-accent uppercase font-semibold">
                       <span className="text-right">{hero.achievement}</span>
                     </div>
