@@ -143,7 +143,7 @@ export default async function CPSSPage() {
                     <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
                       <td className="px-6 py-5 font-semibold text-minerva-blue">Outsiders</td>
                       <td className="px-6 py-5 font-bold text-minerva-primary">₹{combinedFee}</td>
-                      <td className="px-6 py-5 font-light text-xs">Lodging not included (No mess and stay)</td>
+                      <td className="px-6 py-5 font-light text-xs">CPSS / PABT Training</td>
                     </tr>
                   </tbody>
                 </table>
