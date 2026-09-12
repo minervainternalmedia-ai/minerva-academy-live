@@ -72,7 +72,8 @@ export default async function Footer() {
             <li><Link href="/why-minerva" className="hover:text-white transition-colors">Why Minerva Academy</Link></li>
             <li><Link href="/famous-alumni" className="hover:text-white transition-colors">Famous Alumni</Link></li>
             <li><Link href="/our-pledge" className="hover:text-white transition-colors">Our Pledge</Link></li>
-            <li><Link href="/campus" className="hover:text-white transition-colors">Life at Minerva</Link></li>
+            {/* FIXED: /campus changed to /our-campus */}
+            <li><Link href="/our-campus" className="hover:text-white transition-colors">Life at Minerva</Link></li>
           </ul>
         </div>
 
@@ -82,11 +83,13 @@ export default async function Footer() {
             Armed Forces Training
           </h4>
           <ul className="space-y-4 font-sans text-base text-gray-400">
-            <li><Link href="/courses/ssb-interview-training" className="hover:text-white transition-colors">SSB Interview Training</Link></li>
-            <li><Link href="/courses/nda-written-exam" className="hover:text-white transition-colors">NDA Written Exam</Link></li>
-            <li><Link href="/courses/cds-ota-written-exam" className="hover:text-white transition-colors">CDS / OTA Written Exam</Link></li>
-            <li><Link href="/courses/afcat-written-exam" className="hover:text-white transition-colors">AFCAT Written Exam</Link></li>
-            <li><Link href="/admissions" className="hover:text-white transition-colors">Admissions & Fees</Link></li>
+            {/* FIXED: All /courses/ prefixes removed to point to the actual pages */}
+            <li><Link href="/ssb-interview-training" className="hover:text-white transition-colors">SSB Interview Training</Link></li>
+            <li><Link href="/nda-written-exam" className="hover:text-white transition-colors">NDA Written Exam</Link></li>
+            <li><Link href="/cds-ota-exam" className="hover:text-white transition-colors">CDS / OTA Written Exam</Link></li>
+            <li><Link href="/afcat-written-exam" className="hover:text-white transition-colors">AFCAT Written Exam</Link></li>
+            {/* FIXED: Pointed Admissions to /contact to prevent 404 */}
+            <li><Link href="/contact" className="hover:text-white transition-colors">Admissions & Fees</Link></li>
           </ul>
         </div>
 
