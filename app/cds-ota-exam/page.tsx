@@ -50,12 +50,6 @@ export default async function CDSOtaPage() {
   const timingsText = data?.operationalDetails?.dailyTimingsText || "Classes are held from Monday to Saturday from 8 AM to 5 PM with breaks for morning and afternoon tea and lunch. Sunday is reserved for mock tests and weekly tests, extra classes and doubt clearing sessions.";
   const coachingText = data?.operationalDetails?.whyCoachingText || "With more than 3,00,000 students sitting for this exam and the number increasing drastically year by year, competition is fierce. Just one mark difference could mean selection or rejection. Minerva Academy gives you the vital competitive edge required to succeed.";
 
-  const tuition = data?.feeStructure?.tuition || "15,000";
-  const mess = data?.feeStructure?.mess || "14,000";
-  const hostel = data?.feeStructure?.hostel || "6,000";
-  const security = data?.feeStructure?.security || "500";
-  const total = data?.feeStructure?.total || "35,500";
-
   // 100% Safe Photo Grid Fallbacks
   const photos = data?.sidePhotoGrid || [];
   const photo1 = getSafeImageUrl(photos[0], "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop");
@@ -126,7 +120,7 @@ export default async function CDSOtaPage() {
               </div>
             </div>
 
-            {/* FEES & CHARGES SECTION */}
+            {/* FEES & CHARGES SECTION WITH 3 COURSE OPTIONS */}
             <div>
               <div className="text-center md:text-left mb-8">
                 <span className="text-minerva-accent font-sans text-xs font-bold tracking-[0.3em] uppercase block mb-2">Investment in Excellence</span>
@@ -134,43 +128,137 @@ export default async function CDSOtaPage() {
                 <p className="text-xs font-sans text-gray-500 tracking-wider uppercase mt-2">W.e.f. 1st January, 2026</p>
               </div>
 
-              <div className="bg-white shadow-xl border border-gray-200 overflow-hidden font-sans">
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-minerva-primary text-white text-xs uppercase tracking-wider">
-                    <tr>
-                      <th className="px-6 py-4 font-medium w-1/3">Term (6 Weeks)</th>
-                      <th className="px-6 py-4 font-medium w-1/4">Charges (INR)</th>
-                      <th className="px-6 py-4 font-medium w-auto">Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-gray-700 divide-y divide-gray-200">
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4 font-semibold text-minerva-blue">Tuition Fees</td>
-                      <td className="px-6 py-4 font-bold text-gray-800">₹{tuition}</td>
-                      <td className="px-6 py-4 font-light text-xs">Comprehensive syllabus coverage</td>
-                    </tr>
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4 font-semibold text-minerva-blue">Mess Charges</td>
-                      <td className="px-6 py-4 font-bold text-gray-800">₹{mess}</td>
-                      <td className="px-6 py-4 font-light text-xs">Hygienic meals included</td>
-                    </tr>
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4 font-semibold text-minerva-blue">Hostel Charges</td>
-                      <td className="px-6 py-4 font-bold text-gray-800">₹{hostel}</td>
-                      <td className="px-6 py-4 font-light text-xs">Secure campus accommodation</td>
-                    </tr>
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4 font-semibold text-minerva-blue">Refundable Security</td>
-                      <td className="px-6 py-4 font-bold text-gray-800">₹{security}</td>
-                      <td className="px-6 py-4 font-light text-xs">Refundable upon completion</td>
-                    </tr>
-                    <tr className="bg-minerva-accent/10 hover:bg-minerva-accent/20 transition-colors">
-                      <td className="px-6 py-5 font-bold text-minerva-blue">Total Charges</td>
-                      <td className="px-6 py-5 font-bold text-minerva-primary text-lg">₹{total}</td>
-                      <td className="px-6 py-5 font-light text-xs">Complete package</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="space-y-10">
+                
+                {/* 1. CDS - IMA */}
+                <div>
+                  <h3 className="text-lg font-serif font-bold text-minerva-primary mb-3 uppercase tracking-widest">1. CDS - IMA (6 Weeks Course)</h3>
+                  <div className="bg-white shadow-xl border border-gray-200 overflow-hidden font-sans">
+                    <table className="w-full text-left text-sm">
+                      <thead className="bg-minerva-primary text-white text-xs uppercase tracking-wider">
+                        <tr>
+                          <th className="px-6 py-4 font-medium w-1/3">Fee Component</th>
+                          <th className="px-6 py-4 font-medium w-1/4">Charges (INR)</th>
+                          <th className="px-6 py-4 font-medium w-auto">Notes</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-gray-700 divide-y divide-gray-200">
+                        <tr className="hover:bg-gray-50 transition-colors">
+                          <td className="px-6 py-4 font-semibold text-minerva-blue">Tuition Fees</td>
+                          <td className="px-6 py-4 font-bold text-gray-800">₹15,000</td>
+                          <td className="px-6 py-4 font-light text-xs">Comprehensive syllabus coverage</td>
+                        </tr>
+                        <tr className="hover:bg-gray-50 transition-colors">
+                          <td className="px-6 py-4 font-semibold text-minerva-blue">Mess Charges</td>
+                          <td className="px-6 py-4 font-bold text-gray-800">₹14,000</td>
+                          <td className="px-6 py-4 font-light text-xs">Hygienic meals included</td>
+                        </tr>
+                        <tr className="hover:bg-gray-50 transition-colors">
+                          <td className="px-6 py-4 font-semibold text-minerva-blue">Hostel Charges</td>
+                          <td className="px-6 py-4 font-bold text-gray-800">₹6,000</td>
+                          <td className="px-6 py-4 font-light text-xs">Secure campus accommodation</td>
+                        </tr>
+                        <tr className="hover:bg-gray-50 transition-colors">
+                          <td className="px-6 py-4 font-semibold text-minerva-blue">Refundable Security</td>
+                          <td className="px-6 py-4 font-bold text-gray-800">₹500</td>
+                          <td className="px-6 py-4 font-light text-xs">Refundable upon completion</td>
+                        </tr>
+                        <tr className="bg-minerva-accent/10 hover:bg-minerva-accent/20 transition-colors">
+                          <td className="px-6 py-5 font-bold text-minerva-blue">Total Charges</td>
+                          <td className="px-6 py-5 font-bold text-minerva-primary text-lg">₹35,500</td>
+                          <td className="px-6 py-5 font-light text-xs">Complete package</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* 2. CDS - OTA */}
+                <div>
+                  <h3 className="text-lg font-serif font-bold text-minerva-primary mb-3 uppercase tracking-widest">2. CDS - OTA (6 Weeks Course)</h3>
+                  <div className="bg-white shadow-xl border border-gray-200 overflow-hidden font-sans">
+                    <table className="w-full text-left text-sm">
+                      <thead className="bg-minerva-primary text-white text-xs uppercase tracking-wider">
+                        <tr>
+                          <th className="px-6 py-4 font-medium w-1/3">Fee Component</th>
+                          <th className="px-6 py-4 font-medium w-1/4">Charges (INR)</th>
+                          <th className="px-6 py-4 font-medium w-auto">Notes</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-gray-700 divide-y divide-gray-200">
+                        <tr className="hover:bg-gray-50 transition-colors">
+                          <td className="px-6 py-4 font-semibold text-minerva-blue">Tuition Fees</td>
+                          <td className="px-6 py-4 font-bold text-gray-800">₹13,000</td>
+                          <td className="px-6 py-4 font-light text-xs">Comprehensive syllabus coverage</td>
+                        </tr>
+                        <tr className="hover:bg-gray-50 transition-colors">
+                          <td className="px-6 py-4 font-semibold text-minerva-blue">Mess Charges</td>
+                          <td className="px-6 py-4 font-bold text-gray-800">₹14,000</td>
+                          <td className="px-6 py-4 font-light text-xs">Hygienic meals included</td>
+                        </tr>
+                        <tr className="hover:bg-gray-50 transition-colors">
+                          <td className="px-6 py-4 font-semibold text-minerva-blue">Hostel Charges</td>
+                          <td className="px-6 py-4 font-bold text-gray-800">₹6,000</td>
+                          <td className="px-6 py-4 font-light text-xs">Secure campus accommodation</td>
+                        </tr>
+                        <tr className="hover:bg-gray-50 transition-colors">
+                          <td className="px-6 py-4 font-semibold text-minerva-blue">Refundable Security</td>
+                          <td className="px-6 py-4 font-bold text-gray-800">₹500</td>
+                          <td className="px-6 py-4 font-light text-xs">Refundable upon completion</td>
+                        </tr>
+                        <tr className="bg-minerva-accent/10 hover:bg-minerva-accent/20 transition-colors">
+                          <td className="px-6 py-5 font-bold text-minerva-blue">Total Charges</td>
+                          <td className="px-6 py-5 font-bold text-minerva-primary text-lg">₹33,500</td>
+                          <td className="px-6 py-5 font-light text-xs">Complete package</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* 3. CDS + AFCAT */}
+                <div>
+                  <h3 className="text-lg font-serif font-bold text-minerva-primary mb-3 uppercase tracking-widest">3. CDS + AFCAT (6 Weeks Course)</h3>
+                  <div className="bg-white shadow-xl border border-gray-200 overflow-hidden font-sans">
+                    <table className="w-full text-left text-sm">
+                      <thead className="bg-minerva-primary text-white text-xs uppercase tracking-wider">
+                        <tr>
+                          <th className="px-6 py-4 font-medium w-1/3">Fee Component</th>
+                          <th className="px-6 py-4 font-medium w-1/4">Charges (INR)</th>
+                          <th className="px-6 py-4 font-medium w-auto">Notes</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-gray-700 divide-y divide-gray-200">
+                        <tr className="hover:bg-gray-50 transition-colors">
+                          <td className="px-6 py-4 font-semibold text-minerva-blue">Tuition Fees</td>
+                          <td className="px-6 py-4 font-bold text-gray-800">₹16,000</td>
+                          <td className="px-6 py-4 font-light text-xs">Comprehensive syllabus coverage</td>
+                        </tr>
+                        <tr className="hover:bg-gray-50 transition-colors">
+                          <td className="px-6 py-4 font-semibold text-minerva-blue">Mess Charges</td>
+                          <td className="px-6 py-4 font-bold text-gray-800">₹14,000</td>
+                          <td className="px-6 py-4 font-light text-xs">Hygienic meals included</td>
+                        </tr>
+                        <tr className="hover:bg-gray-50 transition-colors">
+                          <td className="px-6 py-4 font-semibold text-minerva-blue">Hostel Charges</td>
+                          <td className="px-6 py-4 font-bold text-gray-800">₹6,000</td>
+                          <td className="px-6 py-4 font-light text-xs">Secure campus accommodation</td>
+                        </tr>
+                        <tr className="hover:bg-gray-50 transition-colors">
+                          <td className="px-6 py-4 font-semibold text-minerva-blue">Refundable Security</td>
+                          <td className="px-6 py-4 font-bold text-gray-800">₹500</td>
+                          <td className="px-6 py-4 font-light text-xs">Refundable upon completion</td>
+                        </tr>
+                        <tr className="bg-minerva-accent/10 hover:bg-minerva-accent/20 transition-colors">
+                          <td className="px-6 py-5 font-bold text-minerva-blue">Total Charges</td>
+                          <td className="px-6 py-5 font-bold text-minerva-primary text-lg">₹36,500</td>
+                          <td className="px-6 py-5 font-light text-xs">Complete package</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
               </div>
             </div>
 
