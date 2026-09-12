@@ -140,53 +140,71 @@ export default async function ACCWrittenPage() {
               </div>
             </div>
 
-            {/* FEES & CHARGES SECTION */}
+            {/* UPGRADED FEES & CHARGES SECTION */}
             <div>
               <div className="mb-8">
-                <h2 className="text-2xl font-serif font-medium text-minerva-blue">ACC Coaching Fees &amp; Charges <span className="text-sm font-sans text-gray-500 tracking-normal lowercase">w.e.f. 1st January, 2022</span></h2>
+                <span className="text-minerva-accent tracking-[0.2em] font-sans text-[10px] font-bold uppercase mb-2 block">
+                  INVESTMENT IN EXCELLENCE
+                </span>
+                <h2 className="text-3xl md:text-4xl font-serif font-medium text-minerva-blue">
+                  ACC Coaching Fees &amp; Charges
+                </h2>
               </div>
 
-              <div className="bg-white shadow-xl border border-gray-200 overflow-hidden font-sans mb-8">
-                <div className="grid grid-cols-3 bg-minerva-primary text-minerva-white p-4 text-xs font-bold tracking-widest uppercase">
-                  <div>One Term (6 Weeks)</div>
+              <div className="bg-white shadow-xl border border-gray-200 overflow-hidden font-sans mb-8 rounded-sm">
+                {/* Table Header */}
+                <div className="grid grid-cols-3 bg-minerva-primary text-white p-4 text-xs font-bold tracking-widest uppercase">
+                  <div>Term (6 Weeks)</div>
                   <div>Charges (INR)</div>
-                  <div>Note</div>
+                  <div className="hidden sm:block">Note</div>
                 </div>
-                <div className="divide-y divide-gray-200 text-sm">
-                  <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
+                
+                {/* Table Body */}
+                <div className="divide-y divide-gray-100 text-sm">
+                  
+                  {/* Tuition */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 p-4 hover:bg-gray-50 transition-colors items-center">
                     <div className="font-semibold text-gray-800">Tuition Fees</div>
-                    <div className="font-medium text-minerva-primary">15000</div>
-                    <div></div>
+                    <div className="font-bold text-gray-900 text-base">₹15,000</div>
+                    <div className="hidden sm:block text-gray-500 text-xs">Full course curriculum</div>
                   </div>
-                  <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
+                  
+                  {/* Mess */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 p-4 hover:bg-gray-50 transition-colors items-center">
                     <div className="font-semibold text-gray-800">Mess Charges</div>
-                    <div className="font-medium text-minerva-primary">14000</div>
-                    <div></div>
+                    <div className="font-bold text-gray-900 text-base">₹14,000</div>
+                    <div className="hidden sm:block text-gray-500 text-xs">Meals included</div>
                   </div>
-                  <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
+                  
+                  {/* Hostel */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 p-4 hover:bg-gray-50 transition-colors items-center">
                     <div className="font-semibold text-gray-800">Hostel Charges</div>
-                    <div className="font-medium text-minerva-primary">6000</div>
-                    <div></div>
+                    <div className="font-bold text-gray-900 text-base">₹6,000</div>
+                    <div className="hidden sm:block text-gray-500 text-xs">On-campus living</div>
                   </div>
-                  <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
-                    <div className="font-semibold text-gray-800">Total Charges</div>
-                    <div className="font-medium text-minerva-primary font-bold">35500</div>
-                    <div></div>
-                  </div>
-                  <div className="grid grid-cols-3 p-4 hover:bg-gray-50">
+                  
+                  {/* Security */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 p-4 hover:bg-gray-50 transition-colors items-center">
                     <div className="font-semibold text-gray-800">Refundable Security</div>
-                    <div className="font-medium text-minerva-primary">500</div>
-                    <div></div>
+                    <div className="font-bold text-gray-900 text-base">₹500</div>
+                    <div className="hidden sm:block text-gray-500 text-xs">Refundable post-course</div>
+                  </div>
+                  
+                  {/* Total */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 p-5 bg-[#FFF5EE] items-center border-t border-[#FFB28B]">
+                    <div className="font-bold text-gray-900">Total Package</div>
+                    <div className="font-bold text-minerva-primary text-xl">₹35,500</div>
+                    <div className="hidden sm:block text-gray-600 text-xs">-</div>
                   </div>
                 </div>
               </div>
 
-              <div className="font-sans text-sm text-gray-700 bg-white p-6 border-l-4 border-minerva-accent">
+              <div className="font-sans text-sm text-gray-700 bg-white p-6 border-l-4 border-minerva-accent shadow-sm mt-8">
                 <h4 className="font-bold text-minerva-blue mb-2 uppercase tracking-widest text-xs">Notes</h4>
                 <ul className="list-disc pl-5 space-y-2 font-light text-xs">
                   <li>Mess Charges includes breakfast, lunch, dinner, mid- morning and afternoon tea (On No Profit No Loss Basis).</li>
                   <li>Candidate can pay Fees at the time of joining the coaching, either in cash or through Online NEFT Transfer. Card Payment is also accepted.</li>
-                  <li>In view of the recent COVID-19, prior registration will be required to make sure that the number of the students in the classrooms does not exceed fifty percent of the benchmark, as has been suggested in the guidelines and SOP issued by GoI and Govt. of Punjab. Kindly register first to enrol in any of the batches.</li>
+                  <li>In view of the recent COVID-19, prior registration will be required to make sure that the number of the students in the classrooms does not exceed fifty percent of the benchmark. Kindly register first to enrol in any of the batches.</li>
                 </ul>
               </div>
             </div>

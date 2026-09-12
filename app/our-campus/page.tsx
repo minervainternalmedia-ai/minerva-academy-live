@@ -70,7 +70,7 @@ export default async function OurCampusPage() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-16 items-start">
           
           {/* LEFT COLUMN: Premium Editorial Text */}
-          <div className="lg:w-7/12 font-sans">
+          <div className="w-full lg:w-7/12 font-sans">
             
             {/* Heading 1: Campus Overview */}
             <div className="mb-12">
@@ -140,15 +140,15 @@ export default async function OurCampusPage() {
 
           </div>
 
-          {/* RIGHT COLUMN: Premium Sticky 2x2 Photo Grid */}
-          <div className="lg:w-5/12">
-            <div className="sticky top-24">
-              <div className="mb-6">
+          {/* RIGHT COLUMN: Premium Sticky 2x2 Photo Grid (MOBILE WIDTH FIXED) */}
+          <div className="w-full lg:w-5/12 mt-8 lg:mt-0">
+            <div className="sticky top-24 w-full">
+              <div className="mb-6 text-left">
                 <span className="text-minerva-accent tracking-[0.3em] font-sans text-xs font-bold uppercase block mb-1">Visual Tour</span>
                 <h3 className="text-2xl font-serif text-minerva-blue">Campus Glimpses</h3>
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 md:gap-4 w-full">
                 <div className="w-full aspect-square bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300 border border-gray-100" style={{ backgroundImage: `url('${side1}')` }}></div>
                 <div className="w-full aspect-square bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300 border border-gray-100" style={{ backgroundImage: `url('${side2}')` }}></div>
                 <div className="w-full aspect-square bg-gray-200 bg-cover bg-center shadow-md hover:scale-[1.02] transition-transform duration-300 border border-gray-100" style={{ backgroundImage: `url('${side3}')` }}></div>
