@@ -96,7 +96,8 @@ export default async function SSBTrainingPage() {
             <div className="lg:w-1/3 w-full bg-minerva-blue text-minerva-white p-8 border-l-4 border-minerva-accent shadow-xl">
               <h3 className="text-2xl font-serif font-medium mb-4">Batch Schedule</h3>
               <p className="text-gray-300 font-sans text-sm font-light leading-relaxed mb-6">
-                New batches commence regularly. Candidates are advised to register in advance to secure their slot at the historic Mohali campus.
+                1st-15th, and 16th-30th of every month. <br />
+                Candidate report to the academy one day prior.
               </p>
               <Link href="/contact" className="block text-center bg-minerva-accent text-minerva-white py-3 px-4 text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-minerva-blue transition-colors shadow-md">
                 Enquire About Next Batch
