@@ -136,14 +136,14 @@ export default async function CPSSPage() {
                   </thead>
                   <tbody className="text-gray-700 divide-y divide-gray-200">
                     <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-5 font-semibold text-minerva-blue">CPSS / PABT Training (1 Day)</td>
+                      <td className="px-6 py-5 font-semibold text-minerva-blue">Minerva Students</td>
                       <td className="px-6 py-5 font-bold text-minerva-primary">₹{trainingFee}</td>
-                      <td className="px-6 py-5 font-light text-xs">Inclusive of simulator session</td>
+                      <td className="px-6 py-5 font-light text-xs">CPSS / PABT Training</td>
                     </tr>
                     <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
-                      <td className="px-6 py-5 font-semibold text-minerva-blue">Combined Package (With Mess &amp; Stay)</td>
+                      <td className="px-6 py-5 font-semibold text-minerva-blue">Outsiders</td>
                       <td className="px-6 py-5 font-bold text-minerva-primary">₹{combinedFee}</td>
-                      <td className="px-6 py-5 font-light text-xs">Includes 1 day training + lodging</td>
+                      <td className="px-6 py-5 font-light text-xs">Lodging not included (No mess and stay)</td>
                     </tr>
                   </tbody>
                 </table>
