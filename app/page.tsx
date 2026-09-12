@@ -53,7 +53,7 @@ export default async function Home() {
         }
       `}} />
 
-      {/* 1. PREMIUM HERO SECTION */}
+      {/* 1. PREMIUM HERO SECTION (FIXED FOR MOBILE) */}
       <section 
         className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url('${bgImageUrl}')` }}
@@ -61,28 +61,29 @@ export default async function Home() {
         <div className="absolute inset-0 bg-minerva-blue/85 z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-minerva-blue to-transparent z-0"></div>
         
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto flex flex-col items-center mt-12">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="h-[1px] w-12 bg-minerva-accent opacity-70"></div>
-            <span className="text-minerva-accent tracking-[0.4em] font-sans text-xs md:text-sm font-medium uppercase">
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center mt-12">
+          <div className="flex items-center gap-2 md:gap-4 mb-6 md:mb-8">
+            <div className="h-[1px] w-8 md:w-12 bg-minerva-accent opacity-70"></div>
+            <span className="text-minerva-accent tracking-[0.2em] md:tracking-[0.4em] font-sans text-[10px] md:text-sm font-medium uppercase">
               {subheading}
             </span>
-            <div className="h-[1px] w-12 bg-minerva-accent opacity-70"></div>
+            <div className="h-[1px] w-8 md:w-12 bg-minerva-accent opacity-70"></div>
           </div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-minerva-white mb-8 leading-[1.1] tracking-tight">
-            {titleMain} <br/> <span className="italic font-light text-minerva-accent">{titleHighlight}</span>
+          {/* MOBILE SCALING FIXED HERE */}
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-minerva-white mb-6 md:mb-8 leading-tight md:leading-[1.1] tracking-tight px-2 break-words">
+            {titleMain} <br className="hidden md:block"/> <span className="italic font-light text-minerva-accent">{titleHighlight}</span>
           </h1>
           
-          <p className="text-lg md:text-xl font-sans text-gray-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-sm sm:text-base md:text-xl font-sans text-gray-300 mb-8 md:mb-12 max-w-2xl mx-auto font-light leading-relaxed px-4">
             {description}
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center w-full sm:w-auto">
-            <Link href="/courses" className="bg-minerva-primary text-minerva-white px-10 py-4 text-xs md:text-sm font-sans font-semibold tracking-[0.2em] uppercase hover:bg-minerva-white hover:text-minerva-primary transition-all duration-500 border border-minerva-primary">
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center w-full sm:w-auto px-6">
+            <Link href="/courses" className="bg-minerva-primary text-minerva-white px-8 py-3.5 md:px-10 md:py-4 text-[10px] md:text-sm font-sans font-semibold tracking-[0.2em] uppercase hover:bg-minerva-white hover:text-minerva-primary transition-all duration-500 border border-minerva-primary text-center">
               Explore Courses
             </Link>
-            <Link href="/about" className="bg-transparent text-minerva-white px-10 py-4 text-xs md:text-sm font-sans font-semibold tracking-[0.2em] uppercase hover:bg-minerva-white hover:text-minerva-blue transition-all duration-500 border border-gray-400">
+            <Link href="/about" className="bg-transparent text-minerva-white px-8 py-3.5 md:px-10 md:py-4 text-[10px] md:text-sm font-sans font-semibold tracking-[0.2em] uppercase hover:bg-minerva-white hover:text-minerva-blue transition-all duration-500 border border-gray-400 text-center">
               Our History
             </Link>
           </div>
@@ -135,10 +136,10 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 3. COURSES SECTION (FIXED LINKS) */}
+      {/* 3. COURSES SECTION (FIXED FOR MOBILE HOVER) */}
       <section className="w-full py-24 bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
             <div>
               <span className="text-minerva-accent tracking-[0.3em] font-sans text-xs font-bold uppercase mb-4 block">
                 Training Programs
@@ -155,19 +156,24 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {courses && courses.length > 0 ? (
               courses.map((course: Course) => (
-                <Link href="/courses" key={course._id} className="group block relative h-[420px] overflow-hidden bg-minerva-blue cursor-pointer shadow-lg">
-                  <div className="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-30 transition-opacity duration-700" style={{ backgroundImage: `url('${course.image ? urlFor(course.image).url() : "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=2070&auto=format&fit=crop"}')` }}></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-minerva-blue via-minerva-blue/60 to-transparent"></div>
-                  <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                <Link href="/courses" key={course._id} className="group block relative h-[auto] min-h-[420px] overflow-hidden bg-minerva-blue cursor-pointer shadow-lg">
+                  <div className="absolute inset-0 bg-cover bg-center opacity-60 md:group-hover:opacity-30 transition-opacity duration-700" style={{ backgroundImage: `url('${course.image ? urlFor(course.image).url() : "https://images.unsplash.com/photo-1595054224741-995a32b6db76?q=80&w=2070&auto=format&fit=crop"}')` }}></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-minerva-blue via-minerva-blue/80 to-transparent"></div>
+                  
+                  {/* FIXED: Elements now naturally occupy space on mobile */}
+                  <div className="relative z-10 p-8 flex flex-col justify-end h-full">
                     <span className="bg-minerva-accent text-minerva-white text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 self-start mb-4">{course.category}</span>
                     <h3 className="text-3xl font-serif font-medium text-minerva-white mb-2">{course.title}</h3>
-                    <div className="h-0 overflow-hidden group-hover:h-24 transition-all duration-500 ease-in-out">
-                      <p className="text-gray-300 font-sans text-sm font-light leading-relaxed pt-2">
+                    
+                    {/* FIXED: Height is auto on mobile so it always shows, height 0 on desktop until hover */}
+                    <div className="h-auto md:h-0 overflow-hidden md:group-hover:h-24 transition-all duration-500 ease-in-out mt-2 md:mt-0">
+                      <p className="text-gray-200 md:text-gray-300 font-sans text-sm font-light leading-relaxed md:pt-2 line-clamp-3 md:line-clamp-none">
                         {course.description}
                       </p>
                     </div>
-                    <div className="mt-6 text-minerva-white font-sans text-xs tracking-widest uppercase font-semibold flex items-center group-hover:text-minerva-accent transition-colors">
-                      Discover More <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                    
+                    <div className="mt-6 text-minerva-white font-sans text-xs tracking-widest uppercase font-semibold flex items-center md:group-hover:text-minerva-accent transition-colors">
+                      Discover More <span className="ml-2 md:group-hover:translate-x-1 transition-transform">→</span>
                     </div>
                   </div>
                 </Link>
@@ -235,7 +241,7 @@ export default async function Home() {
                     <p className="text-gray-300 font-sans font-light text-sm leading-relaxed mb-6 line-clamp-3">
                       {hero.description}
                     </p>
-                    {/* UPDATED FOOTER: Removed "Verified Legend" */}
+                    {/* FIXED: Removed "Verified Legend" and aligned achievement nicely */}
                     <div className="mt-auto border-t border-gray-700/80 pt-4 flex justify-end items-center text-xs font-sans tracking-widest text-minerva-accent uppercase font-semibold">
                       <span className="text-right">{hero.achievement}</span>
                     </div>

@@ -6,6 +6,7 @@ import { urlFor } from "@/sanity/lib/image";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
 
   // Fetch the dynamic logo from Sanity on load
@@ -20,6 +21,64 @@ export default function Navbar() {
       .catch((err) => console.error("Error fetching logo from Sanity:", err));
   }, []);
 
+  const toggleDropdown = (menuName: string) => {
+    if (activeDropdown === menuName) {
+      setActiveDropdown(null);
+    } else {
+      setActiveDropdown(menuName);
+    }
+  };
+
+  const closeMenu = () => {
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
+  const navItems = [
+    { name: "Home", href: "/" },
+    {
+      name: "About Us",
+      sublinks: [
+        { name: "About The Founder", href: "/about" },
+        { name: "Why Minerva Academy", href: "/why-minerva" },
+        { name: "Famous Alumni", href: "/famous-alumni" },
+        { name: "Our Pledge", href: "/our-pledge" }
+      ]
+    },
+    {
+      name: "SSB Interview",
+      sublinks: [
+        { name: "SSB Interview Training", href: "/ssb-interview-training" },
+        { name: "CPSS / PABT Training", href: "/cpss-pabt-training" }
+      ]
+    },
+    {
+      name: "Written Exams",
+      sublinks: [
+        { name: "NDA Written Exam", href: "/nda-written-exam" },
+        { name: "CDS / OTA Written Exam", href: "/cds-ota-exam" },
+        { name: "AFCAT Written Exam", href: "/afcat-written-exam" },
+        { name: "ACC Written Exam", href: "/acc-written-exam" }
+      ]
+    },
+    {
+      name: "Life at Minerva",
+      sublinks: [
+        { name: "Our Campus", href: "/our-campus" },
+        { name: "Hostel & Mess", href: "/hostel-and-mess" },
+        { name: "Sports Facilities", href: "/sports-facilities" }
+      ]
+    },
+    {
+      name: "Success Stories",
+      sublinks: [
+        { name: "Testimonials", href: "/testimonials" },
+        { name: "Selections", href: "/selections" }
+      ]
+    },
+    { name: "Contact Us", href: "/contact" }
+  ];
+
   return (
     <nav className="w-full bg-minerva-primary border-b border-minerva-accent/30 sticky top-0 z-[100] shadow-lg">
       
@@ -30,7 +89,7 @@ export default function Navbar() {
         
         {/* Logo Area (Dynamic from Sanity with Fallback) */}
         <div className="flex flex-col relative z-50">
-          <Link className="leading-none flex items-center" href="/">
+          <Link className="leading-none flex items-center" href="/" onClick={closeMenu}>
             {logoUrl ? (
               <img src={logoUrl} alt="Minerva Academy Logo" className="h-12 w-auto object-contain max-h-12" />
             ) : (
@@ -48,75 +107,28 @@ export default function Navbar() {
 
         {/* Desktop Navigation Links */}
         <div className="hidden lg:flex space-x-6 items-center font-sans text-xs font-semibold tracking-wider uppercase text-gray-200">
-          
-          <Link className="hover:text-minerva-accent transition-colors" href="/">Home</Link>
-
-          {/* About Us Dropdown */}
-          <div className="relative group py-2">
-            <button className="hover:text-minerva-accent transition-colors flex items-center gap-1 cursor-pointer">
-              About Us ▾
-            </button>
-            <div className="absolute top-full left-0 w-56 bg-minerva-primary border-t-2 border-minerva-accent shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col py-2">
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/about">About The Founder</Link>
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/why-minerva">Why Minerva Academy</Link>
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/famous-alumni">Famous Alumni</Link>
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/our-pledge">Our Pledge</Link>
+          {navItems.map((item) => (
+            <div key={item.name} className="relative group py-2">
+              {item.sublinks ? (
+                <>
+                  <button className="hover:text-minerva-accent transition-colors flex items-center gap-1 cursor-pointer uppercase">
+                    {item.name} ▾
+                  </button>
+                  <div className="absolute top-full left-0 w-60 bg-minerva-primary border-t-2 border-minerva-accent shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col py-2">
+                    {item.sublinks.map((sub) => (
+                      <Link key={sub.name} className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors uppercase" href={sub.href}>
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <Link className="hover:text-minerva-accent transition-colors uppercase" href={item.href}>
+                  {item.name}
+                </Link>
+              )}
             </div>
-          </div>
-
-          {/* SSB */}
-          <div className="relative group py-2">
-            <button className="hover:text-minerva-accent transition-colors flex items-center gap-1 cursor-pointer">
-              SSB Interview ▾
-            </button>
-            <div className="absolute top-full left-0 w-60 bg-minerva-primary border-t-2 border-minerva-accent shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col py-2">
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/ssb-interview-training">SSB Interview Training</Link>
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/cpss-pabt-training">CPSS / PABT Training</Link>
-            </div>
-          </div>
-
-          {/* Written Exams */}
-          <div className="relative group py-2">
-            <button className="hover:text-minerva-accent transition-colors flex items-center gap-1 cursor-pointer">
-              Written Exams ▾
-            </button>
-            <div className="absolute top-full left-0 w-60 bg-minerva-primary border-t-2 border-minerva-accent shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col py-2">
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/nda-written-exam">NDA Written Exam</Link>
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/cds-ota-exam">CDS / OTA Written Exam</Link>
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/afcat-written-exam">AFCAT Written Exam</Link>
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/acc-written-exam">ACC Written Exam</Link>
-            </div>
-          </div>
-
-          {/* Life at Minerva */}
-          <div className="relative group py-2">
-            <button className="hover:text-minerva-accent transition-colors flex items-center gap-1 cursor-pointer">
-              Life at Minerva ▾
-            </button>
-            <div className="absolute top-full left-0 w-56 bg-minerva-primary border-t-2 border-minerva-accent shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col py-2">
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/our-campus">Our Campus</Link>
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/hostel-and-mess">Hostel & Mess</Link>
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/sports-facilities">Sports Facilities</Link>
-              
-              {/* HIDDEN FOR NOW - UNCOMMENT LATER
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/photo-gallery">Photo Gallery</Link>
-              */}
-            </div>
-          </div>
-
-          {/* Success Stories */}
-          <div className="relative group py-2">
-            <button className="hover:text-minerva-accent transition-colors flex items-center gap-1 cursor-pointer">
-              Success Stories ▾
-            </button>
-            <div className="absolute top-full left-0 w-48 bg-minerva-primary border-t-2 border-minerva-accent shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col py-2">
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/testimonials">Testimonials</Link>
-              <Link className="px-4 py-2.5 hover:bg-minerva-blue hover:text-minerva-accent transition-colors" href="/selections">Selections</Link>
-            </div>
-          </div>
-
-          <Link className="hover:text-minerva-accent transition-colors" href="/contact">Contact Us</Link>
-
+          ))}
         </div>
         
         {/* Desktop Admissions Button */}
@@ -145,28 +157,65 @@ export default function Navbar() {
 
       </div>
 
-      {/* Mobile Menu Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-minerva-primary border-t-2 border-minerva-accent shadow-2xl flex flex-col py-4 px-6 font-sans text-xs font-semibold tracking-wider uppercase text-gray-200 space-y-4">
-          <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-          <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
-          <Link href="/ssb-interview-training" onClick={() => setIsMobileMenuOpen(false)}>SSB Interview</Link>
-          <Link href="/nda-written-exam" onClick={() => setIsMobileMenuOpen(false)}>Written Exams</Link>
-          <Link href="/our-campus" onClick={() => setIsMobileMenuOpen(false)}>Life at Minerva</Link>
-          <Link href="/testimonials" onClick={() => setIsMobileMenuOpen(false)}>Success Stories</Link>
-          <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
-          
-          <div className="pt-4 border-t border-gray-700">
+      {/* Mobile Menu Dropdown (ACCORDION INTEGRATED) */}
+      <div 
+        className={`lg:hidden absolute top-full left-0 w-full bg-minerva-primary border-t-2 border-minerva-accent shadow-2xl transition-all duration-300 ease-in-out overflow-y-auto ${isMobileMenuOpen ? "max-h-[80vh] opacity-100 py-4" : "max-h-0 opacity-0 py-0"}`}
+      >
+        <div className="flex flex-col px-6 font-sans text-xs font-semibold tracking-wider uppercase text-gray-200">
+          {navItems.map((item) => (
+            <div key={item.name} className="border-b border-gray-700/50">
+              {item.sublinks ? (
+                <div className="flex flex-col">
+                  <button 
+                    onClick={() => toggleDropdown(item.name)}
+                    className="flex justify-between items-center py-4 w-full text-left hover:text-minerva-accent transition-colors focus:outline-none"
+                  >
+                    {item.name}
+                    <span className={`transform transition-transform duration-300 ${activeDropdown === item.name ? "rotate-180 text-minerva-accent" : ""}`}>
+                      ▼
+                    </span>
+                  </button>
+                  
+                  {/* Mobile Sublinks Accordion */}
+                  <div 
+                    className={`flex flex-col pl-4 overflow-hidden transition-all duration-300 ease-in-out ${activeDropdown === item.name ? "max-h-96 pb-4 opacity-100" : "max-h-0 opacity-0"}`}
+                  >
+                    {item.sublinks.map((sub) => (
+                      <Link 
+                        key={sub.name} 
+                        href={sub.href} 
+                        onClick={closeMenu}
+                        className="py-2.5 text-gray-400 hover:text-minerva-accent transition-colors flex items-center gap-2"
+                      >
+                        <span className="w-1 h-1 rounded-full bg-minerva-accent"></span>
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link 
+                  href={item.href} 
+                  onClick={closeMenu} 
+                  className="block py-4 hover:text-minerva-accent transition-colors"
+                >
+                  {item.name}
+                </Link>
+              )}
+            </div>
+          ))}
+
+          <div className="pt-6 pb-2">
             <Link 
               href="/contact" 
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMenu}
               className="bg-minerva-accent text-minerva-white px-5 py-3 text-center block w-full hover:bg-white hover:text-minerva-blue transition-all duration-300"
             >
               Admissions
             </Link>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
