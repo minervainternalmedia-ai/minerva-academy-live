@@ -106,7 +106,7 @@ export default async function SelectionsPage() {
         </div>
       </section>
 
-      {/* 3. CALL TO ACTION BANNER */}
+      {/* 3. CALL TO ACTION BANNER (FIXED LINK TO CONTACT PAGE) */}
       <section className="w-full py-20 bg-minerva-primary text-minerva-white border-t border-minerva-accent/30 text-center">
         <div className="max-w-4xl mx-auto px-6 space-y-6">
           <span className="text-minerva-accent font-sans text-xs font-bold tracking-[0.4em] uppercase block">
@@ -119,8 +119,9 @@ export default async function SelectionsPage() {
             Start your preparation with the undisputed leaders in defense coaching.
           </p>
           <div className="pt-4">
+            {/* LINK CHANGED TO /contact */}
             <Link 
-              href="/admissions" 
+              href="/contact" 
               className="inline-block bg-minerva-accent text-white font-sans font-bold tracking-[0.2em] text-xs uppercase px-10 py-4 hover:bg-white hover:text-minerva-blue transition-all duration-300 shadow-lg"
             >
               Join Minerva Academy →
